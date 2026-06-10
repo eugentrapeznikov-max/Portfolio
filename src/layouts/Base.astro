@@ -1,0 +1,93 @@
+---
+const { title = 'Eugen Trapeznikov — Product Designer' } = Astro.props;
+---
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg:#ffffff; --bg2:#f5f4f1; --bg3:#eceae4; --text:#1a1a1a; --text2:#6b6b6b; --text3:#a8a8a0; --border:rgba(0,0,0,0.08); --acc:#E8601A; }
+    html.dark { --bg:#111110; --bg2:#1a1918; --bg3:#232220; --text:#e8e6e0; --text2:#888580; --text3:#555250; --border:rgba(255,255,255,0.07); }
+    html, body { height: 100%; }
+    body { font-family: 'Inter', sans-serif; bkground: var(--bg); color: var(--text); transition: background .3s, color .3s; }
+    .shell { display: flex; height: 100vh; overflow: hidden; }
+    .sidebar { width: 224px; flex-shrink: 0; border-right: 0.5px solid var(--border); padding: 24px 20px; display: flex; flex-direction: column; background: var(--bg2); height: 100vh; position: sticky; top: 0; }
+    .profile { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+    .avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--bg3); border: 0.5px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 600; color: var(--text3); }
+    .profile-name { font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; color: var(--text); letter-spacing: -0.01em; }
+    .descriptor-block { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 0.5px solid var(--border); }
+    .role-primary { font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 5px; }
+    .role-tags { font-size: 11px; color: var(--text2); line-height: 2; margin-bottom: 10px; }
+    .role-tags s { color: var(--text3); text-decoration-color: var(--acc); text-decoration-thickness: 1.5px; }
+    .role-tags .sep { margin: 0 4px; color: var(--text3); }
+    .bio { font-size: 11px; line-height: 1.6; color: var(--text3); }
+    .bio em { font-style: normal; color: var(--acc); }
+    .nav-list { display: flex; flex-direction: column; gap: 2px; }
+    .nav-item { display: flex; align-items: center; gap: 10px; padding: 7px 0; cursor: pointer; color: var(--text2); font-size: 13px; text-decoration: none; transition: color .2s; }
+    .nav-item:hover { color: var(--text); }
+    .nav-num { font-family: 'Space Grotesk', sans-serif; font-size: 10px; font-weight: 700; color: var(--text3); min-width: 16px; }
+    .nav-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--acc); margin-left: auto; opacity: 0; }
+    .divider { height: 0.5px; background: var(--border); margin: 14px 0; }
+    .nav-small { display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--text3); padding: 5px 0; cursor: pointer; text-decoration: none; transition: color .2s; }
+    .nav-small:hover { color: var(--acc); }
+    .sidebar-bottom { margin-top: auto; padding-top: 16px; border-top: 0.5px solid var(--border); display: flex; flex-direction: column; gap: 10px; }
+    .status-row { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--text3); }
+    .status-dot { width: 5px; height: 5px; border-radius: 50%; background: #3db87a; flex-shrink: 0; }
+    .theme-toggle { display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 11px; color: var(--text3); background: none; border: none; padding: 0; transition: color .2s; }
+    .theme-toggle:hover { color: var(--text); }
+    .toggle-track { width: 28px; height: 16px; border-radius: 8px; background: var(--bg3); border: 0.5px solid var(--border); position: relative; flex-shrink: 0; }
+    .toggle-knob { width: 10px; height: 10px; border-radius: 50%; background: var(--text3); position: absolute; top: 2px; left: 2px; transition: transform .25s, background .25s; }
+    html.dark .toggle-knob { transform: translateX(12px); background: var(--acc); }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="profile">
+      <div class="avatar">ET</div>
+      <div class="profile-name">Eugen Trapeznikov</div>
+    </div>
+    <div class="descriptor-block">
+      <div class="role-primary">Product Designer</div>
+      <div class="role-tags">
+        <s>Pixel Pusher</s><span class="sep">·</span>Decision Maker<span class="sep">·</span>Product Mind<span class="sep">·</span>T-shaped
+      </div>
+      <p class="bio">I get a kick from untangling logic and visual problems. Design, to me, is <em>communication</em> — with people and with technology.</p>
+    </div>
+    <nav class="nav-list">
+      <a href="/" class="nav"><span class="nav-num">01</span>Work<span class="nav-dot"></span></a>
+      <a href="/about" class="nav-item"><span class="nav-num">02</span>About</a>
+      <a href="/experience" class="nav-item"><span class="nav-num">03</span>Experience</a>
+      <a href="/contact" class="nav-item"><span class="nav-num">04</span>Contact</a>
+    </nav>
+    <div class="divider"></div>
+    <a href="https://linkedin.com/in/evgenii-trapeznikov/" target="_blank" class="nav-small"><span style="font-size:10px;min-width:16px;font-weight:700">↗</span>LinkedIn</a>
+    <a href="https://t.me/EvgeniiTrapeznikov" target="_blank" class="nav-small"><span style="font-size:10px;min-width:16px;font-weight:700">↗</span>Telegram</a>
+    <a href="#" class="nav-small" style="color:var(--acc)"><span style="font-size:10px;min-width:16px">↓</span>CV</a>
+    <div class="sidebar-bottom">
+      <div class="status-row"><span class="status-dot"></span>Open to work · Belgrade</div>
+      <button class="theme-toggle" id="themeBtn" aria-label="Toggl">
+        <div class="toggle-track"><div class="toggle-knob"></div></div>
+        <span id="themeLabel">Light mode</span>
+      </button>
+    </div>
+  </aside>
+  <slot />
+</div>
+<script>
+  const btn = document.getElementById('themeBtn');
+  const label = document.getElementById('themeLabel');
+  let dark = false;
+  btn.addEventListener('click', () => {
+    dark = !dark;
+    document.documentElement.classList.toggle('dark', dark);
+    label.textContent = dark ? 'Dark mode' : 'Light mode';
+  });
+</script>
+</body>
+</html>

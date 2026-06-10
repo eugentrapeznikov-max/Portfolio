@@ -1,11 +1,73 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Base from '../layouts/Base.astro';
 ---
+<Base>
+  <main style="flex:1;padding:28px;overflow-y:auto;height:100vh;">
+    <div style="margin-bottom:32px;padding-bottom:24px;border-bottom:0.5px solid var(--border);">
+      <div style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);margin-bottom:10px;">— Tagline</div>
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;line-height:1.1;letter-spacing:-0.02em;color:var(--text3);font-style:italic;">Your slogan<br>goes here.</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <div onclick="location.href='/cases/yollet'" style="grid-column:span 2;height:200px;border-radius:12px;overflow:hidden;cursor:pointer;position:relative;background:#e8e4dc;border:0.5px solid var(--border);transition:border-color .2s;" class="card">
+        <div class="card-inner" style="width:100%;height:100%;display:flex;align-itemsenter;justify-content:center;font-size:36px;">🔐</div>
+        <div class="card-overlay"></div>
+        <div class="card-info">
+          <div class="card-tags"><span class="card-tag">#crypto</span><span class="card-tag">#fintech</span></div>
+          <div class="card-name">Yollet — Crypto Wallet</div>
+          <div class="card-stat">0 → 1 · <strong style="color:#E8601A">6 months</strong></div>
+        </div>
+      </div>
+      <div style="height:210px;border-radius:12px;overflow:hidden;cursor:pointer;position:relative;background:#dce4e8;border:0.5px solid var(--border);" class="card">
+        <div class="card-inner" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:36px;">⚡</div>
+        <div class="card-overlay"></div>
+        <div class="card-info">
+          <div class="card-tags"><span class="card-tag">#sporttech</span><span class="card-tag">#AI</span></div>
+          <div class="card-name">AI Sports Newsfeed</div>
+          <div class="card-stat"style="color:#E8601A">60K users</strong> · D21 70%</div>
+        </div>
+      </div>
+      <div style="height:210px;border-radius:12px;overflow:hidden;cursor:pointer;position:relative;background:#dce8e0;border:0.5px solid var(--border);" class="card">
+        <div class="card-inner" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:36px;">📈</div>
+        <div class="card-overlay"></div>
+        <div class="card-info">
+          <div class="card-tags"><span class="card-tag">#fintech</span></div>
+          <div class="card-name">Copytrading Platform</div>
+          <div class="card-stat">Conv. <strong style="color:#E8601A">1.5% → 9.87%</strong></div>
+        </div>
+      </div>
+      <div style="height:210px;border-radius:12px;overflow:hidden;cursor:pointer;position:relative;background:#e8dce4;border:0.5px solid var(--border);" class="card">
+        <div class="card-inner" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;foze:36px;">🏦</div>
+        <div class="card-overlay"></div>
+        <div class="card-info">
+          <div class="card-tags"><span class="card-tag">#banking</span></div>
+          <div class="card-name">Sber Business</div>
+          <div class="card-stat"><strong style="color:#E8601A">24h → 3h</strong> processing</div>
+        </div>
+      </div>
+      <div style="height:210px;border-radius:12px;overflow:hidden;cursor:pointer;position:relative;background:#e8e8dc;border:0.5px solid var(--border);" class="card">
+        <div class="card-inner" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:36px;">🏟️</div>
+        <div class="card-overlay"></div>
+        <div class="card-info">
+          <div class="card-tags"><span class="card-tag">#sporttech</span></div>
+          <div class="card-name">Live Match Pages</div>
+          <div class="card-stat">SEO <strong style="color:#E8601A">Top-3</strong> · reach +72%</div>
+        </div>
+      </div>
+    </div>
+  </ase>
 
-<Layout>
-	<Welcome />
-</Layout>
+<style>
+  .card:hover { border-color: rgba(232,96,26,0.35) !important; }
+  .card-inner { transition: transform .5s cubic-bezier(.25,.46,.45,.94); }
+  .card:hover .card-inner { transform: scale(1.05); }
+  .card-overlay { position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.72),transparent 60%);opacity:0;transition:opacity .3s; }
+  .card:hover .card-overlay { opacity:1; }
+  .card-info { position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:14px;pointer-events:none; }
+  .card-tags { display:flex;gap:4px;margin-bottom:4px;opacity:0;transform:translateY(4px);transition:opacity .25s,transform .25s; }
+  .card:hover .card-tags { opacity:1;transform:translateY(0); }
+  .card-tag { font-size:9px;padding:2px 6px;border-radius:20px;border:0.5px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.65); }
+  .card-name { font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;color:#fff;opacity:0;transform:translateY(4px);transition:opacity .25s .04s,transform .25s .04s;line-height:1.2;margin-bottom:2px; }
+  .card:hover .card-name { opacity:1;transform:translateY(0); }
+  .card-stat { font-size:10px;color:rgba(255,255,255,0.5);opacity:0;transition:opacity .25s .08s; }
+  .card:hover .card-stat { opacity:1; }
+</style>
