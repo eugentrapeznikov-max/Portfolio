@@ -1,73 +1,1222 @@
 ---
-import Base from '../layouts/Base.astro';
+// src/pages/index.astro
+// Eugen Trapeznikov — Portfolio Homepage
+// Stack: Astro, vanilla CSS, vanilla JS
+// Design source: Figma node 93:3694
 ---
-<Base>
-  <main style="flex:1;padding:28px;overflow-y:auto;height:100vh;">
-    <div style="margin-bottom:32px;padding-bottom:24px;border-bottom:0.5px solid var(--border);">
-      <div style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);margin-bottom:10px;">— Tagline</div>
-      <div style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;line-height:1.1;letter-spacing:-0.02em;color:var(--text3);font-style:italic;">Your slogan<br>goes here.</div>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-      <div onclick="location.href='/cases/yollet'" style="grid-column:span 2;height:200px;border-radius:12px;overflow:hidden;cursor:pointer;position:relative;background:#e8e4dc;border:0.5px solid var(--border);transition:border-color .2s;" class="card">
-        <div class="card-inner" style="width:100%;height:100%;display:flex;align-itemsenter;justify-content:center;font-size:36px;">🔐</div>
-        <div class="card-overlay"></div>
-        <div class="card-info">
-          <div class="card-tags"><span class="card-tag">#crypto</span><span class="card-tag">#fintech</span></div>
-          <div class="card-name">Yollet — Crypto Wallet</div>
-          <div class="card-stat">0 → 1 · <strong style="color:#E8601A">6 months</strong></div>
-        </div>
-      </div>
-      <div style="height:210px;border-radius:12px;overflow:hidden;cursor:pointer;position:relative;background:#dce4e8;border:0.5px solid var(--border);" class="card">
-        <div class="card-inner" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:36px;">⚡</div>
-        <div class="card-overlay"></div>
-        <div class="card-info">
-          <div class="card-tags"><span class="card-tag">#sporttech</span><span class="card-tag">#AI</span></div>
-          <div class="card-name">AI Sports Newsfeed</div>
-          <div class="card-stat"style="color:#E8601A">60K users</strong> · D21 70%</div>
-        </div>
-      </div>
-      <div style="height:210px;border-radius:12px;overflow:hidden;cursor:pointer;position:relative;background:#dce8e0;border:0.5px solid var(--border);" class="card">
-        <div class="card-inner" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:36px;">📈</div>
-        <div class="card-overlay"></div>
-        <div class="card-info">
-          <div class="card-tags"><span class="card-tag">#fintech</span></div>
-          <div class="card-name">Copytrading Platform</div>
-          <div class="card-stat">Conv. <strong style="color:#E8601A">1.5% → 9.87%</strong></div>
-        </div>
-      </div>
-      <div style="height:210px;border-radius:12px;overflow:hidden;cursor:pointer;position:relative;background:#e8dce4;border:0.5px solid var(--border);" class="card">
-        <div class="card-inner" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;foze:36px;">🏦</div>
-        <div class="card-overlay"></div>
-        <div class="card-info">
-          <div class="card-tags"><span class="card-tag">#banking</span></div>
-          <div class="card-name">Sber Business</div>
-          <div class="card-stat"><strong style="color:#E8601A">24h → 3h</strong> processing</div>
-        </div>
-      </div>
-      <div style="height:210px;border-radius:12px;overflow:hidden;cursor:pointer;position:relative;background:#e8e8dc;border:0.5px solid var(--border);" class="card">
-        <div class="card-inner" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:36px;">🏟️</div>
-        <div class="card-overlay"></div>
-        <div class="card-info">
-          <div class="card-tags"><span class="card-tag">#sporttech</span></div>
-          <div class="card-name">Live Match Pages</div>
-          <div class="card-stat">SEO <strong style="color:#E8601A">Top-3</strong> · reach +72%</div>
-        </div>
-      </div>
-    </div>
-  </ase>
 
-<style>
-  .card:hover { border-color: rgba(232,96,26,0.35) !important; }
-  .card-inner { transition: transform .5s cubic-bezier(.25,.46,.45,.94); }
-  .card:hover .card-inner { transform: scale(1.05); }
-  .card-overlay { position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.72),transparent 60%);opacity:0;transition:opacity .3s; }
-  .card:hover .card-overlay { opacity:1; }
-  .card-info { position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:14px;pointer-events:none; }
-  .card-tags { display:flex;gap:4px;margin-bottom:4px;opacity:0;transform:translateY(4px);transition:opacity .25s,transform .25s; }
-  .card:hover .card-tags { opacity:1;transform:translateY(0); }
-  .card-tag { font-size:9px;padding:2px 6px;border-radius:20px;border:0.5px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.65); }
-  .card-name { font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;color:#fff;opacity:0;transform:translateY(4px);transition:opacity .25s .04s,transform .25s .04s;line-height:1.2;margin-bottom:2px; }
-  .card:hover .card-name { opacity:1;transform:translateY(0); }
-  .card-stat { font-size:10px;color:rgba(255,255,255,0.5);opacity:0;transition:opacity .25s .08s; }
-  .card:hover .card-stat { opacity:1; }
-</style>
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Eugen Trapeznikov — Senior Product Designer. Fintech & Sporttech." />
+  <title>Eugen Trapeznikov — Product Designer</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Design Tokens ──────────────────────────────────── */
+    :root {
+      --bg:        #ffffff;
+      --bg2:       #f6f6f6;
+      --bg3:       #ebebeb;
+      --text:      #171717;
+      --secondary: #666666;
+      --border:    rgba(0, 0, 0, 0.08);
+      --accent:    #e8601a;
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --radius-sm: 8px;
+      --sidebar-w: 360px;
+
+      /* timeline dot colors */
+      --clr-fintech-1: #6b5fd4;
+      --clr-media:     #2e9e6e;
+      --clr-fintech-2: #2b3cf5;
+      --clr-saas:      #2e9e6e;
+      --clr-agency:    #545454;
+    }
+
+    [data-theme="dark"] {
+      --bg:        #111110;
+      --bg2:       #1a1918;
+      --bg3:       #242321;
+      --text:      #e8e6e0;
+      --secondary: #888882;
+      --border:    rgba(255, 255, 255, 0.08);
+    }
+
+    /* ─── Reset ──────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    p { word-break: break-word; }
+
+    /* ─── Layout ─────────────────────────────────────────── */
+    .layout {
+      display: flex;
+      width: 100%;
+      min-height: 100vh;
+      align-items: flex-start;
+    }
+
+    /* ─── Sidebar ────────────────────────────────────────── */
+    .sidebar {
+      width: var(--sidebar-w);
+      min-width: var(--sidebar-w);
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      background: var(--bg);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      scrollbar-width: none;
+    }
+    .sidebar::-webkit-scrollbar { display: none; }
+
+    /* ─── Cards (shared) ─────────────────────────────────── */
+    .card {
+      background: var(--bg2);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    /* ─── Summary card ───────────────────────────────────── */
+    .summary-card {
+      padding: 20px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .summary-title {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .summary-title .name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--text);
+    }
+    .summary-title .role {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 300;
+      font-size: 12px;
+      color: var(--secondary);
+    }
+
+    .summary-point {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 12px;
+    }
+    .summary-point .label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 300;
+      color: var(--text);
+    }
+    .summary-point .value {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      color: var(--secondary);
+      line-height: 1.5;
+    }
+
+    /* ─── Nav ────────────────────────────────────────────── */
+    .nav {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 300;
+      font-size: 12px;
+      color: var(--secondary);
+    }
+    .nav-item {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      padding: 8px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+    .nav-item:hover { background: var(--bg3); }
+    .nav-item.active { color: var(--accent); font-weight: 500; }
+    .nav-item .num { white-space: nowrap; }
+    .nav-item .label { flex: 1; }
+
+    /* ─── Theme toggle ───────────────────────────────────── */
+    .theme-row {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      padding: 8px;
+    }
+    .theme-label {
+      flex: 1;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+    .switch {
+      width: 52px;
+      height: 24px;
+      background: var(--accent);
+      border-radius: 100px;
+      padding: 2px 4px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      cursor: pointer;
+      transition: background 0.2s;
+      border: none;
+      flex-shrink: 0;
+    }
+    .switch[aria-checked="false"] { justify-content: flex-start; background: var(--bg3); }
+    .switch-thumb {
+      width: 16px;
+      height: 16px;
+      background: #fff;
+      border-radius: 50%;
+      transition: transform 0.2s;
+    }
+    [data-theme="dark"] .switch { background: var(--accent); justify-content: flex-end; }
+
+    /* ─── Timeline ───────────────────────────────────────── */
+    .timeline-card {
+      padding: 20px 16px;
+    }
+    .timeline-header {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 42px;
+    }
+    .timeline-eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #9b9b93;
+    }
+    .timeline-heading {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 22px;
+      letter-spacing: -0.01em;
+      color: var(--text);
+    }
+
+    .timeline-list { display: flex; flex-direction: column; }
+
+    .timeline-item {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+    }
+
+    .timeline-line {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 13px;
+      flex-shrink: 0;
+    }
+    .timeline-dot {
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      border: 2px solid currentColor;
+      background: var(--bg2);
+      flex-shrink: 0;
+    }
+    .timeline-item:first-child .timeline-dot { color: var(--accent); border-color: var(--accent); }
+    .timeline-connector {
+      width: 2px;
+      height: 72px;
+      background: #dddde0;
+      margin-top: 0;
+    }
+    .timeline-item:last-child .timeline-connector { display: none; }
+
+    .timeline-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding-bottom: 32px;
+    }
+    .timeline-item:last-child .timeline-content { padding-bottom: 0; }
+
+    .timeline-company {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 16px;
+      letter-spacing: -0.01em;
+      color: var(--text);
+    }
+    .timeline-item:first-child .timeline-company { color: var(--accent); }
+
+    .timeline-meta {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .timeline-date {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 12px;
+      letter-spacing: 0.01em;
+      color: var(--secondary);
+      white-space: nowrap;
+    }
+    .timeline-dot-sep {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--secondary);
+      flex-shrink: 0;
+    }
+    .timeline-domain {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .timeline-desc {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--secondary);
+    }
+
+    /* ─── Main ───────────────────────────────────────────── */
+    .main {
+      flex: 1;
+      min-width: 0;
+      padding: 32px 32px 32px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* ─── Hero ───────────────────────────────────────────── */
+    .hero {
+      background: var(--bg2);
+      border-radius: 32px;
+      padding: 32px 64px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      overflow: hidden;
+    }
+
+    .hero-top {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 28px;
+      background: var(--accent);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+
+    .social-links {
+      flex: 1;
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      justify-content: flex-end;
+    }
+    .social-btn {
+      width: 48px;
+      height: 48px;
+      background: var(--bg);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.15s, transform 0.15s;
+      flex-shrink: 0;
+    }
+    .social-btn:hover { opacity: 0.7; transform: translateY(-1px); }
+    .social-btn svg { width: 24px; height: 24px; }
+
+    .hero-headline {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 44px;
+      line-height: 60px;
+      color: var(--text);
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 32px;
+      background: var(--text);
+      color: var(--bg);
+      border-radius: 100px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 20px;
+      white-space: nowrap;
+      transition: opacity 0.15s, transform 0.15s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
+
+    /* ─── Works block ────────────────────────────────────── */
+    .works-block {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* Work card — full width */
+    .work-card {
+      background: var(--bg2);
+      border-radius: var(--radius-lg);
+      padding: 64px;
+      position: relative;
+      overflow: hidden;
+      min-height: 535px;
+    }
+
+    .work-card-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 26px;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .work-card-desc {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--secondary);
+    }
+
+    .work-card-image {
+      position: absolute;
+      right: 64px;
+      top: 45px;
+      width: 380px;
+      height: 490px;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .work-card-image img {
+      width: 100%;
+      height: 103.54%;
+      object-fit: cover;
+      margin-top: -0.03%;
+    }
+
+    .work-card-image--sports {
+      right: 0;
+      top: 0;
+      width: 380px;
+      height: 100%;
+      border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+    }
+    .work-card-image--sports img {
+      height: 100%;
+      margin-top: 0;
+    }
+
+    /* Numbers card overlay */
+    .numbers-overlay {
+      position: absolute;
+      left: 64px;
+      bottom: 64px;
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      background: rgba(255,255,255,0.7);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-sm);
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      min-width: 240px;
+    }
+    [data-theme="dark"] .numbers-overlay { background: rgba(17,17,16,0.7); }
+
+    .numbers-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 26px;
+      color: var(--text);
+    }
+    .numbers-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .numbers-row {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .numbers-bar {
+      height: 12px;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+    .numbers-row-text {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 12px;
+      color: var(--text);
+      white-space: nowrap;
+    }
+    .numbers-stat {
+      display: flex;
+      flex-direction: column;
+    }
+    .numbers-stat-val {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 32px;
+      color: var(--text);
+      line-height: 1;
+    }
+    .numbers-stat-label {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 12px;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    /* Two-column card row */
+    .work-row {
+      display: flex;
+      gap: 16px;
+    }
+    .work-card-half {
+      flex: 1;
+      min-width: 0;
+      background: var(--bg2);
+      border-radius: var(--radius-lg);
+      padding-top: 64px;
+      padding-left: 64px;
+      padding-right: 64px;
+      height: 564px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      overflow: hidden;
+    }
+    .work-card-half-image {
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+      border-radius: 0;
+    }
+    .work-card-half-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+
+    /* ─── Sections heading ───────────────────────────────── */
+    .section-heading {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 44px;
+      line-height: 60px;
+      color: var(--text);
+    }
+
+    /* ─── Initiatives ────────────────────────────────────── */
+    .initiatives-block {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .initiatives-list {
+      display: flex;
+      gap: 12px;
+    }
+    .initiative-card {
+      flex: 1;
+      min-width: 0;
+      background: var(--bg2);
+      border-radius: var(--radius-md);
+      padding: 32px;
+    }
+    .initiative-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 26px;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .initiative-desc {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--secondary);
+    }
+
+    /* ─── Contacts ───────────────────────────────────────── */
+    .contacts-block {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .contacts-card {
+      background: var(--bg2);
+      border-radius: var(--radius-lg);
+      min-height: 535px;
+      padding: 64px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    .contacts-email {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 32px;
+      color: var(--text);
+      word-break: break-all;
+    }
+    .contacts-email:hover { color: var(--accent); }
+    .contacts-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .contacts-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background: var(--bg3);
+      border-radius: 100px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      color: var(--text);
+      transition: background 0.15s;
+    }
+    .contacts-link:hover { background: var(--accent); color: #fff; }
+
+    /* ─── Sections wrapper ───────────────────────────────── */
+    .sections {
+      display: flex;
+      flex-direction: column;
+      gap: 64px;
+    }
+
+    /* ─── Mobile nav header ──────────────────────────────── */
+    .mobile-header {
+      display: none;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--border);
+      padding: 0 16px;
+      height: 64px;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .mobile-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--text);
+    }
+    .mobile-menu-btn {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      background: none;
+      cursor: pointer;
+      color: var(--text);
+    }
+
+    /* Mobile nav drawer */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: var(--bg);
+      padding: 32px 16px;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav-close {
+      align-self: flex-end;
+      width: 40px;
+      height: 40px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      color: var(--text);
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+    .mobile-nav .nav-item {
+      font-size: 24px;
+      padding: 16px;
+    }
+
+    /* ─── Responsive ─────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .layout { flex-direction: column; }
+      .sidebar { display: none; }
+      .mobile-header { display: flex; }
+      .main { padding: 16px; }
+
+      .hero {
+        padding: 32px 32px 0;
+        border-radius: 16px;
+      }
+      .hero-headline { font-size: 28px; line-height: 38px; }
+
+      .work-card {
+        padding: 32px;
+        min-height: auto;
+      }
+      .work-card-image {
+        position: relative;
+        right: auto;
+        top: auto;
+        width: 100%;
+        height: 300px;
+        margin-top: 32px;
+        border-radius: 12px;
+      }
+      .work-card-image img { height: 100%; margin-top: 0; }
+
+      .work-row { flex-direction: column; }
+      .work-card-half {
+        padding: 32px 32px 0;
+        height: auto;
+      }
+      .work-card-half-image { height: 280px; min-height: 280px; }
+
+      .work-card-image--sports {
+        position: relative;
+        right: auto;
+        top: auto;
+        width: 100%;
+        border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+      }
+
+      .numbers-overlay {
+        position: relative;
+        left: auto;
+        bottom: auto;
+        margin-top: 32px;
+        min-width: 0;
+      }
+
+      .initiatives-list { flex-direction: column; }
+      .section-heading { font-size: 32px; line-height: 44px; }
+      .contacts-email { font-size: 22px; }
+      .hero-headline { font-size: 28px; }
+    }
+
+    @media (max-width: 600px) {
+      .social-links { gap: 8px; }
+      .hero { padding: 24px 20px 0; }
+      .hero-headline { font-size: 22px; line-height: 32px; }
+      .work-card { padding: 24px; }
+      .work-card-half { padding: 24px 24px 0; }
+      .contacts-card { padding: 32px 24px; }
+      .contacts-email { font-size: 18px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Mobile header -->
+  <header class="mobile-header">
+    <span class="mobile-logo">ET</span>
+    <button class="mobile-menu-btn" id="menuOpen" aria-label="Open menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+  </header>
+
+  <!-- Mobile nav drawer -->
+  <nav class="mobile-nav" id="mobileNav">
+    <button class="mobile-nav-close" id="menuClose" aria-label="Close menu">✕</button>
+    <a href="#home" class="nav-item" onclick="closeMobileNav()"><span class="num">01</span><span class="label">/ Home</span></a>
+    <a href="#works" class="nav-item" onclick="closeMobileNav()"><span class="num">02</span><span class="label">/ Selected Works</span></a>
+    <a href="#initiatives" class="nav-item" onclick="closeMobileNav()"><span class="num">03</span><span class="label">/ Initiatives</span></a>
+    <a href="#contact" class="nav-item" onclick="closeMobileNav()"><span class="num">04</span><span class="label">/ Contact</span></a>
+  </nav>
+
+  <div class="layout">
+
+    <!-- ─── SIDEBAR ─────────────────────────────────────── -->
+    <aside class="sidebar">
+
+      <!-- Summary card -->
+      <div class="card">
+        <div class="summary-card">
+          <div class="summary-title">
+            <span class="name">Eugen Trapeznikov</span>
+            <span class="role">Product Designer</span>
+          </div>
+          <div class="summary-point">
+            <span class="label">Experience</span>
+            <span class="value">7 years</span>
+          </div>
+          <div class="summary-point">
+            <span class="label">Platforms</span>
+            <span class="value">Mobile &amp; Desktop,<br>Strong focus on mobile applications</span>
+          </div>
+          <div class="summary-point">
+            <span class="label">Domains</span>
+            <span class="value">Fintech, Media, B2C mostly</span>
+          </div>
+          <div class="summary-point">
+            <span class="label">Teams</span>
+            <span class="value">Design teams &amp; cross-functional product teams, some experience in startups and freelance</span>
+          </div>
+
+          <!-- Nav -->
+          <nav class="nav">
+            <a href="#home" class="nav-item active">
+              <span class="num">01</span>
+              <span class="label">/ Home</span>
+            </a>
+            <a href="#works" class="nav-item">
+              <span class="num">02</span>
+              <span class="label">/ Selected Works</span>
+            </a>
+            <a href="#initiatives" class="nav-item">
+              <span class="num">03</span>
+              <span class="label">/ Initiatives</span>
+            </a>
+            <a href="#contact" class="nav-item">
+              <span class="num">04</span>
+              <span class="label">/ Contact</span>
+            </a>
+          </nav>
+
+          <!-- Theme toggle -->
+          <div class="theme-row">
+            <span class="theme-label">Theme</span>
+            <button class="switch" id="themeToggle" role="switch" aria-checked="false" aria-label="Toggle dark mode">
+              <span class="switch-thumb"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Experience Timeline -->
+      <div class="card">
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <span class="timeline-eyebrow">Experience</span>
+            <span class="timeline-heading">Career timeline</span>
+          </div>
+          <div class="timeline-list">
+
+            <div class="timeline-item">
+              <div class="timeline-line">
+                <div class="timeline-dot"></div>
+                <div class="timeline-connector"></div>
+              </div>
+              <div class="timeline-content">
+                <span class="timeline-company">What's next?</span>
+                <p class="timeline-desc">Currently in free flight, exploring the next chapter.</p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-line">
+                <div class="timeline-dot"></div>
+                <div class="timeline-connector"></div>
+              </div>
+              <div class="timeline-content">
+                <span class="timeline-company">Yollet.io</span>
+                <div class="timeline-meta">
+                  <span class="timeline-date">01.03.2023 — 18.06.2026</span>
+                  <span class="timeline-dot-sep"></span>
+                  <span class="timeline-domain" style="color: var(--clr-fintech-1)">Fintech</span>
+                </div>
+                <p class="timeline-desc">Built the design foundation for a Neo Bank</p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-line">
+                <div class="timeline-dot"></div>
+                <div class="timeline-connector"></div>
+              </div>
+              <div class="timeline-content">
+                <span class="timeline-company">Sports.ru</span>
+                <div class="timeline-meta">
+                  <span class="timeline-date">12.08.2021 — 24.02.2023</span>
+                  <span class="timeline-dot-sep"></span>
+                  <span class="timeline-domain" style="color: var(--clr-media)">Media</span>
+                </div>
+                <p class="timeline-desc">Making sports better, powered by statistics</p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-line">
+                <div class="timeline-dot"></div>
+                <div class="timeline-connector"></div>
+              </div>
+              <div class="timeline-content">
+                <span class="timeline-company">Garage Eight</span>
+                <div class="timeline-meta">
+                  <span class="timeline-date">12.08.2021 — 24.02.2023</span>
+                  <span class="timeline-dot-sep"></span>
+                  <span class="timeline-domain" style="color: var(--clr-fintech-2)">Fintech</span>
+                </div>
+                <p class="timeline-desc">Designing and scaling international fintech products</p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-line">
+                <div class="timeline-dot"></div>
+                <div class="timeline-connector"></div>
+              </div>
+              <div class="timeline-content">
+                <span class="timeline-company">Sber</span>
+                <div class="timeline-meta">
+                  <span class="timeline-date">12.08.2021 — 24.02.2023</span>
+                  <span class="timeline-dot-sep"></span>
+                  <span class="timeline-domain" style="color: var(--clr-saas)">SaaS</span>
+                </div>
+                <p class="timeline-desc">Helping small businesses do big things</p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-line">
+                <div class="timeline-dot"></div>
+              </div>
+              <div class="timeline-content">
+                <span class="timeline-company">Baltic Technology Company</span>
+                <div class="timeline-meta">
+                  <span class="timeline-date">03.01.2020 — 30.07.2021</span>
+                  <span class="timeline-dot-sep"></span>
+                  <span class="timeline-domain" style="color: var(--clr-agency)">Agency</span>
+                </div>
+                <p class="timeline-desc">Early-stage studio work across multiple industries</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- ─── MAIN CONTENT ─────────────────────────────────── -->
+    <main class="main" id="home">
+
+      <!-- Hero -->
+      <section class="hero">
+        <div class="hero-top">
+          <!-- Avatar — replace src with real photo -->
+          <div class="avatar">
+            <img src="/images/Avatar.png" alt="Eugen Trapeznikov" />
+          </div>
+          <div class="social-links">
+            <!-- LinkedIn -->
+            <a href="https://linkedin.com/in/evgenii-trapeznikov/" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <!-- WhatsApp / Telegram combined -->
+            <a href="https://t.me/EvgeniiTrapeznikov" target="_blank" rel="noopener" class="social-btn" aria-label="Telegram">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+            </a>
+            <!-- Email -->
+            <a href="mailto:eugentrapeznikov@gmail.com" class="social-btn" aria-label="Email">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+            </a>
+            <!-- CV download -->
+            <a href="/cv.pdf" download class="social-btn" aria-label="Download CV">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v12M7 11l5 5 5-5"/><path d="M3 17v2a2 2 0 002 2h14a2 2 0 002-2v-2"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <p class="hero-headline">
+          I help teams make unclear ideas real — turning ideas into usable products based on people and data.
+        </p>
+
+        <div class="hero-actions">
+          <a href="/cv.pdf" download class="btn-primary">Download CV</a>
+        </div>
+      </section>
+
+      <!-- Works -->
+      <section id="works" class="sections">
+        <div class="works-block">
+
+          <!-- Card 1: Yollet -->
+          <div class="work-card">
+            <div>
+              <h2 class="work-card-title">Yollet — Neo Bank</h2>
+              <p class="work-card-desc">From scattered screens to a cohesive product</p>
+            </div>
+            <div class="work-card-image">
+              <img src="/images/yollet.png" alt="Yollet Neo Bank screens" loading="lazy" />
+            </div>
+            <div class="numbers-overlay">
+              <span class="numbers-title">Numbers</span>
+              <div class="numbers-rows">
+                <div class="numbers-row">
+                  <div class="numbers-bar" style="width: 65px; background: #fc5b04;"></div>
+                  <span class="numbers-row-text">1 Design System ready</span>
+                </div>
+                <div class="numbers-row">
+                  <div class="numbers-bar" style="width: 52px; background: #4a9000;"></div>
+                  <span class="numbers-row-text">146 screens</span>
+                </div>
+                <div class="numbers-row">
+                  <div class="numbers-bar" style="width: 91px; background: #464c63;"></div>
+                  <span class="numbers-row-text">0→1 from scratch</span>
+                </div>
+              </div>
+              <div class="numbers-stat">
+                <span class="numbers-stat-val">6 mo</span>
+                <span class="numbers-stat-label">Full product build</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row: Spotlight + Copytrading -->
+          <div class="work-row">
+            <div class="work-card-half">
+              <div>
+                <h2 class="work-card-title">Spotlight</h2>
+                <p class="work-card-desc">Currently in free flight, exploring the next chapter. The best line on this timeline is unwritten.</p>
+              </div>
+              <div class="work-card-half-image">
+                <img src="/images/Spotlight.png" alt="Spotlight project" loading="lazy" />
+              </div>
+            </div>
+
+            <div class="work-card-half">
+              <div>
+                <h2 class="work-card-title">Copy trade App</h2>
+                <p class="work-card-desc">Currently in free flight, exploring the next chapter. The best line on this timeline is unwritten.</p>
+              </div>
+              <div class="work-card-half-image">
+                <img src="/images/Copytrading.png" alt="Copytrading platform" loading="lazy" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Live Match Pages -->
+          <div class="work-card">
+            <div>
+              <h2 class="work-card-title">Live Match Pages Redesign</h2>
+              <p class="work-card-desc">Currently in free flight, exploring the next chapter. The best line on this timeline is unwritten.</p>
+            </div>
+            <div class="work-card-image work-card-image--sports">
+              <img src="/images/Sports.png" alt="Live Match Pages" loading="lazy" />
+            </div>
+            <div class="numbers-overlay">
+              <span class="numbers-title">Numbers</span>
+              <div class="numbers-rows">
+                <div class="numbers-row">
+                  <div class="numbers-bar" style="width: 65px; background: #fc5b04;"></div>
+                  <span class="numbers-row-text">78% boost SEO</span>
+                </div>
+                <div class="numbers-row">
+                  <div class="numbers-bar" style="width: 52px; background: #4a9000;"></div>
+                  <span class="numbers-row-text">×1.5 User time on page</span>
+                </div>
+                <div class="numbers-row">
+                  <div class="numbers-bar" style="width: 91px; background: #464c63;"></div>
+                  <span class="numbers-row-text">3 sports redesigned</span>
+                </div>
+              </div>
+              <div class="numbers-stat">
+                <span class="numbers-stat-val">Top 3</span>
+                <span class="numbers-stat-label">SEO ranking</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Initiatives -->
+        <section id="initiatives" class="initiatives-block">
+          <h2 class="section-heading">Initiatives</h2>
+          <div class="initiatives-list">
+            <div class="initiative-card">
+              <h3 class="initiative-title">Red Cross</h3>
+              <p class="initiative-desc">Currently in free flight, exploring the next chapter. The best line on this timeline is unwritten.</p>
+            </div>
+            <div class="initiative-card">
+              <h3 class="initiative-title">ITMO Lecturer</h3>
+              <p class="initiative-desc">Currently in free flight, exploring the next chapter. The best line on this timeline is unwritten.</p>
+            </div>
+            <div class="initiative-card">
+              <h3 class="initiative-title">WearSun</h3>
+              <p class="initiative-desc">Currently in free flight, exploring the next chapter. The best line on this timeline is unwritten.</p>
+            </div>
+          </div>
+          <div class="initiatives-list">
+            <div class="initiative-card">
+              <h3 class="initiative-title">AI Developer</h3>
+              <p class="initiative-desc">Currently in free flight, exploring the next chapter. The best line on this timeline is unwritten.</p>
+            </div>
+            <div class="initiative-card">
+              <h3 class="initiative-title">ITMO Lecturer</h3>
+              <p class="initiative-desc">Currently in free flight, exploring the next chapter. The best line on this timeline is unwritten.</p>
+            </div>
+            <div class="initiative-card">
+              <h3 class="initiative-title">WearSun</h3>
+              <p class="initiative-desc">Currently in free flight, exploring the next chapter. The best line on this timeline is unwritten.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Contacts -->
+        <section id="contact" class="contacts-block">
+          <h2 class="section-heading">Contacts</h2>
+          <div class="contacts-card">
+            <p style="font-family:'Inter',sans-serif; font-size:13px; color:var(--secondary); text-transform:uppercase; letter-spacing:0.15em; font-weight:500;">Get in touch</p>
+            <a href="mailto:eugentrapeznikov@gmail.com" class="contacts-email">
+              eugentrapeznikov@gmail.com
+            </a>
+            <div class="contacts-links">
+              <a href="https://linkedin.com/in/evgenii-trapeznikov/" target="_blank" rel="noopener" class="contacts-link">
+                LinkedIn ↗
+              </a>
+              <a href="https://t.me/EvgeniiTrapeznikov" target="_blank" rel="noopener" class="contacts-link">
+                Telegram ↗
+              </a>
+              <a href="/cv.pdf" download class="contacts-link">
+                Download CV ↓
+              </a>
+            </div>
+          </div>
+        </section>
+
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    // ─── Theme toggle ─────────────────────────────────────
+    const html = document.documentElement;
+    const toggle = document.getElementById('themeToggle');
+
+    function setTheme(dark) {
+      html.setAttribute('data-theme', dark ? 'dark' : 'light');
+      toggle.setAttribute('aria-checked', dark ? 'true' : 'false');
+      localStorage.setItem('theme', dark ? 'dark' : 'light');
+    }
+
+    // Init from storage
+    const saved = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setTheme(saved ? saved === 'dark' : prefersDark);
+
+    toggle.addEventListener('click', () => {
+      setTheme(html.getAttribute('data-theme') !== 'dark');
+    });
+
+    // ─── Active nav on scroll ─────────────────────────────
+    const sections = document.querySelectorAll('section[id], main[id]');
+    const navLinks = document.querySelectorAll('.nav-item');
+
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const id = e.target.id;
+          navLinks.forEach(l => {
+            l.classList.toggle('active', l.getAttribute('href') === '#' + id);
+          });
+        }
+      });
+    }, { threshold: 0.3 });
+
+    sections.forEach(s => obs.observe(s));
+
+    // ─── Mobile nav ───────────────────────────────────────
+    const mobileNav = document.getElementById('mobileNav');
+    document.getElementById('menuOpen').addEventListener('click', () => {
+      mobileNav.classList.add('open');
+    });
+    document.getElementById('menuClose').addEventListener('click', closeMobileNav);
+
+    function closeMobileNav() {
+      mobileNav.classList.remove('open');
+    }
+    window.closeMobileNav = closeMobileNav;
+  </script>
+
+</body>
+</html>
