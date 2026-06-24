@@ -1,0 +1,206 @@
+/* ============================================================
+   DESIGN TOKENS — Eugen Trapeznikov Portfolio
+   Mirrors: Figma → Color/L1 Primitives + Color/L2 Semantic
+   Usage: import in base.css or global layout
+   ============================================================ */
+
+/* ── L1: Primitives (never use directly in components) ────── */
+:root {
+  /* Neutrals */
+  --primitive-neutral-0:    #ffffff;
+  --primitive-neutral-50:   #f6f6f6;
+  --primitive-neutral-100:  #e8e8e8;
+  --primitive-neutral-200:  #d0d0d0;
+  --primitive-neutral-300:  #aaaaaa;
+  --primitive-neutral-400:  #888888;
+  --primitive-neutral-500:  #666666;
+  --primitive-neutral-600:  #444444;
+  --primitive-neutral-700:  #2a2926;
+  --primitive-neutral-800:  #1a1918;
+  --primitive-neutral-900:  #111110;
+  --primitive-neutral-1000: #000000;
+
+  /* Orange — brand accent (light mode) */
+  --primitive-orange-100: #fdf0e8;
+  --primitive-orange-300: #f9c49a;
+  --primitive-orange-500: #e8601a;
+  --primitive-orange-600: #c94e12;
+  --primitive-orange-700: #a33c0d;
+
+  /* Green — brand accent (dark mode) */
+  --primitive-green-100: #e6f9f3;
+  --primitive-green-300: #5dd4b0;
+  --primitive-green-500: #00A876;
+  --primitive-green-600: #008f63;
+  --primitive-green-700: #006b4a;
+
+  /* Status */
+  --primitive-success-bg:   #e6f9f3;
+  --primitive-success-main: #00A876;
+  --primitive-warning-bg:   #fff8e6;
+  --primitive-warning-main: #f59e0b;
+  --primitive-error-bg:     #fef2f2;
+  --primitive-error-main:   #ef4444;
+
+  /* Domain tags */
+  --primitive-domain-fintech: #6b5fd4;
+  --primitive-domain-media:   #2e9e6e;
+  --primitive-domain-agency:  #545454;
+  --primitive-domain-saas:    #2b7de9;
+}
+
+/* ── L2: Semantic tokens — LIGHT MODE (default) ───────────── */
+:root {
+  /* Backgrounds */
+  --bg-page:     var(--primitive-neutral-0);
+  --bg-surface:  var(--primitive-neutral-50);
+  --bg-elevated: var(--primitive-neutral-100);
+  --bg-overlay:  var(--primitive-neutral-200);
+
+  /* Content / Text */
+  --content-primary:   var(--primitive-neutral-1000);
+  --content-secondary: var(--primitive-neutral-500);
+  --content-disabled:  var(--primitive-neutral-300);
+  --content-inverse:   var(--primitive-neutral-0);
+
+  /* Accent */
+  --accent-default: var(--primitive-orange-500);
+  --accent-hover:   var(--primitive-orange-600);
+  --accent-subtle:  var(--primitive-orange-100);
+  --accent-content: var(--primitive-neutral-0);
+
+  /* Border */
+  --border-default: var(--primitive-neutral-100);
+  --border-strong:  var(--primitive-neutral-200);
+  --border-accent:  var(--primitive-orange-500);
+
+  /* Status */
+  --status-success-bg:   var(--primitive-success-bg);
+  --status-success-main: var(--primitive-success-main);
+  --status-warning-bg:   var(--primitive-warning-bg);
+  --status-warning-main: var(--primitive-warning-main);
+  --status-error-bg:     var(--primitive-error-bg);
+  --status-error-main:   var(--primitive-error-main);
+
+  /* Domain tags (invariant) */
+  --domain-fintech: var(--primitive-domain-fintech);
+  --domain-media:   var(--primitive-domain-media);
+  --domain-agency:  var(--primitive-domain-agency);
+  --domain-saas:    var(--primitive-domain-saas);
+
+  /* Always */
+  --always-white: var(--primitive-neutral-0);
+  --always-black: var(--primitive-neutral-1000);
+}
+
+/* ── L2: Semantic tokens — DARK MODE ──────────────────────── */
+[data-theme="dark"] {
+  /* Backgrounds */
+  --bg-page:     var(--primitive-neutral-900);
+  --bg-surface:  var(--primitive-neutral-800);
+  --bg-elevated: var(--primitive-neutral-700);
+  --bg-overlay:  var(--primitive-neutral-600);
+
+  /* Content / Text */
+  --content-primary:   var(--primitive-neutral-0);
+  --content-secondary: var(--primitive-neutral-400);
+  --content-disabled:  var(--primitive-neutral-600);
+  --content-inverse:   var(--primitive-neutral-1000);
+
+  /* Accent → green in dark mode */
+  --accent-default: var(--primitive-green-500);
+  --accent-hover:   var(--primitive-green-600);
+  --accent-subtle:  var(--primitive-green-700);
+  --accent-content: var(--primitive-neutral-0);
+
+  /* Border */
+  --border-default: var(--primitive-neutral-700);
+  --border-strong:  var(--primitive-neutral-600);
+  --border-accent:  var(--primitive-green-500);
+
+  /* Status */
+  --status-success-bg:   var(--primitive-green-700);
+  --status-success-main: var(--primitive-green-500);
+}
+
+/* ── Spacing ───────────────────────────────────────────────── */
+:root {
+  --space-2:   2px;
+  --space-4:   4px;
+  --space-6:   6px;
+  --space-8:   8px;
+  --space-10:  10px;
+  --space-12:  12px;
+  --space-16:  16px;
+  --space-20:  20px;
+  --space-24:  24px;
+  --space-28:  28px;
+  --space-32:  32px;
+  --space-40:  40px;
+  --space-48:  48px;
+  --space-56:  56px;
+  --space-64:  64px;
+  --space-80:  80px;
+  --space-96:  96px;
+  --space-128: 128px;
+}
+
+/* ── Radius ────────────────────────────────────────────────── */
+:root {
+  --radius-sm:   8px;
+  --radius-md:   16px;
+  --radius-lg:   24px;
+  --radius-xl:   32px;
+  --radius-full: 9999px;
+}
+
+/* ── Typography ────────────────────────────────────────────── */
+:root {
+  /* Font families */
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body:    'Inter', sans-serif;
+
+  /* Sizes */
+  --text-xs:   11px;
+  --text-sm:   12px;
+  --text-md:   13px;
+  --text-base: 15px;
+  --text-lg:   16px;
+  --text-xl:   18px;
+  --text-2xl:  20px;
+  --text-3xl:  22px;
+  --text-4xl:  26px;
+  --text-5xl:  32px;
+  --text-6xl:  44px;
+
+  /* Weights */
+  --weight-light:    300;
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+
+  /* Line heights */
+  --leading-tight:   1.2;
+  --leading-normal:  1.35;
+  --leading-relaxed: 1.5;
+  --leading-loose:   1.65;
+
+  /* Letter spacing */
+  --tracking-tight:  -0.02em;
+  --tracking-normal:  0;
+  --tracking-wide:    0.08em;
+  --tracking-wider:   0.15em;
+}
+
+/* ── Layout ────────────────────────────────────────────────── */
+:root {
+  --sidebar-width:    360px;
+  --card-padding-sm:  var(--space-32);
+  --card-padding-md:  var(--space-48);
+  --card-padding-lg:  var(--space-64);
+  --avatar-size:      56px;
+  --social-btn-size:  48px;
+  --switch-width:     52px;
+  --switch-height:    28px;
+}
