@@ -1,0 +1,42 @@
+---
+interface Props {
+  src?: string;
+  initials?: string;
+  size?: 'sm' | 'md' | 'lg';
+}
+const { src, initials = 'ET', size = 'md' } = Astro.props;
+const sizes = { sm: 32, md: 56, lg: 80 };
+const px = sizes[size];
+---
+<div class={`avatar avatar--${size}`}>
+  {src
+    ? <img src={src} alt="Avatar" />
+    : <span class="avatar__initials">{initials}</span>
+  }
+</div>
+
+<style>
+  .avatar {
+    border-radius: var(--radius-full);
+    background: var(--accent-default);
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .avatar--sm { width: 32px; height: 32px; }
+  .avatar--md { width: 56px; height: 56px; }
+  .avatar--lg { width: 80px; height: 80px; }
+
+  .avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+
+  .avatar__initials {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    color: var(--always-white);
+  }
+  .avatar--sm .avatar__initials { font-size: 12px; }
+  .avatar--md .avatar__initials { font-size: 18px; }
+  .avatar--lg .avatar__initials { font-size: 26px; }
+</style>
