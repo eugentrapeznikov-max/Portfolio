@@ -1,0 +1,64 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  imageSrc?: string;
+}
+const { title, description, imageSrc } = Astro.props;
+---
+<div class="init-card">
+  <div class="init-card__image">
+    {imageSrc
+      ? <img src={imageSrc} alt={title} loading="lazy" />
+      : <div class="init-card__placeholder"></div>
+    }
+  </div>
+  <div class="init-card__content">
+    <h3 class="init-card__title">{title}</h3>
+    <p class="init-card__desc">{description}</p>
+  </div>
+</div>
+
+<style>
+  .init-card {
+    background: var(--bg-surface);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+  }
+  .init-card__image {
+    width: 100%;
+    height: 181px;
+    background: var(--bg-elevated);
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+  .init-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .init-card__placeholder { width: 100%; height: 100%; }
+  .init-card__content {
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+  }
+  .init-card__title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 32px;
+    color: var(--content-primary);
+  }
+  .init-card__desc {
+    font-size: 15px;
+    line-height: 20px;
+    color: var(--content-secondary);
+  }
+</style>
