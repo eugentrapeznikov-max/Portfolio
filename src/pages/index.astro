@@ -1,599 +1,80 @@
 ---
-// src/pages/index.astro
+import Layout from '../layouts/Layout.astro';
+import Avatar from '../components/Avatar.astro';
+import SocialButton from '../components/SocialButton.astro';
+import NavItem from '../components/NavItem.astro';
+import TimelineItem from '../components/TimelineItem.astro';
+import WorkCard from '../components/WorkCard.astro';
+import InitiativeCard from '../components/InitiativeCard.astro';
+
+const navItems = [
+  { num: '01', label: '/ Home',           href: '#home'        },
+  { num: '02', label: '/ Selected Works', href: '#works'       },
+  { num: '03', label: '/ Initiatives',    href: '#initiatives' },
+  { num: '04', label: '/ Contact',        href: '#contact'     },
+];
+
+const timeline = [
+  { company: "What's next?",          isActive: true,  isLast: false, date: '',                        domain: '',        domainColor: '',        description: 'Currently in free flight, exploring the next chapter.' },
+  { company: 'Yollet.io',             isActive: false, isLast: false, date: '01.03.2023 — 18.06.2026', domain: 'FINTECH', domainColor: '#6b5fd4', description: 'Built the design foundation for a Neo Bank' },
+  { company: 'Sports.ru',             isActive: false, isLast: false, date: '12.08.2021 — 24.02.2023', domain: 'MEDIA',   domainColor: '#2e9e6e', description: 'Making sports better, powered by statistics' },
+  { company: 'Garage Eight',          isActive: false, isLast: false, date: '05.2019 — 08.2021',       domain: 'FINTECH', domainColor: '#2b3cf5', description: 'Designing and scaling international fintech products' },
+  { company: 'Sber',                  isActive: false, isLast: false, date: '2018 — 2019',             domain: 'SAAS',    domainColor: '#2e9e6e', description: 'Helping small businesses do big things' },
+  { company: 'Baltic Technology Co.', isActive: false, isLast: true,  date: '03.01.2020 — 30.07.2021', domain: 'AGENCY',  domainColor: '#545454', description: 'Early-stage studio work across multiple industries' },
+];
+
+const works = [
+  {
+    title: 'Yollet — Neo Bank',
+    description: 'From scattered screens to a cohesive product',
+    imageSrc: '/yollet.png',
+    layout: 'full' as const,
+    statValue: '6 mo',
+    statLabel: 'Full product build',
+    statRows: [
+      { width: 65, color: '#fc5b04', label: '1 Design System ready' },
+      { width: 52, color: '#4a9000', label: '146 screens' },
+      { width: 91, color: '#464c63', label: '0→1 from scratch' },
+    ],
+  },
+  {
+    title: 'Spotlight',
+    description: 'AI-powered sports newsfeed. 60K users, D21 retention 70%.',
+    imageSrc: '/Spotlight.png',
+    layout: 'half' as const,
+  },
+  {
+    title: 'Copy trade App',
+    description: 'Conversion grew from 1.5% to 9.87%. MAU x3.',
+    imageSrc: '/Copytrading.png',
+    layout: 'half' as const,
+  },
+  {
+    title: 'Live Match Pages Redesign',
+    description: 'SEO Top-3, reach +72%, x1.5 time on page.',
+    imageSrc: '/Sports.png',
+    layout: 'full' as const,
+    statValue: 'Top 3',
+    statLabel: 'SEO ranking',
+    statRows: [
+      { width: 65, color: '#fc5b04', label: '78% boost SEO' },
+      { width: 52, color: '#4a9000', label: 'x1.5 time on page' },
+      { width: 91, color: '#464c63', label: '3 sports redesigned' },
+    ],
+  },
+];
+
+const initiatives = [
+  { title: 'Red Cross',     description: 'Pro-bono UX work for humanitarian digital tools.' },
+  { title: 'ITMO Lecturer', description: 'Teaching product design fundamentals at ITMO University.' },
+  { title: 'WearSun',       description: 'Consumer hardware startup — end-to-end product design.' },
+  { title: 'AI Developer',  description: 'Exploring AI-assisted design tooling and workflows.' },
+  { title: 'Open Source',   description: 'Contributing to design systems and open-source UI kits.' },
+  { title: 'Side Projects', description: 'Ongoing personal experiments in fintech and consumer apps.' },
+];
 ---
 
-<!DOCTYPE html>
-<html lang="en" data-theme="light">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Eugen Trapeznikov — Senior Product Designer. Fintech & Sporttech." />
-  <title>Eugen Trapeznikov — Product Designer</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-
-  <style>
-    /* ── Tokens ── */
-    :root {
-      --bg:        var(--bg-page);
-      --bg2:       var(--bg-surface);
-      --bg3:       var(--bg-elevated);
-      --text:      var(--content-primary);
-      --secondary: var(--content-secondary);
-      --border:    rgba(0,0,0,0.08);
-      --accent:    var(--accent-default);
-      --r-lg: 24px;
-      --r-md: 16px;
-      --r-sm: 8px;
-      --sidebar-w: 360px;
-    }
-    [data-theme="dark"] {
-      --bg:        #111110;
-      --bg2:       #1a1918;
-      --bg3:       #242321;
-      --text:      #e8e6e0;
-      --secondary: #888882;
-      --border:    rgba(255,255,255,0.08);
-    }
-
-    /* ── Reset ── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg-page);
-      color: var(--content-primary);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-    img { display: block; max-width: 100%; }
-    a { text-decoration: none; color: inherit; }
-
-    /* ── Mobile header ── */
-    .mobile-header {
-      display: none;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: var(--bg-page);
-      border-bottom: 0.5px solid var(--border-default);
-      padding: 0 16px;
-      height: 60px;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .mobile-logo {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: 16px;
-    }
-    .mobile-menu-btn {
-      width: 40px; height: 40px;
-      display: flex; align-items: center; justify-content: center;
-      background: none; border: none; cursor: pointer; color: var(--content-primary);
-    }
-
-    /* ── Mobile nav drawer ── */
-    .mobile-nav {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 200;
-      background: var(--bg-page);
-      padding: 24px 16px;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .mobile-nav.open { display: flex; }
-    .mobile-nav-close {
-      align-self: flex-end;
-      background: none; border: none; cursor: pointer;
-      color: var(--content-primary); font-size: 24px;
-      width: 40px; height: 40px;
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 16px;
-    }
-    .mobile-nav .nav-item { font-size: 20px; padding: 14px 8px; }
-
-    /* ── Layout ── */
-    .layout {
-      display: flex;
-      flex: 1;
-      align-items: flex-start;
-    }
-
-    /* ── Sidebar ── */
-    .sidebar {
-      width: var(--sidebar-width);
-      min-width: var(--sidebar-width);
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      overflow-y: scroll;
-      background: var(--bg-page);
-      padding: 32px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      scrollbar-width: thin;
-      scrollbar-color: var(--bg-elevated) transparent;
-    }
-    .sidebar::-webkit-scrollbar { display: none; }
-
-    /* ── Card shell ── */
-    .card {
-      background: var(--bg-surface);
-      border-radius: var(--radius-lg);
-    }
-
-    /* ── Summary card ── */
-    .summary-card {
-      padding: 20px 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      overflow: visible;
-    }
-    .s-name {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: 16px;
-      color: var(--content-primary);
-    }
-    .s-role {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 300;
-      font-size: 12px;
-      color: var(--content-secondary);
-      margin-top: 3px;
-    }
-    .s-point { display: flex; flex-direction: column; gap: 3px; font-size: 12px; }
-    .s-point-label {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 400;
-      color: var(--content-primary);
-    }
-    .s-point-val {
-      font-family: 'Inter', sans-serif;
-      font-weight: 300;
-      color: var(--content-secondary);
-      line-height: 1.5;
-    }
-
-    /* ── Nav ── */
-    .sidebar-divider {
-      height: 0.5px;
-      background: var(--border-default);
-      margin: 2px 0;
-    }
-    .nav {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-    .nav-item {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      padding: 8px 10px;
-      border-radius: var(--radius-sm);
-      cursor: pointer;
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 400;
-      font-size: 13px;
-      color: var(--content-secondary);
-      transition: background 0.15s, color 0.15s;
-    }
-    .nav-item:hover { background: var(--bg-elevated); color: var(--content-primary); }
-    .nav-item.active { color: var(--accent-default); font-weight: 500; }
-    .nav-num { opacity: 0.5; font-size: 11px; }
-
-    /* ── Theme toggle ── */
-    .theme-row {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      padding: 6px 10px;
-    }
-    .theme-label {
-      flex: 1;
-      font-family: 'Inter', sans-serif;
-      font-weight: 500;
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--content-primary);
-    }
-    /* Switch pill */
-    .switch {
-      position: relative;
-      width: 52px;
-      height: 28px;
-      background: var(--bg-elevated);
-      border-radius: 100px;
-      border: 1.5px solid var(--border-default);
-      cursor: pointer;
-      transition: background 0.25s, border-color 0.25s;
-      flex-shrink: 0;
-      display: block;
-    }
-    .switch.on { background: var(--accent-default); border-color: var(--accent-default); }
-    .switch-thumb {
-      position: absolute;
-      top: 3px;
-      left: 3px;
-      width: 18px;
-      height: 18px;
-      background: #fff;
-      border-radius: 50%;
-      transition: transform 0.25s;
-      pointer-events: none;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-    }
-    .switch.on .switch-thumb { transform: translateX(24px); }
-
-    /* ── Timeline ── */
-    .timeline-wrap { padding: 20px 16px; }
-    .timeline-eyebrow {
-      font-family: 'Inter', sans-serif;
-      font-weight: 500;
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: #9b9b93;
-      margin-bottom: 6px;
-    }
-    .timeline-heading {
-      font-family: 'Inter', sans-serif;
-      font-weight: 600;
-      font-size: 22px;
-      letter-spacing: -0.01em;
-      color: var(--content-primary);
-      margin-bottom: 32px;
-    }
-    .tl-list { display: flex; flex-direction: column; }
-    .tl-item { display: flex; gap: 16px; align-items: flex-start; }
-    .tl-gutter {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 13px;
-      flex-shrink: 0;
-      padding-top: 1px;
-    }
-    .tl-dot {
-      width: 13px; height: 13px;
-      border-radius: 50%;
-      border: 2px solid var(--content-secondary);
-      background: var(--bg-surface);
-      flex-shrink: 0;
-    }
-    .tl-item:first-child .tl-dot {
-      border-color: var(--accent-default);
-      background: var(--accent-default);
-    }
-    .tl-line {
-      width: 2px;
-      flex: 1;
-      min-height: 32px;
-      background: var(--bg-elevated);
-      margin: 4px 0;
-    }
-    .tl-item:last-child .tl-line { display: none; }
-    .tl-body {
-      flex: 1;
-      padding-bottom: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .tl-item:last-child .tl-body { padding-bottom: 0; }
-    .tl-company {
-      font-family: 'Inter', sans-serif;
-      font-weight: 600;
-      font-size: 15px;
-      letter-spacing: -0.01em;
-      color: var(--content-primary);
-    }
-    .tl-item:first-child .tl-company { color: var(--accent-default); }
-    .tl-meta {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    .tl-date {
-      font-size: 11px;
-      color: var(--content-secondary);
-      font-weight: 400;
-    }
-    .tl-sep {
-      width: 3px; height: 3px;
-      border-radius: 50%;
-      background: var(--content-secondary);
-      flex-shrink: 0;
-    }
-    .tl-domain {
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-    .tl-desc {
-      font-size: 12px;
-      line-height: 1.5;
-      color: var(--content-secondary);
-    }
-
-    /* ── Main ── */
-    .main {
-      flex: 1;
-      min-width: 0;
-      padding: 32px 32px 64px 0;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    /* ── Hero ── */
-    .hero {
-      background: var(--bg-surface);
-      border-radius: 32px;
-      padding: 40px 64px 48px;
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
-    }
-    .hero-top {
-      display: flex;
-      gap: 24px;
-      align-items: center;
-    }
-    .avatar {
-      width: 56px; height: 56px;
-      border-radius: 50%;
-      background: var(--accent-default);
-      overflow: hidden;
-      flex-shrink: 0;
-    }
-    .avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
-    .social-links {
-      flex: 1;
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      justify-content: flex-end;
-    }
-    .social-btn {
-      width: 48px; height: 48px;
-      background: var(--bg-page);
-      border-radius: var(--radius-sm);
-      display: flex; align-items: center; justify-content: center;
-      transition: opacity 0.15s, transform 0.15s;
-      flex-shrink: 0;
-      color: var(--content-primary);
-    }
-    .social-btn:hover { opacity: 0.6; transform: translateY(-2px); }
-    .social-btn svg { width: 22px; height: 22px; }
-
-    .hero-headline {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: 44px;
-      line-height: 1.35;
-      color: var(--content-primary);
-    }
-    .hero-actions { display: flex; }
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 16px 32px;
-      background: var(--content-primary);
-      color: var(--bg-page);
-      border-radius: 100px;
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 500;
-      font-size: 16px;
-      transition: opacity 0.15s, transform 0.15s;
-      border: none; cursor: pointer;
-    }
-    .btn-primary:hover { opacity: 0.8; transform: translateY(-1px); }
-
-    /* ── Section wrapper ── */
-    .sections { display: flex; flex-direction: column; gap: 64px; }
-
-    /* ── Works ── */
-    .works-block { display: flex; flex-direction: column; gap: 16px; }
-
-    .work-card {
-      background: var(--bg-surface);
-      border-radius: var(--radius-lg);
-      padding: 64px;
-      position: relative;
-      overflow: hidden;
-      min-height: 520px;
-    }
-    .work-card-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: 26px;
-      color: var(--content-primary);
-      margin-bottom: 8px;
-    }
-    .work-card-desc {
-      font-size: 13px;
-      line-height: 1.5;
-      color: var(--content-secondary);
-    }
-    .work-img {
-      position: absolute;
-      right: 64px; top: 45px;
-      width: 380px; height: 490px;
-      border-radius: 12px;
-      overflow: hidden;
-    }
-    .work-img img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
-    .work-img--sports {
-      right: 0; top: 0;
-      width: 380px; height: 100%;
-      border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
-    }
-
-    /* Numbers overlay */
-    .numbers {
-      position: absolute;
-      left: 64px; bottom: 64px;
-      background: rgba(255,255,255,0.75);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: var(--radius-sm);
-      padding: 20px 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      min-width: 220px;
-    }
-    [data-theme="dark"] .numbers { background: rgba(26,25,24,0.8); border-color: rgba(255,255,255,0.1); }
-    .numbers-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: 18px;
-      color: var(--content-primary);
-    }
-    .numbers-rows { display: flex; flex-direction: column; gap: 10px; }
-    .numbers-row { display: flex; gap: 10px; align-items: center; }
-    .n-bar { height: 10px; border-radius: 4px; flex-shrink: 0; }
-    .n-txt { font-size: 12px; color: var(--content-primary); white-space: nowrap; }
-    .numbers-stat-val {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: 28px;
-      color: var(--content-primary);
-      line-height: 1;
-    }
-    .numbers-stat-label { font-size: 12px; color: var(--content-secondary); margin-top: 2px; }
-
-    /* Two-col row */
-    .work-row { display: flex; gap: 16px; }
-    .work-half {
-      flex: 1; min-width: 0;
-      background: var(--bg-surface);
-      border-radius: var(--radius-lg);
-      padding: 64px 64px 0;
-      height: 560px;
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-      overflow: hidden;
-    }
-    .work-half-img {
-      flex: 1; min-height: 0;
-      overflow: hidden;
-    }
-    .work-half-img img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
-
-    /* ── Initiatives ── */
-    .initiatives-block { display: flex; flex-direction: column; gap: 24px; }
-    .section-heading {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: 44px;
-      line-height: 1.35;
-      color: var(--content-primary);
-    }
-    .init-list { display: flex; gap: 12px; }
-    .init-card {
-      flex: 1; min-width: 0;
-      background: var(--bg-surface);
-      border-radius: var(--radius-md);
-      padding: 32px;
-    }
-    .init-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: 20px;
-      color: var(--content-primary);
-      margin-bottom: 8px;
-    }
-    .init-desc { font-size: 13px; line-height: 1.5; color: var(--content-secondary); }
-
-    /* ── Contacts ── */
-    .contacts-block { display: flex; flex-direction: column; gap: 24px; }
-    .contacts-card {
-      background: var(--bg-surface);
-      border-radius: var(--radius-lg);
-      padding: 64px;
-      min-height: 400px;
-      display: flex;
-      flex-direction: column;
-      gap: 28px;
-      justify-content: center;
-    }
-    .contacts-eyebrow {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--content-secondary);
-    }
-    .contacts-email {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: 32px;
-      color: var(--content-primary);
-      transition: color 0.15s;
-      word-break: break-all;
-    }
-    .contacts-email:hover { color: var(--accent-default); }
-    .contacts-links { display: flex; gap: 12px; flex-wrap: wrap; }
-    .contacts-link {
-      display: inline-flex;
-      align-items: center;
-      padding: 12px 24px;
-      background: var(--bg-elevated);
-      border-radius: 100px;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--content-primary);
-      transition: background 0.15s, color 0.15s;
-    }
-    .contacts-link:hover { background: var(--accent-default); color: #fff; }
-
-    /* ── Responsive ── */
-    @media (max-width: 960px) {
-      .layout { flex-direction: column; }
-      .sidebar { display: none; }
-      .mobile-header { display: flex; }
-      .main { padding: 16px 16px 48px; }
-      .hero { padding: 28px 24px 36px; border-radius: 20px; }
-      .hero-headline { font-size: 28px; }
-      .work-card { padding: 32px; min-height: auto; }
-      .work-img { position: relative; right: auto; top: auto; width: 100%; height: 260px; margin-top: 24px; }
-      .work-img--sports { right: auto; top: auto; width: 100%; height: 260px; border-radius: 0 0 var(--radius-lg) var(--radius-lg); position: relative; }
-      .numbers { position: relative; left: auto; bottom: auto; margin-top: 24px; }
-      .work-row { flex-direction: column; }
-      .work-half { padding: 28px 24px 0; height: auto; }
-      .work-half-img { height: 240px; min-height: 240px; }
-      .init-list { flex-direction: column; }
-      .section-heading { font-size: 32px; }
-      .contacts-card { padding: 32px 24px; }
-      .contacts-email { font-size: 22px; }
-    }
-    @media (max-width: 480px) {
-      .hero-headline { font-size: 22px; }
-      .social-links { gap: 8px; }
-    }
-  </style>
-</head>
-
-<body>
-
-  <!-- Mobile header -->
+<Layout>
   <header class="mobile-header">
     <span class="mobile-logo">Eugen Trapeznikov</span>
     <button class="mobile-menu-btn" id="menuOpen" aria-label="Open menu">
@@ -605,67 +86,49 @@
     </button>
   </header>
 
-  <!-- Mobile nav drawer -->
   <nav class="mobile-nav" id="mobileNav">
-    <button class="mobile-nav-close" id="menuClose">✕</button>
-    <a href="#home" class="nav-item" onclick="closeMobileNav()"><span class="nav-num">01</span> / Home</a>
-    <a href="#works" class="nav-item" onclick="closeMobileNav()"><span class="nav-num">02</span> / Selected Works</a>
-    <a href="#initiatives" class="nav-item" onclick="closeMobileNav()"><span class="nav-num">03</span> / Initiatives</a>
-    <a href="#contact" class="nav-item" onclick="closeMobileNav()"><span class="nav-num">04</span> / Contact</a>
+    <button class="mobile-nav-close" id="menuClose">x</button>
+    {navItems.map((item) => (
+      <NavItem {...item} />
+    ))}
   </nav>
 
   <div class="layout">
-
-    <!-- ═══ SIDEBAR ═══ -->
     <aside class="sidebar">
-
-      <!-- Summary -->
       <div class="card">
-        <div class="summary-card">
-          <div>
-            <div class="s-name">Eugen Trapeznikov</div>
-            <div class="s-role">Product Designer</div>
+        <div class="summary">
+          <Avatar src="/Avatar.png" size="md" />
+          <div class="summary__name-block">
+            <span class="summary__name">Eugen Trapeznikov</span>
+            <span class="summary__role">Product Designer</span>
           </div>
-          <div class="s-point">
-            <span class="s-point-label">Experience</span>
-            <span class="s-point-val">7 years</span>
+          <div class="summary__points">
+            <div class="summary__point">
+              <span class="summary__point-label">Experience</span>
+              <span class="summary__point-val">7 years</span>
+            </div>
+            <div class="summary__point">
+              <span class="summary__point-label">Platforms</span>
+              <span class="summary__point-val">Mobile &amp; Desktop, strong focus on mobile</span>
+            </div>
+            <div class="summary__point">
+              <span class="summary__point-label">Domains</span>
+              <span class="summary__point-val">Fintech, Media, B2C mostly</span>
+            </div>
+            <div class="summary__point">
+              <span class="summary__point-label">Teams</span>
+              <span class="summary__point-val">Design teams &amp; cross-functional product teams</span>
+            </div>
           </div>
-          <div class="s-point">
-            <span class="s-point-label">Platforms</span>
-            <span class="s-point-val">Mobile &amp; Desktop,<br>Strong focus on mobile applications</span>
-          </div>
-          <div class="s-point">
-            <span class="s-point-label">Domains</span>
-            <span class="s-point-val">Fintech, Media, B2C mostly</span>
-          </div>
-          <div class="s-point">
-            <span class="s-point-label">Teams</span>
-            <span class="s-point-val">Design teams &amp; cross-functional product teams, some experience in startups and freelance</span>
-          </div>
-
-          <div class="sidebar-divider"></div>
-
-          <!-- Nav -->
-          <nav class="nav">
-            <a href="#home" class="nav-item active">
-              <span class="nav-num">01</span> / Home
-            </a>
-            <a href="#works" class="nav-item">
-              <span class="nav-num">02</span> / Selected Works
-            </a>
-            <a href="#initiatives" class="nav-item">
-              <span class="nav-num">03</span> / Initiatives
-            </a>
-            <a href="#contact" class="nav-item">
-              <span class="nav-num">04</span> / Contact
-            </a>
+          <div class="divider"></div>
+          <nav class="nav" id="sidebarNav">
+            {navItems.map((item, i) => (
+              <NavItem {...item} active={i === 0} />
+            ))}
           </nav>
-
-          <div class="sidebar-divider"></div>
-
-          <!-- Theme toggle -->
+          <div class="divider"></div>
           <div class="theme-row">
-            <span class="theme-label">Theme</span>
+            <span class="theme-label" id="themeLabel">Light</span>
             <button class="switch" id="themeToggle" aria-label="Toggle dark mode">
               <span class="switch-thumb"></span>
             </button>
@@ -673,316 +136,231 @@
         </div>
       </div>
 
-      <!-- Timeline -->
       <div class="card">
-        <div class="timeline-wrap">
-          <div class="timeline-eyebrow">Experience</div>
-          <div class="timeline-heading">Career timeline</div>
-          <div class="tl-list">
-
-            <div class="tl-item">
-              <div class="tl-gutter">
-                <div class="tl-dot"></div>
-                <div class="tl-line"></div>
-              </div>
-              <div class="tl-body">
-                <div class="tl-company">What's next?</div>
-                <div class="tl-desc">Currently in free flight, exploring the next chapter.</div>
-              </div>
-            </div>
-
-            <div class="tl-item">
-              <div class="tl-gutter">
-                <div class="tl-dot"></div>
-                <div class="tl-line"></div>
-              </div>
-              <div class="tl-body">
-                <div class="tl-company">Yollet.io</div>
-                <div class="tl-meta">
-                  <span class="tl-date">01.03.2023 — 18.06.2026</span>
-                  <span class="tl-sep"></span>
-                  <span class="tl-domain" style="color:var(--domain-fintech)">Fintech</span>
-                </div>
-                <div class="tl-desc">Built the design foundation for a Neo Bank</div>
-              </div>
-            </div>
-
-            <div class="tl-item">
-              <div class="tl-gutter">
-                <div class="tl-dot"></div>
-                <div class="tl-line"></div>
-              </div>
-              <div class="tl-body">
-                <div class="tl-company">Sports.ru</div>
-                <div class="tl-meta">
-                  <span class="tl-date">12.08.2021 — 24.02.2023</span>
-                  <span class="tl-sep"></span>
-                  <span class="tl-domain" style="color:var(--domain-media)">Media</span>
-                </div>
-                <div class="tl-desc">Making sports better, powered by statistics</div>
-              </div>
-            </div>
-
-            <div class="tl-item">
-              <div class="tl-gutter">
-                <div class="tl-dot"></div>
-                <div class="tl-line"></div>
-              </div>
-              <div class="tl-body">
-                <div class="tl-company">Garage Eight</div>
-                <div class="tl-meta">
-                  <span class="tl-date">05.2019 — 08.2021</span>
-                  <span class="tl-sep"></span>
-                  <span class="tl-domain" style="color:#2b3cf5">Fintech</span>
-                </div>
-                <div class="tl-desc">Designing and scaling international fintech products</div>
-              </div>
-            </div>
-
-            <div class="tl-item">
-              <div class="tl-gutter">
-                <div class="tl-dot"></div>
-                <div class="tl-line"></div>
-              </div>
-              <div class="tl-body">
-                <div class="tl-company">Sber</div>
-                <div class="tl-meta">
-                  <span class="tl-date">12.08.2021 — 24.02.2023</span>
-                  <span class="tl-sep"></span>
-                  <span class="tl-domain" style="color:var(--domain-media)">SaaS</span>
-                </div>
-                <div class="tl-desc">Helping small businesses do big things</div>
-              </div>
-            </div>
-
-            <div class="tl-item">
-              <div class="tl-gutter">
-                <div class="tl-dot"></div>
-                <div class="tl-line"></div>
-              </div>
-              <div class="tl-body">
-                <div class="tl-company">Baltic Technology Company</div>
-                <div class="tl-meta">
-                  <span class="tl-date">03.01.2020 — 30.07.2021</span>
-                  <span class="tl-sep"></span>
-                  <span class="tl-domain" style="color:var(--domain-agency)">Agency</span>
-                </div>
-                <div class="tl-desc">Early-stage studio work across multiple industries</div>
-              </div>
-            </div>
-
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <span class="timeline-eyebrow">Experience</span>
+            <span class="timeline-heading">Career timeline</span>
+          </div>
+          <div class="timeline-list">
+            {timeline.map((item) => (
+              <TimelineItem {...item} />
+            ))}
           </div>
         </div>
       </div>
-
     </aside>
 
-    <!-- ═══ MAIN ═══ -->
     <main class="main" id="home">
 
-      <!-- Hero -->
       <section class="hero">
-        <div class="hero-top">
-          <div class="avatar">
-            <img src="/Avatar.png" alt="Eugen Trapeznikov" />
-          </div>
-          <div class="social-links">
-            <a href="https://linkedin.com/in/evgenii-trapeznikov/" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            </a>
-            <a href="https://t.me/EvgeniiTrapeznikov" target="_blank" rel="noopener" class="social-btn" aria-label="Telegram">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-            </a>
-            <a href="mailto:eugentrapeznikov@gmail.com" class="social-btn" aria-label="Email">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
-            </a>
-            <a href="/cv.pdf" download class="social-btn" aria-label="Download CV">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v12M7 11l5 5 5-5"/><path d="M3 17v2a2 2 0 002 2h14a2 2 0 002-2v-2"/></svg>
-            </a>
+        <div class="hero__top">
+          <Avatar src="/Avatar.png" size="md" />
+          <div class="hero__socials">
+            <SocialButton href="https://linkedin.com/in/evgenii-trapeznikov/" type="linkedin" label="LinkedIn" />
+            <SocialButton href="https://t.me/EvgeniiTrapeznikov" type="telegram" label="Telegram" />
+            <SocialButton href="mailto:eugentrapeznikov@gmail.com" type="email" label="Email" />
+            <SocialButton href="/cv.pdf" type="cv" label="Download CV" />
           </div>
         </div>
-        <p class="hero-headline">I help teams make unclear ideas real — turning ideas into usable products based on people and data.</p>
-        <div class="hero-actions">
+        <p class="hero__headline">
+          I help teams make unclear ideas real — turning ideas into usable products based on people and data.
+        </p>
+        <div class="hero__actions">
           <a href="/cv.pdf" download class="btn-primary">Download CV</a>
         </div>
       </section>
 
-      <!-- Works + rest -->
-      <section id="works" class="sections">
-        <div class="works-block">
-
-          <!-- Yollet -->
-          <div class="work-card">
-            <h2 class="work-card-title">Yollet — Neo Bank</h2>
-            <p class="work-card-desc">From scattered screens to a cohesive product</p>
-            <div class="work-img">
-              <img src="/yollet.png" alt="Yollet Neo Bank" />
-            </div>
-            <div class="numbers">
-              <div class="numbers-title">Numbers</div>
-              <div class="numbers-rows">
-                <div class="numbers-row">
-                  <div class="n-bar" style="width:65px;background:#fc5b04"></div>
-                  <span class="n-txt">1 Design System ready</span>
-                </div>
-                <div class="numbers-row">
-                  <div class="n-bar" style="width:52px;background:#4a9000"></div>
-                  <span class="n-txt">146 screens</span>
-                </div>
-                <div class="numbers-row">
-                  <div class="n-bar" style="width:91px;background:#464c63"></div>
-                  <span class="n-txt">0→1 from scratch</span>
-                </div>
-              </div>
-              <div>
-                <div class="numbers-stat-val">6 mo</div>
-                <div class="numbers-stat-label">Full product build</div>
-              </div>
-            </div>
+      <section id="works" class="section">
+        <div class="works">
+          <WorkCard {...works[0]} />
+          <div class="works__row">
+            <WorkCard {...works[1]} />
+            <WorkCard {...works[2]} />
           </div>
-
-          <!-- Spotlight + Copytrading -->
-          <div class="work-row">
-            <div class="work-half">
-              <div>
-                <h2 class="work-card-title">Spotlight</h2>
-                <p class="work-card-desc">AI-powered sports newsfeed. 60K users, D21 retention 70%.</p>
-              </div>
-              <div class="work-half-img">
-                <img src="/Spotlight.png" alt="Spotlight" />
-              </div>
-            </div>
-            <div class="work-half">
-              <div>
-                <h2 class="work-card-title">Copy trade App</h2>
-                <p class="work-card-desc">Conversion grew from 1.5% to 9.87%. MAU ×3.</p>
-              </div>
-              <div class="work-half-img">
-                <img src="/Copytrading.png" alt="Copytrading" />
-              </div>
-            </div>
-          </div>
-
-          <!-- Live Match Pages -->
-          <div class="work-card">
-            <h2 class="work-card-title">Live Match Pages Redesign</h2>
-            <p class="work-card-desc">SEO Top-3, reach +72%, ×1.5 time on page.</p>
-            <div class="work-img work-img--sports">
-              <img src="/Sports.png" alt="Live Match Pages" />
-            </div>
-            <div class="numbers">
-              <div class="numbers-title">Numbers</div>
-              <div class="numbers-rows">
-                <div class="numbers-row">
-                  <div class="n-bar" style="width:65px;background:#fc5b04"></div>
-                  <span class="n-txt">78% boost SEO</span>
-                </div>
-                <div class="numbers-row">
-                  <div class="n-bar" style="width:52px;background:#4a9000"></div>
-                  <span class="n-txt">×1.5 time on page</span>
-                </div>
-                <div class="numbers-row">
-                  <div class="n-bar" style="width:91px;background:#464c63"></div>
-                  <span class="n-txt">3 sports redesigned</span>
-                </div>
-              </div>
-              <div>
-                <div class="numbers-stat-val">Top 3</div>
-                <div class="numbers-stat-label">SEO ranking</div>
-              </div>
-            </div>
-          </div>
-
+          <WorkCard {...works[3]} />
         </div>
+      </section>
 
-        <!-- Initiatives -->
-        <section id="initiatives" class="initiatives-block">
-          <h2 class="section-heading">Initiatives</h2>
-          <div class="init-list">
-            <div class="init-card">
-              <div class="init-title">Red Cross</div>
-              <p class="init-desc">Pro-bono UX work for humanitarian digital tools.</p>
-            </div>
-            <div class="init-card">
-              <div class="init-title">ITMO Lecturer</div>
-              <p class="init-desc">Teaching product design fundamentals at ITMO University.</p>
-            </div>
-            <div class="init-card">
-              <div class="init-title">WearSun</div>
-              <p class="init-desc">Consumer hardware startup — end-to-end product design.</p>
-            </div>
-          </div>
-          <div class="init-list">
-            <div class="init-card">
-              <div class="init-title">AI Developer</div>
-              <p class="init-desc">Exploring AI-assisted design tooling and workflows.</p>
-            </div>
-            <div class="init-card">
-              <div class="init-title">Open Source</div>
-              <p class="init-desc">Contributing to design systems and open-source UI kits.</p>
-            </div>
-            <div class="init-card">
-              <div class="init-title">Side Projects</div>
-              <p class="init-desc">Ongoing personal experiments in fintech and consumer apps.</p>
-            </div>
-          </div>
-        </section>
+      <section id="initiatives" class="section">
+        <h2 class="section-heading">Initiatives</h2>
+        <div class="initiatives__row">
+          {initiatives.slice(0, 3).map((item) => (
+            <InitiativeCard {...item} />
+          ))}
+        </div>
+        <div class="initiatives__row">
+          {initiatives.slice(3).map((item) => (
+            <InitiativeCard {...item} />
+          ))}
+        </div>
+      </section>
 
-        <!-- Contact -->
-        <section id="contact" class="contacts-block">
-          <h2 class="section-heading">Contacts</h2>
-          <div class="contacts-card">
-            <div class="contacts-eyebrow">Get in touch</div>
-            <a href="mailto:eugentrapeznikov@gmail.com" class="contacts-email">eugentrapeznikov@gmail.com</a>
-            <div class="contacts-links">
-              <a href="https://linkedin.com/in/evgenii-trapeznikov/" target="_blank" rel="noopener" class="contacts-link">LinkedIn ↗</a>
-              <a href="https://t.me/EvgeniiTrapeznikov" target="_blank" rel="noopener" class="contacts-link">Telegram ↗</a>
-              <a href="/cv.pdf" download class="contacts-link">Download CV ↓</a>
-            </div>
+      <section id="contact" class="section">
+        <h2 class="section-heading">Contacts</h2>
+        <div class="contact-card">
+          <span class="contact-eyebrow">Get in touch</span>
+          <a href="mailto:eugentrapeznikov@gmail.com" class="contact-email">eugentrapeznikov@gmail.com</a>
+          <div class="contact-links">
+            <a href="https://linkedin.com/in/evgenii-trapeznikov/" target="_blank" rel="noopener" class="contact-link">LinkedIn</a>
+            <a href="https://t.me/EvgeniiTrapeznikov" target="_blank" rel="noopener" class="contact-link">Telegram</a>
+            <a href="/cv.pdf" download class="contact-link">Download CV</a>
           </div>
-        </section>
-
+        </div>
       </section>
 
     </main>
   </div>
+</Layout>
 
-  <script>
-    // Theme toggle
-    const html = document.documentElement;
-    const btn = document.getElementById('themeToggle');
+<style>
+  .layout { display: flex; min-height: 100vh; align-items: flex-start; }
 
-    function applyTheme(dark) {
-      html.setAttribute('data-theme', dark ? 'dark' : 'light');
-      btn.classList.toggle('on', dark);
-      localStorage.setItem('theme', dark ? 'dark' : 'light');
-      const lbl = document.getElementById('themeLabel');
-      if (lbl) lbl.textContent = dark ? '🌙 Dark' : '☀️ Light';
-    }
+  .sidebar {
+    width: 360px; min-width: 360px;
+    position: sticky; top: 0; height: 100vh;
+    overflow-y: auto; padding: 32px;
+    display: flex; flex-direction: column; gap: 16px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--bg-elevated) transparent;
+  }
+  .card { background: var(--bg-surface); border-radius: var(--radius-lg); overflow: hidden; }
 
-    const saved = localStorage.getItem('theme');
-    applyTheme(saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches);
+  .summary { padding: 20px 16px; display: flex; flex-direction: column; gap: 14px; }
+  .summary__name-block { display: flex; flex-direction: column; gap: 3px; }
+  .summary__name { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 14px; color: var(--content-primary); }
+  .summary__role { font-family: 'Space Grotesk', sans-serif; font-weight: 300; font-size: 12px; color: var(--content-secondary); }
+  .summary__points { display: flex; flex-direction: column; gap: 10px; }
+  .summary__point { display: flex; flex-direction: column; gap: 2px; }
+  .summary__point-label { font-size: 11px; font-weight: 500; color: var(--content-primary); }
+  .summary__point-val { font-size: 11px; font-weight: 300; color: var(--content-secondary); line-height: 1.5; }
 
-    btn.addEventListener('click', () => applyTheme(html.getAttribute('data-theme') !== 'dark'));
+  .divider { height: 0.5px; background: var(--border-default); margin: 2px 0; }
+  .nav { display: flex; flex-direction: column; gap: 2px; }
 
-    // Active nav on scroll
-    const navLinks = document.querySelectorAll('.nav-item');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id));
-        }
-      });
-    }, { threshold: 0.25 });
-    document.querySelectorAll('section[id], main[id]').forEach(s => observer.observe(s));
+  .theme-row { display: flex; gap: 12px; align-items: center; padding: 4px 8px; }
+  .theme-label { flex: 1; font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--content-primary); }
+  .switch {
+    position: relative; width: 52px; height: 28px;
+    background: var(--bg-elevated); border-radius: var(--radius-full);
+    border: none; cursor: pointer; transition: background 0.25s; flex-shrink: 0;
+  }
+  .switch.on { background: var(--accent-default); }
+  .switch-thumb {
+    position: absolute; top: 4px; left: 4px; width: 20px; height: 20px;
+    background: var(--always-white); border-radius: 50%;
+    transition: transform 0.25s; pointer-events: none;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  }
+  .switch.on .switch-thumb { transform: translateX(24px); }
 
-    // Mobile nav
-    const mobileNav = document.getElementById('mobileNav');
-    document.getElementById('menuOpen').addEventListener('click', () => mobileNav.classList.add('open'));
-    document.getElementById('menuClose').addEventListener('click', closeMobileNav);
-    function closeMobileNav() { mobileNav.classList.remove('open'); }
-    window.closeMobileNav = closeMobileNav;
-  </script>
+  .timeline-card { padding: 20px 16px; }
+  .timeline-header { display: flex; flex-direction: column; gap: 6px; margin-bottom: 28px; }
+  .timeline-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: #9b9b93; }
+  .timeline-heading { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 22px; letter-spacing: -0.01em; color: var(--content-primary); }
+  .timeline-list { display: flex; flex-direction: column; }
 
-</body>
-</html>
+  .main { flex: 1; min-width: 0; padding: 32px 32px 64px 0; display: flex; flex-direction: column; gap: 16px; }
+
+  .hero { background: var(--bg-surface); border-radius: var(--radius-xl); padding: 40px 64px 48px; display: flex; flex-direction: column; gap: 32px; }
+  .hero__top { display: flex; gap: 24px; align-items: center; }
+  .hero__socials { flex: 1; display: flex; gap: 12px; align-items: center; justify-content: flex-end; }
+  .hero__headline { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 44px; line-height: 1.35; color: var(--content-primary); }
+  .hero__actions { display: flex; }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 16px 32px; background: var(--content-primary); color: var(--bg-page);
+    border-radius: var(--radius-full); font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500; font-size: 16px; border: none; cursor: pointer;
+    transition: opacity 0.15s, transform 0.15s;
+  }
+  .btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
+
+  .section { display: flex; flex-direction: column; gap: 24px; }
+  .section-heading { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 44px; line-height: 1.35; color: var(--content-primary); }
+
+  .works { display: flex; flex-direction: column; gap: 16px; }
+  .works__row { display: flex; gap: 16px; }
+
+  .initiatives__row { display: flex; gap: 16px; }
+
+  .contact-card {
+    background: var(--bg-surface); border-radius: var(--radius-xl); padding: 64px;
+    display: flex; flex-direction: column; gap: 24px; min-height: 360px; justify-content: center;
+  }
+  .contact-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--content-secondary); }
+  .contact-email { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 32px; color: var(--content-primary); transition: color 0.15s; word-break: break-all; }
+  .contact-email:hover { color: var(--accent-default); }
+  .contact-links { display: flex; gap: 12px; flex-wrap: wrap; }
+  .contact-link {
+    display: inline-flex; align-items: center; padding: 12px 24px;
+    background: var(--bg-elevated); border-radius: var(--radius-full);
+    font-size: 14px; font-weight: 500; color: var(--content-primary);
+    transition: background 0.15s, color 0.15s;
+  }
+  .contact-link:hover { background: var(--accent-default); color: var(--always-white); }
+
+  .mobile-header {
+    display: none; position: sticky; top: 0; z-index: 100;
+    background: var(--bg-page); border-bottom: 0.5px solid var(--border-default);
+    padding: 0 16px; height: 60px; align-items: center; justify-content: space-between;
+  }
+  .mobile-logo { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 15px; color: var(--content-primary); }
+  .mobile-menu-btn { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: none; border: none; cursor: pointer; color: var(--content-primary); }
+  .mobile-nav { display: none; position: fixed; inset: 0; z-index: 200; background: var(--bg-page); padding: 24px 16px; flex-direction: column; gap: 8px; }
+  .mobile-nav.open { display: flex; }
+  .mobile-nav-close { align-self: flex-end; background: none; border: none; cursor: pointer; color: var(--content-primary); font-size: 24px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+
+  @media (max-width: 960px) {
+    .layout { flex-direction: column; }
+    .sidebar { display: none; }
+    .mobile-header { display: flex; }
+    .main { padding: 16px 16px 48px; }
+    .hero { padding: 28px 24px 36px; border-radius: var(--radius-lg); }
+    .hero__headline { font-size: 28px; }
+    .works__row { flex-direction: column; }
+    .initiatives__row { flex-direction: column; }
+    .section-heading { font-size: 32px; }
+    .contact-card { padding: 32px 24px; }
+    .contact-email { font-size: 22px; }
+  }
+  @media (max-width: 480px) {
+    .hero__headline { font-size: 22px; }
+    .hero__socials { gap: 8px; }
+  }
+</style>
+
+<script>
+  const html = document.documentElement;
+  const btn = document.getElementById('themeToggle');
+  const lbl = document.getElementById('themeLabel');
+
+  function applyTheme(dark) {
+    html.setAttribute('data-theme', dark ? 'dark' : 'light');
+    btn.classList.toggle('on', dark);
+    if (lbl) lbl.textContent = dark ? 'Dark' : 'Light';
+    localStorage.setItem('theme', dark ? 'dark' : 'light');
+  }
+
+  const saved = localStorage.getItem('theme');
+  applyTheme(saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches);
+  btn.addEventListener('click', () => applyTheme(html.getAttribute('data-theme') !== 'dark'));
+
+  const sections = document.querySelectorAll('section[id], main[id]');
+  const navLinks = document.querySelectorAll('[data-nav]');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(l => {
+          l.classList.toggle('nav-item--active', l.getAttribute('href') === '#' + e.target.id);
+        });
+      }
+    });
+  }, { threshold: 0.25 });
+  sections.forEach(s => observer.observe(s));
+
+  const mobileNav = document.getElementById('mobileNav');
+  document.getElementById('menuOpen').addEventListener('click', () => mobileNav.classList.add('open'));
+  document.getElementById('menuClose').addEventListener('click', () => mobileNav.classList.remove('open'));
+</script>
