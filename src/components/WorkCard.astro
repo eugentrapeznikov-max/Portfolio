@@ -130,17 +130,18 @@ const hasStat = statValue && statRows.length > 0;
   }
 
   /* Title block */
-  .work-card__title-block { display: flex; flex-direction: column; gap: 10px; }
+.work-card__title-block { display: flex; flex-direction: column; gap: var(--space-12); }
 .work-card__title {
     font-family: 'Space Grotesk', sans-serif;
     font-weight: var(--weight-bold);
     font-size: var(--text-4xl);
     color: var(--content-primary);
-    line-height: var(--leading-tight);
+    line-height: 40px;
+    letter-spacing: -1px;
   }
 .work-card__desc {
-    font-size: var(--text-md);
-    line-height: var(--leading-relaxed);
+    font-size: var(--text-base);
+    line-height: 20px;
     color: var(--content-secondary);
   }
 
