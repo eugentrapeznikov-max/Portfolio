@@ -55,21 +55,23 @@ const { company, date, domain, domainColor, description, isActive = false, isLas
     border-color: var(--accent-default);
     box-shadow: 0 0 0 3px var(--accent-subtle);
   }
-  .tl-line {
-    width: 2px;
-    flex: 1;
-    min-height: 135px;
-    background: var(--border-default);
-    margin-top: 2px;
-  }
-  .tl-content {
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    padding-bottom: 20px;
-  }
+.tl-line { 
+width: 2px; 
+flex: 1; 
+min-height: 
+120px; 
+background: 
+var(--border-default); 
+margin-top: 2px;
+}
+.tl-content { 
+flex: 1; 
+min-width: 0; 
+display: flex; 
+flex-direction: 
+column; gap: var(--space-8); 
+padding-bottom: 20px; 
+}
   .tl-company {
     font-family: 'Inter', sans-serif;
     font-weight: 600;
