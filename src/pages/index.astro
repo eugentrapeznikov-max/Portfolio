@@ -16,11 +16,11 @@ const navItems = [
 
 const timeline = [
   { company: "What's next?",          isActive: true,  isLast: false, date: '',                        domain: '',        domainColor: '',        description: 'Currently in free flight, exploring the next chapter.' },
-  { company: 'Yollet.io',             isActive: false, isLast: false, date: '01.03.2023 — 18.06.2026', domain: 'FINTECH', domainColor: '#6b5fd4', description: 'Built the design foundation for a Neo Bank' },
-  { company: 'Sports.ru',             isActive: false, isLast: false, date: '12.08.2021 — 24.02.2023', domain: 'MEDIA',   domainColor: '#2e9e6e', description: 'Making sports better, powered by statistics' },
-  { company: 'Garage Eight',          isActive: false, isLast: false, date: '05.2019 — 08.2021',       domain: 'FINTECH', domainColor: '#2b3cf5', description: 'Designing and scaling international fintech products' },
-  { company: 'Sber',                  isActive: false, isLast: false, date: '2018 — 2019',             domain: 'SAAS',    domainColor: '#2e9e6e', description: 'Helping small businesses do big things' },
-  { company: 'Baltic Technology Co.', isActive: false, isLast: true,  date: '03.01.2020 — 30.07.2021', domain: 'AGENCY',  domainColor: '#545454', description: 'Early-stage studio work across multiple industries' },
+  { company: 'Yollet.io',             isActive: false, isLast: false, dotColor: '#6b5fd4', date: '01.03.2023 — 18.06.2026', domain: 'FINTECH', domainColor: '#6b5fd4', description: 'Built the design foundation for a Neo Bank' },
+  { company: 'Sports.ru',             isActive: false, isLast: false, dotColor: '#2e9e6e', date: '12.08.2021 — 24.02.2023', domain: 'MEDIA',   domainColor: '#2e9e6e', description: 'Making sports better, powered by statistics' },
+  { company: 'Garage Eight',          isActive: false, isLast: false, dotColor: '#6b5fd4', date: '05.2019 — 08.2021',       domain: 'FINTECH', domainColor: '#6b5fd4', description: 'Designing and scaling international fintech products' },
+  { company: 'Sber',                  isActive: false, isLast: false, dotColor: '#2b7de9', date: '2018 — 2019',             domain: 'SAAS',    domainColor: '#2e9e6e', description: 'Helping small businesses do big things' },
+  { company: 'Baltic Technology Co.', isActive: false, isLast: true,  dotColor: '#f59e0b', date: '03.01.2020 — 30.07.2021', domain: 'AGENCY',  domainColor: '#545454', description: 'Early-stage studio work across multiple industries' },
 ];
 
 const works = [
@@ -345,18 +345,25 @@ const initiatives = [
   applyTheme(saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches);
   btn.addEventListener('click', () => applyTheme(html.getAttribute('data-theme') !== 'dark'));
 
-  const sections = document.querySelectorAll('section[id], main[id]');
-  const navLinks = document.querySelectorAll('[data-nav]');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        navLinks.forEach(l => {
-          l.classList.toggle('nav-item--active', l.getAttribute('href') === '#' + e.target.id);
-        });
-      }
-    });
-  }, { threshold: 0.25 });
-  sections.forEach(s => observer.observe(s));
+const sections = document.querySelectorAll('section[id], main[id]');
+const navLinks = document.querySelectorAll('[data-nav]');
+
+function setActive(id) {
+  navLinks.forEach(l => {
+    l.classList.toggle('nav-item--active', l.getAttribute('href') === '#' + id);
+  });
+}
+
+// По умолчанию — home
+setActive('home');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) setActive(e.target.id);
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50% 0px' });
+
+sections.forEach(s => observer.observe(s));
 
   const mobileNav = document.getElementById('mobileNav');
   document.getElementById('menuOpen').addEventListener('click', () => mobileNav.classList.add('open'));
