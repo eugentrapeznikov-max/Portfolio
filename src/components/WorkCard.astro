@@ -5,6 +5,7 @@ interface StatRow {
   label: string;
 }
 interface Props {
+  href?: string;
   title: string;
   description: string;
   imageSrc?: string;
@@ -14,6 +15,7 @@ interface Props {
   layout?: 'full' | 'half';
 }
 const {
+  href,
   title,
   description,
   imageSrc,
@@ -24,7 +26,7 @@ const {
 } = Astro.props;
 const hasStat = statValue && statRows.length > 0;
 ---
-<div class={`work-card work-card--${layout}`}>
+<a class={`work-card work-card--${layout}${href ? " work-card--link" : ""}`} href={href || undefined}>
   <div class="work-card__left">
     <div class="work-card__title-block">
       <h2 class="work-card__title">{title}</h2>
@@ -58,7 +60,7 @@ const hasStat = statValue && statRows.length > 0;
       : <div class="work-card__image-placeholder"></div>
     }
   </div>
-</div>
+</a>
 
 <style>
 .work-card {
@@ -219,7 +221,6 @@ const hasStat = statValue && statRows.length > 0;
       height: auto;
     }
     .work-card--half .work-card__image { height: 240px; min-height: 240px; }
-    .work-card__stat { opacity: 1; transform: none; }
-    .work-card__stat-bar { transform: scaleX(1); }
+    .work-card__stat { display: none; }
   }
 </style>

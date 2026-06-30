@@ -1,0 +1,391 @@
+---
+import SidebarLayout from '../../layouts/SidebarLayout.astro';
+
+export function getStaticPaths() {
+  return [
+    { params: { slug: 'yollet' } },
+    { params: { slug: 'livematch' } },
+  ];
+}
+
+const { slug } = Astro.params;
+
+const cases = {
+  yollet: {
+    title: 'Yollet - exchanger without p2p',
+    subtitle: 'The product combines crypto asset management with familiar banking experiences, built on a compliant and legally structured infrastructure. Its mission is to provide users with a convenient, secure, and transparent way to store, exchange, and spend cryptocurrency.',
+    overview: {
+      role: 'Lead Product Designer',
+      platform: 'iOS & Android by Flutter',
+      duration: '4 months',
+      domain: 'Fintech / Crypto',
+    },
+    context: "When I joined the team, the product already had an early MVP and a basic UI-kit in place. I was brought in to introduce more structure to the design process and shorten the path from idea to release.\n\nMy responsibilities included:",
+    contextList: [
+      'Auditing the existing product design and interface system.',
+      'Designing key user flows, including exchange, swap, KYC, and onboarding.',
+      'Defining the UX strategy and long-term product vision.',
+      'Establishing collaboration processes with engineering teams, including design reviews and handoff workflows, to reduce release errors and improve delivery speed.',
+      'Conducting user research. To support this, a beta version of the product was launched, allowing us to gather feedback from the first users.',
+    ],
+    mainImage: '/cases/yollet/Main_screen.png',
+    auditHeading: 'Product Audit & Core User Flows',
+    auditText: "I approached the audit systematically by reviewing every user flow from a UI perspective, without challenging the underlying product logic. Each screen was evaluated using a simple traffic-light framework:\n\n🟢 No critical issues.\n🟡 Issues that could be resolved through visual or stylistic improvements without changing the layout.\n🔴 Issues requiring changes to layouts, components, or entire user flows.\n\nI documented usability issues and opportunities across screens, from visual inconsistencies to broader product hypotheses.\n\nFor example, in the wallet creation flow, the seed phrase and multiple confirmations increased anxiety and drop-offs, highlighting the need to simplify the UI and reduce user friction during onboarding.",
+    auditImage: '/cases/yollet/Legend.png',
+    flowsHeading: 'Designing Key User Flows',
+    flowsText: "The audit provided the team with a shared understanding of the product's key issues and helped align priorities for future improvements. Based on these findings, I moved on to designing the new core user flows and defining the future product experience.\n\nIn parallel, I worked on establishing design operations: introducing design reviews, improving developer handoff processes, and building a design system to create consistency across the product and increase the speed and quality of releases.",
+    screenGroups: [
+      { caption: 'Newly Designed Screens & User Flows: Buy/Sell', image: '/cases/yollet/Buysell.png' },
+      { caption: 'Newly Designed Screens & User Flows: Wallet Setup', image: '/cases/yollet/Seedphrase.png' },
+    ],
+    designSystem: {
+      heading: 'Design System: a Single Source of Truth',
+      text: "I turned fragmentation into a structured system: Figma as the source of truth, Storybook for coded components, and a shared naming convention across both. I also introduced a two-level token system, typographic and colour scale.\n\nDesigners and engineers aligned on a shared language, eliminating ad-hoc component creation. Hardcoded values were replaced with design tokens, variables, and system components, ensuring consistency across both design and code.",
+      image: '/cases/yollet/ButtonsDS.png',
+    },
+    designProcess: {
+      heading: 'Design Process & Design Reviews',
+      text: 'I introduced a structured design review format, including screen context, side-by-side comparison of live vs. design, numbered annotated issues, and a separate stream for proposed improvements. I also established a repeatable end-to-end design process — from brief to product analytics.\n\nThis fundamentally changed the way design supported development: we moved from minimal design involvement to a pixel-perfect, system-driven workflow with formal design reviews and a shared design system, significantly reducing implementation issues. The introduction of staging environments helped catch up to 90% of bugs before release.',
+      image: '/cases/yollet/DSReview.png',
+    },
+    uxStrategy: {
+      heading: 'UX Strategy & Information Architecture',
+      text: 'I ran a series of workshops with the founders and translated the outcomes into a structured design brief, feature prioritization, and a product map. A key decision was defining the portfolio as the new home screen, with the wallet as the core experience and a flexible structure designed to accommodate future features.',
+      images: ['/cases/yollet/Map.png', '/cases/yollet/Strategy.png'],
+    },
+    exploration: {
+      caption: 'Exploring a New Product Approach',
+      image: '/cases/yollet/Concepts_for_redesigne.png',
+    },
+    results: {
+      heading: 'Results',
+      text: "A structured design system, streamlined processes, and a shared UX strategy and product vision were established in close alignment with founders and stakeholders — spanning from the MVP wallet to a broader crypto-banking roadmap.\n\nThe work received positive feedback from both investors and early users.\n\nMost importantly, the product was successfully prepared for market launch, and the first beta users were onboarded. This achievement reflects a collective effort of the team, who delivered under tight timelines driven by strong ownership and execution quality. I'm grateful for this experience.",
+      statRows: [
+        { width: 285, color: '#fc5b04', label: '156 screens & states delivered' },
+        { width: 187, color: '#4a9000', label: '90% bugs caught pre-production' },
+        { width: 98,  color: '#464c63', label: '40% faster concept-to-release cycle' },
+      ],
+    },
+  },
+
+  livematch: {
+    title: 'Live Match Pages Redesign',
+    subtitle: 'Unifying fragmented sport-specific live match interfaces into one scalable design system, boosting engagement and SEO across football, basketball, hockey, and tennis.',
+    overview: {
+      role: 'Product Designer',
+      platform: 'Web / Mobile Web',
+      duration: '5 months',
+      domain: 'Sporttech / Media',
+    },
+    context: "On Sports.ru, live match pages are one of the most visited sections — tens of thousands of football, basketball, tennis, hockey and other matches are followed here every year. Historically, each sport had its own interface developed and maintained separately.\n\nThis led to serious problems:",
+    contextList: [
+      'Fragmented user experience — different layouts, controls and data display for each sport.',
+      'Slow page loading, which hurt SEO metrics.',
+      'Heavy architecture across different frameworks made it hard to work with stats providers — delayed or missing live events pushed users to other resources.',
+      'Poor mobile rendering — stats and event timelines were hard to read.',
+      'Intrusive ads covering key content, frustrating both users and advertisers due to poor conversion and broken banners.',
+      'Limited stats depth for sports other than football.',
+    ],
+    mainImage: '/cases/livematch/Main_screen.png',
+    auditHeading: 'Task',
+    auditText: "Create a single, scalable interface adaptable to any sport.\nEnrich non-football sports with proper statistics depth.\nFix responsive/mobile issues.\nIntegrate all changes into the design system.\n\nMetrics to move:\n\n— Increase session duration on live pages\n— Number of transitions between sections and tabs within live coverage\n— Traffic growth for basketball, hockey, and tennis live pages",
+    auditImage: '/cases/livematch/Legend.png',
+    flowsHeading: 'Research',
+    flowsText: "To design a universal solution I had to deeply study every sport: football (match flow, event frequency, advanced metrics like xG, passes, possession), basketball (quarters, fast pace, player stats — points, rebounds, assists), hockey (periods, penalties, shots on goal, goalie stats), tennis (sets and games, serve stats, break points, rally duration).\n\nResearch sources: competitive analysis (Sofascore, Flashscore, OneFootball, ESPN), support tickets and survey feedback, hallway testing, qualitative interviews with core Sports.ru audience.\n\nKey insights: the core value for users is stats depth and freshness. There are different consumption patterns — Russian audience leans closer to the American ESPN/Athletic style than the European one. Ads breaking the page structure and hiding key info was the single biggest user complaint.",
+    screenGroups: [],
+    designSystem: {
+      heading: 'Building a Universal Widget System',
+      text: "I built a scalable widget system able to adapt to any sport, designed and tested new page layouts, then integrated the new patterns and components into the design system.\n\nEach sport-specific module (score header, event timeline, lineups, stats tables) was rebuilt as a flexible, reusable component rather than a one-off page.",
+      image: '/cases/livematch/Tokens.png',
+    },
+    designProcess: {
+      heading: 'Design Process & Collaboration',
+      text: "Working closely with engineering, every new component was shipped into Storybook, living on the design system's tokens and themes — directly speeding up development for every future sport added to the platform.\n\nThis collaborative approach meant fewer one-off implementations and a faster path from design to release across all sports.",
+      image: '/cases/livematch/DSReview.png',
+    },
+    uxStrategy: {
+      heading: 'Layout & Information Architecture',
+      text: "Redesigning the information hierarchy meant rethinking how live events, stats, and lineups compete for attention across very different sports — from football's slow event cadence to basketball's rapid scoring.",
+      images: ['/cases/livematch/Map.png', '/cases/livematch/Strategy.png'],
+    },
+    exploration: {
+      caption: 'Exploring New Layout Directions',
+      image: '/cases/livematch/Concepts_for_redesigne.png',
+    },
+    results: {
+      heading: 'Results',
+      text: "We saw a significant increase in viewership of Tennis, Hockey, and Basketball live pages — up to 70% at peak. Users who previously couldn't properly follow tennis, hockey, and basketball live events came back.\n\nAdvertisers were satisfied with improved click-through conversion, and we were able to introduce more modern ad formats that no longer broke the user experience.\n\nThe engineering team appreciated that every new component shipped into Storybook, living on design system tokens and themes — directly speeding up future development.",
+      statRows: [
+        { width: 285, color: '#fc5b04', label: 'Up to 70% live viewership growth' },
+        { width: 187, color: '#4a9000', label: 'Higher ad click-through conversion' },
+        { width: 98,  color: '#464c63', label: 'All components shipped to design system' },
+      ],
+    },
+  },
+};
+
+const c = cases[slug];
+if (!c) return Astro.redirect('/');
+---
+
+<SidebarLayout title={`${c.title} — Eugen Trapeznikov`}>
+
+  <header class="case-header">
+    <a href="/" class="back-btn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M19 12H5M5 12l7-7M5 12l7 7"/>
+      </svg>
+      Back
+    </a>
+  </header>
+
+  <main class="case-main">
+
+    <section class="block block--hero">
+      <h1 class="case-title">{c.title}</h1>
+      <p class="case-subtitle">{c.subtitle}</p>
+    </section>
+
+    <section class="block block--overview">
+      <div class="ov-item">
+        <span class="ov-label">Role</span>
+        <span class="ov-value">{c.overview.role}</span>
+      </div>
+      <div class="ov-item">
+        <span class="ov-label">Platform</span>
+        <span class="ov-value">{c.overview.platform}</span>
+      </div>
+      <div class="ov-item">
+        <span class="ov-label">Duration</span>
+        <span class="ov-value">{c.overview.duration}</span>
+      </div>
+      <div class="ov-item">
+        <span class="ov-label">Domain</span>
+        <span class="ov-value">{c.overview.domain}</span>
+      </div>
+    </section>
+
+    <section class="block block--context">
+      <h2 class="block-heading">Context</h2>
+      <p class="block-text">{c.context}</p>
+      <ul class="block-list">
+        {c.contextList.map((item) => <li>{item}</li>)}
+      </ul>
+    </section>
+
+    <section class="block block--image-only">
+      <img src={c.mainImage} alt="Main screen" loading="lazy" />
+    </section>
+
+    <section class="block">
+      <h2 class="block-heading">{c.auditHeading}</h2>
+      <p class="block-text">{c.auditText}</p>
+      <img class="block-image" src={c.auditImage} alt={c.auditHeading} loading="lazy" />
+    </section>
+
+    <section class="block">
+      <h2 class="block-heading">{c.flowsHeading}</h2>
+      <p class="block-text">{c.flowsText}</p>
+    </section>
+
+    {c.screenGroups.map((group) => (
+      <section class="block block--screens">
+        <p class="screens-caption">{group.caption}</p>
+        <img class="screens-image" src={group.image} alt={group.caption} loading="lazy" />
+      </section>
+    ))}
+
+    <section class="block block--split">
+      <div class="split-text">
+        <h2 class="block-heading">{c.designSystem.heading}</h2>
+        <p class="block-text">{c.designSystem.text}</p>
+      </div>
+      <img class="split-image" src={c.designSystem.image} alt={c.designSystem.heading} loading="lazy" />
+    </section>
+
+    <section class="block block--split">
+      <div class="split-text">
+        <h2 class="block-heading">{c.designProcess.heading}</h2>
+        <p class="block-text">{c.designProcess.text}</p>
+      </div>
+      <img class="split-image" src={c.designProcess.image} alt={c.designProcess.heading} loading="lazy" />
+    </section>
+
+    <section class="block">
+      <h2 class="block-heading">{c.uxStrategy.heading}</h2>
+      <p class="block-text">{c.uxStrategy.text}</p>
+      <div class="ux-images">
+        {c.uxStrategy.images.map((src) => (
+          <img src={src} alt={c.uxStrategy.heading} loading="lazy" />
+        ))}
+      </div>
+    </section>
+
+    <section class="block block--screens">
+      <p class="screens-caption">{c.exploration.caption}</p>
+      <img class="screens-image" src={c.exploration.image} alt={c.exploration.caption} loading="lazy" />
+    </section>
+
+    <section class="block block--results">
+      <div class="results-card">
+        <span class="results-title">Results</span>
+        <div class="results-rows">
+          {c.results.statRows.map((row) => (
+            <div class="results-row">
+              <span class="results-row-label">{row.label}</span>
+              <div class="results-row-bar" style={`background:${row.color}`}></div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <p class="block-text results-text">{c.results.text}</p>
+    </section>
+
+  </main>
+
+</SidebarLayout>
+
+<style>
+  .case-header {
+    padding: 0 0 24px;
+    position: sticky;
+    top: 0;
+    background: var(--bg-page);
+    z-index: 10;
+    border-bottom: 0.5px solid var(--border-default);
+    margin-bottom: 32px;
+  }
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    font-size: var(--text-md);
+    color: var(--content-secondary);
+    transition: color 0.15s;
+  }
+  .back-btn:hover { color: var(--accent-default); }
+
+  .case-main { display: flex; flex-direction: column; gap: 16px; }
+
+  .block {
+    background: var(--bg-surface);
+    border-radius: 20px;
+    padding: 32px 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .block--results {
+    background: transparent;
+    padding: 32px 0;
+    flex-direction: row;
+    gap: 32px;
+    align-items: stretch;
+  }
+
+  .block--hero { gap: 32px; padding: 32px 64px; }
+  .case-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: var(--weight-bold);
+    font-size: var(--text-5xl);
+    line-height: 40px;
+    letter-spacing: -2px;
+    color: var(--content-primary);
+  }
+  .case-subtitle { font-size: var(--text-lg); line-height: 24px; color: var(--content-secondary); }
+
+  .block--overview { flex-direction: row; align-items: flex-start; justify-content: center; gap: 32px; }
+  .ov-item { flex: 1; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+  .ov-label { font-size: var(--text-lg); line-height: 24px; color: var(--content-secondary); letter-spacing: 0.05em; }
+  .ov-value { font-size: var(--text-lg); line-height: 24px; color: var(--content-primary); }
+
+  .block-heading {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: var(--weight-medium);
+    font-size: var(--text-3xl);
+    line-height: 32px;
+    color: var(--content-primary);
+  }
+  .block-text { font-size: var(--text-lg); line-height: 24px; color: var(--content-secondary); white-space: pre-line; }
+  .block-list { display: flex; flex-direction: column; gap: 4px; padding-left: 24px; color: var(--content-secondary); font-size: var(--text-lg); line-height: 24px; }
+
+  .block--image-only { align-items: center; padding: 32px 64px; }
+  .block--image-only img { width: 320px; border-radius: 12px; }
+  .block-image { width: 100%; border-radius: 12px; margin-top: 8px; }
+
+  .block--screens { align-items: center; gap: 24px; }
+  .screens-caption { font-size: var(--text-md); line-height: 20px; color: var(--content-secondary); text-align: center; }
+  .screens-image { width: 100%; border-radius: 12px; }
+
+  .block--split { flex-direction: row; gap: 64px; align-items: flex-start; }
+  .split-text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 12px; justify-content: center; }
+  .split-image { flex: 1; min-width: 0; width: 100%; border-radius: 20px; object-fit: cover; }
+
+  .ux-images { display: flex; gap: 12px; width: 100%; }
+  .ux-images img { flex: 1; min-width: 0; width: 100%; border-radius: 8px; }
+
+  .results-card {
+    flex: 1; min-width: 0;
+    background: var(--bg-surface);
+    border-radius: 20px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    justify-content: center;
+  }
+  .results-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: var(--weight-bold);
+    font-size: var(--text-4xl);
+    color: var(--content-primary);
+  }
+  .results-rows { display: flex; flex-direction: column; gap: 24px; width: 100%; }
+  .results-row { display: flex; flex-direction: column; gap: 8px; width: 100%; }
+  .results-row-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: var(--weight-light);
+    font-size: var(--text-sm);
+    color: var(--content-primary);
+  }
+  .results-row-bar {
+    height: 12px;
+    border-radius: 4px;
+    width: 100%;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .results-row:nth-child(1) .results-row-bar { transition-delay: 0.1s; }
+  .results-row:nth-child(2) .results-row-bar { transition-delay: 0.3s; }
+  .results-row:nth-child(3) .results-row-bar { transition-delay: 0.5s; }
+  .block--results.in-view .results-row-bar { transform: scaleX(1); }
+  .results-text { flex: 1; min-width: 0; align-self: stretch; display: flex; flex-direction: column; justify-content: center; }
+
+  @media (max-width: 768px) {
+    .block { padding: 24px; }
+    .block--hero { padding: 24px; }
+    .block--overview { flex-direction: column; gap: 20px; }
+    .block--split { flex-direction: column; gap: 24px; }
+    .block--results { flex-direction: column; }
+    .case-title { font-size: var(--text-4xl); line-height: 1.2; }
+    .ux-images { flex-direction: column; }
+  }
+</style>
+
+<script>
+  const resultsBlock = document.querySelector('.block--results');
+  if (resultsBlock) {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          resultsBlock.classList.add('in-view');
+          obs.disconnect();
+        }
+      });
+    }, { threshold: 0.3 });
+    obs.observe(resultsBlock);
+  }
+</script>

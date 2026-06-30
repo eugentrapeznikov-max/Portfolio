@@ -1,0 +1,195 @@
+---
+// Reusable mobile header — used on index.astro and case pages
+---
+<header class="mobile-header" id="mobileHeader">
+  <div class="mobile-header__top">
+    <div class="mobile-header__title">
+      <span class="mobile-header__name">Eugen Trapeznikov</span>
+      <span class="mobile-header__role">Product Designer</span>
+    </div>
+    <button class="mobile-header__toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+      <svg class="icon-menu" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+      <svg class="icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="display:none">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+
+  <div class="mobile-header__expanded" id="mobileMenuExpanded">
+    <nav class="mobile-nav">
+      <a href="/#home" class="mobile-nav-item" data-nav><span class="num">01</span> / Main</a>
+      <a href="/#works" class="mobile-nav-item" data-nav><span class="num">02</span> / Selected Works</a>
+      <a href="/#initiatives" class="mobile-nav-item" data-nav><span class="num">03</span> / Initiatives</a>
+      <a href="/#contact" class="mobile-nav-item" data-nav><span class="num">04</span> / Contacts</a>
+    </nav>
+
+    <div class="mobile-socials">
+      <a href="https://linkedin.com/in/evgenii-trapeznikov/" target="_blank" rel="noopener" class="mobile-social-btn" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+      <a href="https://t.me/EvgeniiTrapeznikov" target="_blank" rel="noopener" class="mobile-social-btn" aria-label="Telegram">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+      </a>
+      <a href="mailto:eugentrapeznikov@gmail.com" class="mobile-social-btn" aria-label="Email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+      </a>
+    </div>
+
+    <div class="mobile-theme-row">
+      <span class="mobile-theme-label" id="mobileThemeLabel">Light</span>
+      <button class="mobile-switch" id="mobileThemeToggle" aria-label="Toggle dark mode">
+        <span class="mobile-switch-thumb"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<style>
+  .mobile-header {
+    display: none;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg-surface);
+    border-radius: 0 0 24px 24px;
+  }
+
+  .mobile-header__top {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 32px;
+  }
+  .mobile-header__avatar {
+    width: 40px; height: 40px;
+    border-radius: 28px;
+    background: var(--accent-default);
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .mobile-header__avatar img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+
+  .mobile-header__title { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+  .mobile-header__name { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 16px; color: var(--content-primary); }
+  .mobile-header__role { font-family: 'Space Grotesk', sans-serif; font-weight: 300; font-size: 12px; color: var(--content-secondary); }
+
+  .mobile-header__toggle {
+    width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+    background: none; border: none; cursor: pointer;
+    color: var(--content-primary);
+    flex-shrink: 0;
+  }
+
+  .mobile-header__expanded {
+    display: none;
+    flex-direction: column;
+    gap: 16px;
+    padding: 0 32px 20px;
+  }
+  .mobile-header.open .mobile-header__expanded { display: flex; }
+  .mobile-header.open .icon-menu { display: none !important; }
+  .mobile-header.open .icon-close { display: block !important; }
+
+  .mobile-nav { display: flex; flex-direction: column; gap: 4px; width: 100%; }
+  .mobile-nav-item {
+    display: flex; gap: 12px; align-items: center;
+    padding: 8px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 300;
+    font-size: 12px;
+    color: var(--content-secondary);
+    border-radius: var(--radius-sm);
+  }
+  .mobile-nav-item .num { flex-shrink: 0; }
+  .mobile-nav-item--active { color: var(--accent-default); font-weight: 500; }
+
+  .mobile-socials { display: flex; gap: 8px; align-items: center; width: 100%; }
+  .mobile-social-btn {
+    width: 48px; height: 48px;
+    background: var(--bg-page);
+    border-radius: var(--radius-sm);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--content-primary);
+    flex-shrink: 0;
+  }
+
+  .mobile-theme-row { display: flex; gap: 16px; align-items: center; padding: 0 8px; width: 100%; }
+  .mobile-theme-label {
+    flex: 1;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--content-primary);
+  }
+  .mobile-switch {
+    position: relative;
+    width: 52px; height: 24px;
+    background: var(--bg-elevated);
+    border-radius: var(--radius-full);
+    border: none;
+    cursor: pointer;
+    transition: background 0.25s;
+    flex-shrink: 0;
+  }
+  .mobile-switch.on { background: var(--accent-default); }
+  .mobile-switch-thumb {
+    position: absolute;
+    top: 4px; left: 4px;
+    width: 16px; height: 16px;
+    background: var(--always-white);
+    border-radius: 50%;
+    transition: transform 0.25s;
+  }
+  .mobile-switch.on .mobile-switch-thumb { transform: translateX(28px); }
+
+  @media (max-width: 960px) {
+    .mobile-header { display: block; }
+  }
+</style>
+
+<script>
+  const header = document.getElementById('mobileHeader');
+  const toggleBtn = document.getElementById('mobileMenuToggle');
+
+  toggleBtn?.addEventListener('click', () => {
+    header?.classList.toggle('open');
+  });
+
+  // Theme sync (shared with desktop sidebar toggle if present)
+  const mobileThemeBtn = document.getElementById('mobileThemeToggle');
+  const mobileThemeLabel = document.getElementById('mobileThemeLabel');
+  const html = document.documentElement;
+
+  function syncMobileTheme() {
+    const isDark = html.getAttribute('data-theme') === 'dark';
+    mobileThemeBtn?.classList.toggle('on', isDark);
+    if (mobileThemeLabel) mobileThemeLabel.textContent = isDark ? 'Dark' : 'Light';
+  }
+
+  mobileThemeBtn?.addEventListener('click', () => {
+    const isDark = html.getAttribute('data-theme') !== 'dark';
+    html.setAttribute('data-theme', isDark ? 'dark' : 'light');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    syncMobileTheme();
+    // Sync desktop toggle too if present
+    const desktopBtn = document.getElementById('themeToggle');
+    const desktopLabel = document.getElementById('themeLabel');
+    desktopBtn?.classList.toggle('on', isDark);
+    if (desktopLabel) desktopLabel.textContent = isDark ? 'Dark' : 'Light';
+  });
+
+  syncMobileTheme();
+
+  // Close menu when nav item clicked
+  document.querySelectorAll('.mobile-nav-item').forEach(item => {
+    item.addEventListener('click', () => header?.classList.remove('open'));
+  });
+</script>

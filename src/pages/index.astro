@@ -1,40 +1,23 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import SidebarLayout from '../layouts/SidebarLayout.astro';
 import Avatar from '../components/Avatar.astro';
 import SocialButton from '../components/SocialButton.astro';
-import NavItem from '../components/NavItem.astro';
-import TimelineItem from '../components/TimelineItem.astro';
 import WorkCard from '../components/WorkCard.astro';
 import InitiativeCard from '../components/InitiativeCard.astro';
 
-const navItems = [
-  { num: '01', label: '/ Home',           href: '#home'        },
-  { num: '02', label: '/ Selected Works', href: '#works'       },
-  { num: '03', label: '/ Initiatives',    href: '#initiatives' },
-  { num: '04', label: '/ Contact',        href: '#contact'     },
-];
-
-const timeline = [
-  { company: "What's next?",          isActive: true,  isLast: false, date: '',                        domain: '',        domainColor: '',        description: 'Currently in free flight, exploring the next chapter.' },
-  { company: 'Yollet.io',             isActive: false, isLast: false, dotColor: '#6b5fd4', date: '01.03.2023 — 18.06.2026', domain: 'FINTECH', domainColor: '#6b5fd4', description: 'Built the design foundation for a Neo Bank' },
-  { company: 'Sports.ru',             isActive: false, isLast: false, dotColor: '#2e9e6e', date: '12.08.2021 — 24.02.2023', domain: 'MEDIA',   domainColor: '#2e9e6e', description: 'Making sports better, powered by statistics' },
-  { company: 'Garage Eight',          isActive: false, isLast: false, dotColor: '#6b5fd4', date: '05.2019 — 08.2021',       domain: 'FINTECH', domainColor: '#6b5fd4', description: 'Designing and scaling international fintech products' },
-  { company: 'Sber',                  isActive: false, isLast: false, dotColor: '#2b7de9', date: '2018 — 2019',             domain: 'SAAS',    domainColor: '#2e9e6e', description: 'Helping small businesses do big things' },
-  { company: 'Baltic Technology Co.', isActive: false, isLast: true,  dotColor: '#f59e0b', date: '03.01.2020 — 30.07.2021', domain: 'AGENCY',  domainColor: '#545454', description: 'Early-stage studio work across multiple industries' },
-];
-
 const works = [
   {
+    href: '/cases/yollet',
     title: 'Yollet — Neo Bank',
     description: 'From scattered screens to a cohesive product',
     imageSrc: '/yollet.png',
     layout: 'full' as const,
-    statValue: '6 mo',
-    statLabel: 'Full product build',
+    statValue: '1',
+    statLabel: 'Ready-to-launch Crypto Bank',
     statRows: [
-      { width: 65, color: '#fc5b04', label: '1 Design System ready' },
-      { width: 52, color: '#4a9000', label: '146 screens' },
-      { width: 91, color: '#464c63', label: '0→1 from scratch' },
+      { width: 100, color: '#fc5b04', label: '156 screens & states delivered' },
+      { width: 65,  color: '#4a9000', label: '90% bugs caught pre-production' },
+      { width: 40,  color: '#464c63', label: '40% faster concept-to-release cycle' },
     ],
   },
   {
@@ -50,6 +33,7 @@ const works = [
     layout: 'half' as const,
   },
   {
+    href: '/cases/livematch',
     title: 'Live Match Pages Redesign',
     description: 'SEO Top-3, reach +72%, x1.5 time on page.',
     imageSrc: '/Sports.png',
@@ -64,202 +48,68 @@ const works = [
   },
 ];
 
-const initiatives = [
-  { title: 'Red Cross',     description: 'Pro-bono UX work for humanitarian digital tools.' },
-  { title: 'ITMO Lecturer', description: 'Teaching product design fundamentals at ITMO University.' },
-  { title: 'WearSun',       description: 'Consumer hardware startup — end-to-end product design.' },
-  { title: 'AI Developer',  description: 'Exploring AI-assisted design tooling and workflows.' },
-  { title: 'Open Source',   description: 'Contributing to design systems and open-source UI kits.' },
-  { title: 'Side Projects', description: 'Ongoing personal experiments in fintech and consumer apps.' },
-];
 ---
 
-<Layout>
-  <header class="mobile-header">
-    <span class="mobile-logo">Eugen Trapeznikov</span>
-    <button class="mobile-menu-btn" id="menuOpen" aria-label="Open menu">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-        <line x1="3" y1="6" x2="21" y2="6"/>
-        <line x1="3" y1="12" x2="21" y2="12"/>
-        <line x1="3" y1="18" x2="21" y2="18"/>
-      </svg>
-    </button>
-  </header>
+<SidebarLayout title="Eugen Trapeznikov — Product Designer">
 
-  <nav class="mobile-nav" id="mobileNav">
-    <button class="mobile-nav-close" id="menuClose">x</button>
-    {navItems.map((item) => (
-      <NavItem {...item} />
-    ))}
-  </nav>
+  <main id="home">
 
-  <div class="layout">
-    <aside class="sidebar">
-      <div class="card">
-        <div class="summary">
-          <div class="summary__name-block">
-            <span class="summary__name">Eugen Trapeznikov</span>
-            <span class="summary__role">Product Designer</span>
-          </div>
-          <div class="summary__points">
-            <div class="summary__point">
-              <span class="summary__point-label">Experience</span>
-              <span class="summary__point-val">7 years</span>
-            </div>
-            <div class="summary__point">
-              <span class="summary__point-label">Platforms</span>
-              <span class="summary__point-val">Mobile &amp; Desktop, strong focus on mobile</span>
-            </div>
-            <div class="summary__point">
-              <span class="summary__point-label">Domains</span>
-              <span class="summary__point-val">Fintech, Media, B2C mostly</span>
-            </div>
-            <div class="summary__point">
-              <span class="summary__point-label">Teams</span>
-              <span class="summary__point-val">Design teams &amp; cross-functional product teams</span>
-            </div>
-          </div>
-          <div class="divider"></div>
-          <nav class="nav" id="sidebarNav">
-            {navItems.map((item, i) => (
-              <NavItem {...item} active={i === 0} />
-            ))}
-          </nav>
-          <div class="divider"></div>
-          <div class="theme-row">
-            <span class="theme-label" id="themeLabel">Light</span>
-            <button class="switch" id="themeToggle" aria-label="Toggle dark mode">
-              <span class="switch-thumb"></span>
-            </button>
-          </div>
+    <section class="hero">
+      <div class="hero__top">
+        <Avatar src="/Avatar.png" size="md" />
+        <div class="hero__socials">
+          <SocialButton href="https://linkedin.com/in/evgenii-trapeznikov/" type="linkedin" label="LinkedIn" />
+          <SocialButton href="https://t.me/EvgeniiTrapeznikov" type="telegram" label="Telegram" />
+          <SocialButton href="mailto:eugentrapeznikov@gmail.com" type="email" label="Email" />
+          <SocialButton href="/cv.pdf" type="cv" label="Download CV" />
         </div>
       </div>
+      <p class="hero__headline">
+        I help teams make unclear ideas real — turning ideas into usable products based on people and data.
+      </p>
+      <div class="hero__actions">
+        <a href="/cv.pdf" download class="btn-primary">Download CV</a>
+      </div>
+    </section>
 
-      <div class="card">
-        <div class="timeline-card">
-          <div class="timeline-header">
-            <span class="timeline-eyebrow">Experience</span>
-            <span class="timeline-heading">Career timeline</span>
-          </div>
-          <div class="timeline-list">
-            {timeline.map((item) => (
-              <TimelineItem {...item} />
-            ))}
-          </div>
+    <section id="works" class="section">
+      <div class="works">
+        <WorkCard {...works[0]} />
+        <div class="works__row">
+          <WorkCard {...works[1]} />
+          <WorkCard {...works[2]} />
+        </div>
+        <WorkCard {...works[3]} />
+      </div>
+    </section>
+
+    <section id="initiatives" class="section">
+      <h2 class="section-heading">Initiatives</h2>
+      <div class="initiatives__row">
+        <InitiativeCard caseStudy="RedCross" />
+        <InitiativeCard caseStudy="ITMO" />
+        <InitiativeCard caseStudy="WearSun" />
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <h2 class="section-heading">Contacts</h2>
+      <div class="contact-card">
+        <span class="contact-eyebrow">Get in touch</span>
+        <a href="mailto:eugentrapeznikov@gmail.com" class="contact-email">eugentrapeznikov@gmail.com</a>
+        <div class="contact-links">
+          <a href="https://linkedin.com/in/evgenii-trapeznikov/" target="_blank" rel="noopener" class="contact-link">LinkedIn</a>
+          <a href="https://t.me/EvgeniiTrapeznikov" target="_blank" rel="noopener" class="contact-link">Telegram</a>
+          <a href="/cv.pdf" download class="contact-link">Download CV</a>
         </div>
       </div>
-    </aside>
+    </section>
 
-    <main class="main" id="home">
+  </main>
 
-      <section class="hero">
-        <div class="hero__top">
-          <Avatar src="/Avatar.png" size="md" />
-          <div class="hero__socials">
-            <SocialButton href="https://linkedin.com/in/evgenii-trapeznikov/" type="linkedin" label="LinkedIn" />
-            <SocialButton href="https://t.me/EvgeniiTrapeznikov" type="telegram" label="Telegram" />
-            <SocialButton href="mailto:eugentrapeznikov@gmail.com" type="email" label="Email" />
-            <SocialButton href="/cv.pdf" type="cv" label="Download CV" />
-          </div>
-        </div>
-        <p class="hero__headline">
-          I help teams make unclear ideas real — turning ideas into usable products based on people and data.
-        </p>
-        <div class="hero__actions">
-          <a href="/cv.pdf" download class="btn-primary">Download CV</a>
-        </div>
-      </section>
-
-      <section id="works" class="section">
-        <div class="works">
-          <WorkCard {...works[0]} />
-          <div class="works__row">
-            <WorkCard {...works[1]} />
-            <WorkCard {...works[2]} />
-          </div>
-          <WorkCard {...works[3]} />
-        </div>
-      </section>
-
-      <section id="initiatives" class="section">
-        <h2 class="section-heading">Initiatives</h2>
-        <div class="initiatives__row">
-          {initiatives.slice(0, 3).map((item) => (
-            <InitiativeCard {...item} />
-          ))}
-        </div>
-        <div class="initiatives__row">
-          {initiatives.slice(3).map((item) => (
-            <InitiativeCard {...item} />
-          ))}
-        </div>
-      </section>
-
-      <section id="contact" class="section">
-        <h2 class="section-heading">Contacts</h2>
-        <div class="contact-card">
-          <span class="contact-eyebrow">Get in touch</span>
-          <a href="mailto:eugentrapeznikov@gmail.com" class="contact-email">eugentrapeznikov@gmail.com</a>
-          <div class="contact-links">
-            <a href="https://linkedin.com/in/evgenii-trapeznikov/" target="_blank" rel="noopener" class="contact-link">LinkedIn</a>
-            <a href="https://t.me/EvgeniiTrapeznikov" target="_blank" rel="noopener" class="contact-link">Telegram</a>
-            <a href="/cv.pdf" download class="contact-link">Download CV</a>
-          </div>
-        </div>
-      </section>
-
-    </main>
-  </div>
-</Layout>
+</SidebarLayout>
 
 <style>
-  .layout { display: flex; min-height: 100vh; align-items: flex-start; }
-
-  .sidebar {
-    width: 360px; min-width: 360px;
-    position: sticky; top: 0; height: 100vh;
-    overflow-y: auto; padding: 32px;
-    display: flex; flex-direction: column; gap: 16px;
-    scrollbar-width: none;
-  }
-  .card { background: var(--bg-surface); border-radius: var(--radius-lg); }
-
-  .summary { padding: 20px 16px; display: flex; flex-direction: column; gap: 14px; }
-  .summary__name-block { display: flex; flex-direction: column; gap: 3px; }
-  .summary__name { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 14px; color: var(--content-primary); }
-  .summary__role { font-family: 'Space Grotesk', sans-serif; font-weight: 300; font-size: 12px; color: var(--content-secondary); }
-  .summary__points { display: flex; flex-direction: column; gap: 10px; }
-  .summary__point { display: flex; flex-direction: column; gap: 2px; }
-  .summary__point-label { font-size: 11px; font-weight: 500; color: var(--content-primary); }
-  .summary__point-val { font-size: 11px; font-weight: 300; color: var(--content-secondary); line-height: 1.5; }
-
-  .divider { height: 0.5px; background: var(--border-default); margin: 2px 0; }
-  .nav { display: flex; flex-direction: column; gap: 2px; }
-
-  .theme-row { display: flex; gap: 12px; align-items: center; padding: 4px 8px; }
-  .theme-label { flex: 1; font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--content-primary); }
-  .switch {
-    position: relative; width: 52px; height: 28px;
-    background: var(--bg-elevated); border-radius: var(--radius-full);
-    border: none; cursor: pointer; transition: background 0.25s; flex-shrink: 0;
-  }
-  .switch.on { background: var(--accent-default); }
-  .switch-thumb {
-    position: absolute; top: 4px; left: 4px; width: 20px; height: 20px;
-    background: var(--always-white); border-radius: 50%;
-    transition: transform 0.25s; pointer-events: none;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-  }
-  .switch.on .switch-thumb { transform: translateX(24px); }
-
-  .timeline-card { padding: 20px 16px; }
-  .timeline-header { display: flex; flex-direction: column; gap: 6px; margin-bottom: 28px; }
-  .timeline-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: #9b9b93; }
-  .timeline-heading { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 22px; letter-spacing: -0.01em; color: var(--content-primary); }
-  .timeline-list { display: flex; flex-direction: column; }
-
-  .main { flex: 1; min-width: 0; padding: 32px 32px 64px 0; display: flex; flex-direction: column; gap: 16px; }
-
   .hero { background: var(--bg-surface); border-radius: var(--radius-xl); padding: 40px 64px 48px; display: flex; flex-direction: column; gap: 32px; }
   .hero__top { display: flex; gap: 24px; align-items: center; }
   .hero__socials { flex: 1; display: flex; gap: 12px; align-items: center; justify-content: flex-end; }
@@ -275,6 +125,7 @@ const initiatives = [
   }
   .btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
 
+  main { display: flex; flex-direction: column; gap: 16px; }
   .section { display: flex; flex-direction: column; gap: 24px; }
   .section-heading { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 44px; line-height: 1.35; color: var(--content-primary); }
 
@@ -299,22 +150,7 @@ const initiatives = [
   }
   .contact-link:hover { background: var(--accent-default); color: var(--always-white); }
 
-  .mobile-header {
-    display: none; position: sticky; top: 0; z-index: 100;
-    background: var(--bg-page); border-bottom: 0.5px solid var(--border-default);
-    padding: 0 16px; height: 60px; align-items: center; justify-content: space-between;
-  }
-  .mobile-logo { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 15px; color: var(--content-primary); }
-  .mobile-menu-btn { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: none; border: none; cursor: pointer; color: var(--content-primary); }
-  .mobile-nav { display: none; position: fixed; inset: 0; z-index: 200; background: var(--bg-page); padding: 24px 16px; flex-direction: column; gap: 8px; }
-  .mobile-nav.open { display: flex; }
-  .mobile-nav-close { align-self: flex-end; background: none; border: none; cursor: pointer; color: var(--content-primary); font-size: 24px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
-
   @media (max-width: 960px) {
-    .layout { flex-direction: column; }
-    .sidebar { display: none; }
-    .mobile-header { display: flex; }
-    .main { padding: 16px 16px 48px; }
     .hero { padding: 28px 24px 36px; border-radius: var(--radius-lg); }
     .hero__headline { font-size: 28px; }
     .works__row { flex-direction: column; }
@@ -328,44 +164,3 @@ const initiatives = [
     .hero__socials { gap: 8px; }
   }
 </style>
-
-<script>
-  const html = document.documentElement;
-  const btn = document.getElementById('themeToggle');
-  const lbl = document.getElementById('themeLabel');
-
-  function applyTheme(dark) {
-    html.setAttribute('data-theme', dark ? 'dark' : 'light');
-    btn.classList.toggle('on', dark);
-    if (lbl) lbl.textContent = dark ? 'Dark' : 'Light';
-    localStorage.setItem('theme', dark ? 'dark' : 'light');
-  }
-
-  const saved = localStorage.getItem('theme');
-  applyTheme(saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches);
-  btn.addEventListener('click', () => applyTheme(html.getAttribute('data-theme') !== 'dark'));
-
-const sections = document.querySelectorAll('section[id], main[id]');
-const navLinks = document.querySelectorAll('[data-nav]');
-
-function setActive(id) {
-  navLinks.forEach(l => {
-    l.classList.toggle('nav-item--active', l.getAttribute('href') === '#' + id);
-  });
-}
-
-// По умолчанию — home
-setActive('home');
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) setActive(e.target.id);
-  });
-}, { threshold: 0.1, rootMargin: '0px 0px -50% 0px' });
-
-sections.forEach(s => observer.observe(s));
-
-  const mobileNav = document.getElementById('mobileNav');
-  document.getElementById('menuOpen').addEventListener('click', () => mobileNav.classList.add('open'));
-  document.getElementById('menuClose').addEventListener('click', () => mobileNav.classList.remove('open'));
-</script>

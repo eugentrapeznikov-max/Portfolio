@@ -4,22 +4,14 @@ interface Props {
   date?: string;
   domain?: string;
   domainColor?: string;
-  dotColor?: string;
   description: string;
   isActive?: boolean;
   isLast?: boolean;
 }
-const { company, date, domain, domainColor, dotColor, description, isActive = false, isLast = false } = Astro.props;
+const { company, date, domain, domainColor, description, isActive = false, isLast = false } = Astro.props;
 ---
-<div class="tl-row">
-  <div class="tl-gutter">
-    <div
-      class={`tl-dot ${isActive ? 'tl-dot--active' : ''}`}
-      style={!isActive && dotColor ? `border-color: ${dotColor}` : ''}
-    ></div>
-    {!isLast && <div class="tl-line"></div>}
-  </div>
-  <div class="tl-content">
+<div class="tl-item">
+  <div class="tl-row">
     <div class="tl-data">
       <span class={`tl-company ${isActive ? 'tl-company--active' : ''}`}>{company}</span>
       {!isActive && date && (
@@ -32,108 +24,71 @@ const { company, date, domain, domainColor, dotColor, description, isActive = fa
     </div>
     <p class="tl-desc">{description}</p>
   </div>
+  {!isLast && <div class="tl-divider"></div>}
 </div>
 <style>
-  .tl-row { display: flex; gap: 18px; align-items: flex-start; width: 100%; }
-  .tl-gutter {
+  .tl-item {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 13px;
-    flex-shrink: 0;
-    padding-top: 2px;
-    align-self: stretch;
+    width: 100%;
   }
-  .tl-dot {
-    width: 13px; height: 13px;
-    border-radius: 50%;
-    border: 2px solid var(--border-strong);
-    background: var(--bg-surface);
-    flex-shrink: 0;
+  .tl-row {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+    width: 100%;
   }
-  .tl-dot--active {
-    background: var(--accent-default);
-    border-color: var(--accent-default);
-    box-shadow: 0 0 0 3px var(--accent-subtle);
+  .tl-data {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+    width: 100%;
   }
-<<<<<<< Updated upstream
-.tl-line { 
-width: 2px; 
-flex: 1; 
-min-height: 
-120px; 
-background: 
-var(--border-default); 
-margin-top: 2px;
-}
-.tl-content { 
-flex: 1; 
-min-width: 0; 
-display: flex; 
-flex-direction: 
-column; gap: var(--space-8); 
-padding-bottom: 20px; 
-}
   .tl-company {
     font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    font-size: 15px;
+    font-weight: var(--weight-semibold);
+    font-size: var(--text-lg);
+    line-height: 24px;
     letter-spacing: -0.01em;
     color: var(--content-primary);
-=======
-  .tl-line {
-    width: 2px;
-    flex: 1;
-    min-height: 120px;
-    background: var(--border-default);
-    margin-top: 4px;
-    margin-bottom: 4px;
   }
-  .tl-content {
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 12px !important;
->>>>>>> Stashed changes
-  }
-  .tl-data { display: flex; flex-direction: column; gap: 4px !important; width: 100%; }
-  .tl-company { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.01em; color: var(--content-primary); }
   .tl-company--active { color: var(--accent-default); }
-<<<<<<< Updated upstream
   .tl-meta {
     display: flex;
-    gap: 4px;
+    gap: 10px;
     align-items: center;
     flex-wrap: wrap;
   }
   .tl-date {
-    font-size: 11px;
+    font-size: var(--text-sm);
+    line-height: 16px;
     color: var(--content-secondary);
     letter-spacing: 0.01em;
+    white-space: nowrap;
   }
   .tl-sep {
-    width: 3px; height: 3px;
+    width: 3px;
+    height: 3px;
     border-radius: 50%;
     background: var(--content-disabled);
     flex-shrink: 0;
   }
   .tl-domain {
-    font-size: 10px;
-    font-weight: 500;
+    font-size: var(--text-xs);
+    font-weight: var(--weight-medium);
     letter-spacing: 0.08em;
     text-transform: uppercase;
+    white-space: nowrap;
   }
   .tl-desc {
-    font-size: 12px;
-    line-height: 1.5;
+    font-size: var(--text-md);
+    line-height: 20px;
     color: var(--content-secondary);
   }
-=======
-  .tl-meta { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
-  .tl-date { font-size: 11px; color: var(--content-secondary); letter-spacing: 0.01em; }
-  .tl-sep { width: 3px; height: 3px; border-radius: 50%; background: var(--content-disabled); flex-shrink: 0; }
-  .tl-domain { font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; }
-  .tl-desc { font-size: 12px; line-height: 1.5; color: var(--content-secondary); }
->>>>>>> Stashed changes
+  .tl-divider {
+    height: 1px;
+    background: var(--border-default);
+    width: 100%;
+    margin-top: var(--space-16);
+  }
 </style>

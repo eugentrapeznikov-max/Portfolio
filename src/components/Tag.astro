@@ -1,0 +1,27 @@
+---
+interface Props {
+  label: string;
+  color?: string;
+}
+const { label, color = '#6b5fd4' } = Astro.props;
+---
+<div class="tag" style={`background:${color}1F; color:${color}`}>
+  {label}
+</div>
+
+<style>
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+    font-family: 'Inter', sans-serif;
+    font-weight: var(--weight-medium);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+    width: fit-content;
+    text-transform: uppercase;
+  }
+</style>

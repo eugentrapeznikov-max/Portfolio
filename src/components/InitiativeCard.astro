@@ -1,21 +1,43 @@
 ---
+import Tag from './Tag.astro';
+
 interface Props {
-  title: string;
-  description: string;
-  imageSrc?: string;
+  caseStudy: 'ITMO' | 'RedCross' | 'WearSun';
 }
-const { title, description, imageSrc } = Astro.props;
+const { caseStudy } = Astro.props;
+
+const content = {
+  ITMO: {
+    title: 'Guest Lecturer at ITMO University',
+    description: 'Invited to teach an original UX/UI design course at ITMO University — a challenging and deeply rewarding experience beyond product design.',
+    date: 'Sep 2025 — Feb 2026',
+    image: '/initiatives/ITMOLogo.png',
+  },
+  RedCross: {
+    title: 'Donation Platform for the Russian Red Cross',
+    description: 'Designed a fundraising platform that enables anyone to launch a charitable campaign and support people in need.',
+    date: 'Jan 2026 — Mar 2026',
+    image: '/initiatives/RedCross.svg',
+  },
+  WearSun: {
+    title: 'WearSun: Custom Insoles Experience',
+    description: "Designed the store, scanning app, and purchase funnel for a startup producing unique insoles tailored to each customer's feet.",
+    date: 'Mar 2026 — Apr 2026',
+    image: '/initiatives/WearSun.svg',
+  },
+};
+
+const c = content[caseStudy];
 ---
 <div class="init-card">
   <div class="init-card__image">
-    {imageSrc
-      ? <img src={imageSrc} alt={title} loading="lazy" />
-      : <div class="init-card__placeholder"></div>
-    }
+    <img src={c.image} alt={c.title} loading="lazy" />
   </div>
   <div class="init-card__content">
-    <h3 class="init-card__title">{title}</h3>
-    <p class="init-card__desc">{description}</p>
+    <h3 class="init-card__title">{c.title}</h3>
+    <p class="init-card__desc">{c.description}</p>
+    <Tag label="Case Study Coming Soon" color="#6b5fd4" />
+    <span class="init-card__date">{c.date}</span>
   </div>
 </div>
 
@@ -26,39 +48,51 @@ const { title, description, imageSrc } = Astro.props;
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    height: 478px;
     flex: 1;
     min-width: 0;
   }
   .init-card__image {
     width: 100%;
-    height: 181px;
+    height: 186px;
     background: var(--bg-elevated);
     flex-shrink: 0;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 52px 12px;
   }
   .init-card__image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
   }
-  .init-card__placeholder { width: 100%; height: 100%; }
   .init-card__content {
     padding: 32px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: var(--space-16);
     flex: 1;
+    min-height: 0;
   }
   .init-card__title {
     font-family: 'Space Grotesk', sans-serif;
-    font-weight: 500;
-    font-size: 22px;
+    font-weight: var(--weight-medium);
+    font-size: var(--text-2xl);
     line-height: 32px;
     color: var(--content-primary);
   }
   .init-card__desc {
-    font-size: 15px;
+    font-size: var(--text-md);
     line-height: 20px;
+    color: var(--content-secondary);
+  }
+  .init-card__date {
+    font-size: var(--text-sm);
+    line-height: 16px;
     color: var(--content-secondary);
   }
 </style>

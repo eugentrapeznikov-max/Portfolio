@@ -1,0 +1,177 @@
+---
+import Layout from './Layout.astro';
+import Avatar from '../components/Avatar.astro';
+import NavItem from '../components/NavItem.astro';
+import TimelineItem from '../components/TimelineItem.astro';
+import MobileHeader from '../components/MobileHeader.astro';
+import { timeline, navItems } from '../data/timeline';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+const { title, description } = Astro.props;
+---
+
+<Layout title={title} description={description}>
+  <MobileHeader />
+
+  <div class="page-layout">
+    <aside class="sidebar">
+      <div class="card">
+        <div class="summary">
+          <div class="summary__name-block">
+            <span class="summary__name">Eugen Trapeznikov</span>
+            <span class="summary__role">Product Designer</span>
+          </div>
+          <div class="summary__points">
+            <div class="summary__point">
+              <span class="summary__point-label">Experience</span>
+              <span class="summary__point-val">7 years</span>
+            </div>
+            <div class="summary__point">
+              <span class="summary__point-label">Platforms</span>
+              <span class="summary__point-val">Mobile &amp; Desktop, strong focus on mobile</span>
+            </div>
+            <div class="summary__point">
+              <span class="summary__point-label">Domains</span>
+              <span class="summary__point-val">Fintech, Media, B2C mostly</span>
+            </div>
+            <div class="summary__point">
+              <span class="summary__point-label">Teams</span>
+              <span class="summary__point-val">Design teams &amp; cross-functional product teams</span>
+            </div>
+          </div>
+          <div class="divider"></div>
+          <nav class="nav" id="sidebarNav">
+            {navItems.map((item) => (
+              <NavItem {...item} />
+            ))}
+          </nav>
+          <div class="divider"></div>
+          <div class="theme-row">
+            <span class="theme-label" id="themeLabel">Light</span>
+            <button class="switch" id="themeToggle" aria-label="Toggle dark mode">
+              <span class="switch-thumb"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <span class="timeline-eyebrow">Experience</span>
+            <span class="timeline-heading">Career timeline</span>
+          </div>
+          <div class="timeline-list">
+            {timeline.map((item) => (
+              <TimelineItem {...item} />
+            ))}
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="content">
+      <slot />
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .page-layout {
+    display: flex;
+    align-items: flex-start;
+    min-height: 100vh;
+  }
+  .sidebar {
+    width: 360px;
+    min-width: 360px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    scrollbar-width: none;
+  }
+  .sidebar::-webkit-scrollbar { display: none; }
+  .card { background: var(--bg-surface); border-radius: var(--radius-lg); }
+
+  .summary { padding: 20px 16px; display: flex; flex-direction: column; gap: 14px; }
+  .summary__name-block { display: flex; flex-direction: column; gap: 3px; }
+  .summary__name { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 14px; color: var(--content-primary); }
+  .summary__role { font-family: 'Space Grotesk', sans-serif; font-weight: 300; font-size: 12px; color: var(--content-secondary); }
+  .summary__points { display: flex; flex-direction: column; gap: 10px; }
+  .summary__point { display: flex; flex-direction: column; gap: 2px; }
+  .summary__point-label { font-size: 11px; font-weight: 500; color: var(--content-primary); }
+  .summary__point-val { font-size: 11px; font-weight: 300; color: var(--content-secondary); line-height: 1.5; }
+
+  .divider { height: 0.5px; background: var(--border-default); margin: 2px 0; }
+  .nav { display: flex; flex-direction: column; gap: 2px; }
+
+  .theme-row { display: flex; gap: 12px; align-items: center; padding: 4px 8px; }
+  .theme-label { flex: 1; font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--content-primary); }
+  .switch {
+    position: relative; width: 52px; height: 28px;
+    background: var(--bg-elevated); border-radius: var(--radius-full);
+    border: none; cursor: pointer; transition: background 0.25s; flex-shrink: 0;
+  }
+  .switch.on { background: var(--accent-default); }
+  .switch-thumb {
+    position: absolute; top: 4px; left: 4px; width: 20px; height: 20px;
+    background: var(--always-white); border-radius: 50%;
+    transition: transform 0.25s; pointer-events: none;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  }
+  .switch.on .switch-thumb { transform: translateX(24px); }
+
+  .timeline-card { padding: 20px 16px; }
+  .timeline-header { display: flex; flex-direction: column; gap: 6px; margin-bottom: 28px; }
+  .timeline-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: #9b9b93; }
+  .timeline-heading { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 22px; letter-spacing: -0.01em; color: var(--content-primary); }
+  .timeline-list { display: flex; flex-direction: column; }
+
+  .content {
+    flex: 1;
+    min-width: 0;
+    padding: 32px 32px 96px 0;
+  }
+
+  @media (max-width: 960px) {
+    .page-layout { flex-direction: column; }
+    .sidebar { display: none; }
+    .content { padding: 16px; }
+  }
+</style>
+
+<script>
+  const html = document.documentElement;
+  const btn = document.getElementById('themeToggle');
+  const lbl = document.getElementById('themeLabel');
+
+  function applyTheme(dark) {
+    html.setAttribute('data-theme', dark ? 'dark' : 'light');
+    btn?.classList.toggle('on', dark);
+    if (lbl) lbl.textContent = dark ? 'Dark' : 'Light';
+    localStorage.setItem('theme', dark ? 'dark' : 'light');
+  }
+
+  const saved = localStorage.getItem('theme');
+  applyTheme(saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches);
+  btn?.addEventListener('click', () => applyTheme(html.getAttribute('data-theme') !== 'dark'));
+
+  const sections = document.querySelectorAll('section[id], main[id]');
+  const navLinks = document.querySelectorAll('[data-nav]');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(l => l.classList.toggle('nav-item--active', l.getAttribute('href') === '#' + e.target.id || l.getAttribute('href') === '/#' + e.target.id));
+      }
+    });
+  }, { threshold: 0.25 });
+  sections.forEach(s => observer.observe(s));
+</script>
