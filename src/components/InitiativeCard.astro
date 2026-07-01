@@ -36,8 +36,10 @@ const c = content[caseStudy];
   <div class="init-card__content">
     <h3 class="init-card__title">{c.title}</h3>
     <p class="init-card__desc">{c.description}</p>
-    <Tag label="Case Study Coming Soon" color="#6b5fd4" />
-    <span class="init-card__date">{c.date}</span>
+    <div class="init-card__bottom">
+      <Tag label="Case Study Coming Soon" color="#6b5fd4" />
+      <span class="init-card__date">{c.date}</span>
+    </div>
   </div>
 </div>
 
@@ -48,7 +50,6 @@ const c = content[caseStudy];
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    height: 478px;
     flex: 1;
     min-width: 0;
   }
@@ -76,7 +77,6 @@ const c = content[caseStudy];
     flex-direction: column;
     gap: var(--space-16);
     flex: 1;
-    min-height: 0;
   }
   .init-card__title {
     font-family: 'Space Grotesk', sans-serif;
@@ -89,6 +89,13 @@ const c = content[caseStudy];
     font-size: var(--text-md);
     line-height: 20px;
     color: var(--content-secondary);
+    flex: 1;
+  }
+  .init-card__bottom {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
+    margin-top: auto;
   }
   .init-card__date {
     font-size: var(--text-sm);
