@@ -99,7 +99,7 @@ const { title, description } = Astro.props;
     scrollbar-width: none;
   }
   .sidebar::-webkit-scrollbar { display: none; }
-  .card { background: var(--bg-surface); border-radius: var(--radius-lg); }
+  .card { background: var(--bg-page); border-radius: var(--radius-lg); }
 
   .summary { padding: 20px 16px; display: flex; flex-direction: column; gap: 14px; }
   .summary__name-block { display: flex; flex-direction: column; gap: 3px; }
@@ -133,7 +133,7 @@ const { title, description } = Astro.props;
   .timeline-header { display: flex; flex-direction: column; gap: 6px; margin-bottom: 28px; }
   .timeline-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: #9b9b93; }
   .timeline-heading { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 22px; letter-spacing: -0.01em; color: var(--content-primary); }
-  .timeline-list { display: flex; flex-direction: column; }
+  .timeline-list { display: flex; flex-direction: column; gap: var(--space-16); }
 
   .content {
     flex: 1;

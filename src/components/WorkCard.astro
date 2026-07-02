@@ -78,85 +78,91 @@ const hasStat = statValue && statRows.length > 0;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.04);
   }
 
-  /* Full width */
+  /* Full width — Figma: card px-64, gap-64; Left & Image are both flex:1 (50/50) */
   .work-card--full {
     flex-direction: row;
-    /* reserve the right half of the card for the (absolutely positioned) image */
-    padding: 64px calc(50% + 48px) 64px 64px;
-    min-height: 620px;
+    gap: 64px;
+    padding: 0 64px;
+    min-height: 500px;
     align-items: stretch;
   }
   .work-card--full .work-card__left {
-    flex: 1;
+    flex: 1 0 0;
     min-width: 0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
     gap: 24px;
+    padding: 64px 0;
   }
-  /* Image container: right half, full card height, clipped by the card's overflow */
+  /* Image column: 64px from the top, bleeds past the bottom and is clipped by the card.
+     The image is absolute so its intrinsic height never inflates the card height. */
   .work-card--full .work-card__image {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 50%;
+    flex: 1 0 0;
+    min-width: 0;
+    align-self: stretch;
+    position: relative;
+    overflow: hidden;
   }
   .work-card--full .work-card__image-frame {
-    position: static;
-    width: 100%;
-    height: 100%;
-    border-radius: 0;
-    overflow: visible;
-    background: transparent;
-    box-shadow: none;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
   }
-  .work-card--full .work-card__image img,
-  .work-card--full .work-card__image-placeholder {
+  .work-card--full .work-card__image img {
     width: 100%;
     height: 100%;
-    /* pushed down 64px; the extra height spills below the card and is clipped */
-    margin-top: 64px;
     object-fit: cover;
     object-position: top;
     display: block;
   }
+  .work-card--full .work-card__image-placeholder {
+    position: absolute;
+    inset: 64px 0 0;
+    background: var(--bg-surface);
+  }
 
-  /* Half width */
+  /* Half width — Figma: card pt-32 px-64, image bleeds to the bottom, no backing */
   .work-card--half {
+    flex: 1 1 0;
+    min-width: 0;
     flex-direction: column;
-    padding: 36px 36px 0;
-    min-height: 580px;
+    gap: 24px;
+    padding: 32px 64px 0;
+    min-height: 500px;
   }
   .work-card--half .work-card__left {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
   }
-.work-card--half .work-card__image {
+  .work-card--half .work-card__image {
     flex: 1;
     min-height: 0;
-    padding-top: 24px;
-    display: flex;
-    align-items: stretch;
-}
-.work-card--half .work-card__image-frame {
-    width: 100%;
-    min-height: 500px;
-    height: auto;
-    border-radius: 28px 28px 0 0;
-    overflow: visible;
-    background: var(--bg-elevated);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.4);
-}
-.work-card--half .work-card__image img {
+    position: relative;
+    overflow: hidden;
+  }
+  .work-card--half .work-card__image-frame {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+  .work-card--half .work-card__image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: top;
-    margin-top: 64px;
-}
+    display: block;
+  }
+  .work-card--half .work-card__image-placeholder {
+    position: absolute;
+    inset: 0;
+    background: var(--bg-surface);
+  }
 
   /* Title block */
 .work-card__title-block { display: flex; flex-direction: column; gap: var(--space-12); max-width: 560px; }
@@ -176,20 +182,19 @@ const hasStat = statValue && statRows.length > 0;
     margin: 0;
   }
 
-  /* Stat block */
+  /* Stat block — revealed on card hover */
   .work-card__stat {
     display: flex;
     flex-direction: column;
     gap: 24px;
     opacity: 0;
-    transform: scaleY(0);
-    transform-origin: top;
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    transform: translateY(8px);
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
     pointer-events: none;
   }
   .work-card--full:hover .work-card__stat {
     opacity: 1;
-    transform: scaleY(1);
+    transform: none;
     pointer-events: auto;
   }
 
@@ -201,21 +206,21 @@ const hasStat = statValue && statRows.length > 0;
   }
   .work-card__stat-rows { display: flex; flex-direction: column; gap: 12px; }
   .work-card__stat-row { display: flex; gap: 12px; align-items: center; }
-.work-card__stat-bar {
+  .work-card__stat-bar {
     height: 12px;
     border-radius: 4px;
     flex-shrink: 0;
-    /* hidden by default, revealed on card hover */
+    /* collapsed by default, grows in on card hover */
     transform: scaleX(0);
     transform-origin: left;
-    transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    transition: transform 0.55s ease-out;
   }
-  .work-card--full:hover .work-card__stat-bar { 
-    transform: scaleX(1); 
+  .work-card--full:hover .work-card__stat-bar {
+    transform: scaleX(1);
   }
-  .work-card__stat-bar:nth-child(1) { transition-delay: 0.2s; }
-  .work-card__stat-bar:nth-child(2) { transition-delay: 0.4s; }
-  .work-card__stat-bar:nth-child(3) { transition-delay: 0.6s; }
+  .work-card__stat-row:nth-child(1) .work-card__stat-bar { transition-delay: 0.08s; }
+  .work-card__stat-row:nth-child(2) .work-card__stat-bar { transition-delay: 0.2s; }
+  .work-card__stat-row:nth-child(3) .work-card__stat-bar { transition-delay: 0.32s; }
 
  .work-card__stat-label {
     font-size: var(--text-sm);
@@ -238,48 +243,33 @@ const hasStat = statValue && statRows.length > 0;
   /* Image placeholder */
   .work-card__image-placeholder { width: 100%; height: 100%; background: var(--bg-elevated); }
 
-  /* Responsive */
+  /* Responsive — Figma Mobile: image height 500px, full width, clipped bottom, no bars */
   @media (max-width: 960px) {
     .work-card--full {
       flex-direction: column;
-      /* image is back in normal flow on mobile — reset the reserved right padding */
       padding: 32px 32px 0;
       min-height: auto;
-      align-items: stretch;
-      gap: 32px;
+      gap: 24px;
+    }
+    .work-card--full .work-card__left {
+      padding: 0;
     }
     .work-card--full .work-card__image {
-      position: relative;
-      top: auto;
-      right: auto;
-      bottom: auto;
-      width: auto;
+      flex: none;
+      align-self: auto;
       height: 500px;
-      /* bleed to the card's side/bottom edges so the image is clipped by the card */
-      margin: 0 -32px;
-      overflow: hidden;
     }
-    .work-card--full .work-card__image-frame {
-      width: 100%;
-      height: 100%;
-    }
-    .work-card--full .work-card__image img,
+    .work-card--full .work-card__image-frame,
     .work-card--full .work-card__image-placeholder {
-      /* no top offset on mobile; bottom is cropped via object-position */
-      margin-top: 0;
-      height: 100%;
+      inset: 0;
     }
     .work-card--half {
-      padding: 32px 32px 0;
       min-height: auto;
     }
     .work-card--half .work-card__image {
-      padding-top: 16px;
+      min-height: 320px;
     }
-    .work-card--half .work-card__image-frame {
-      min-height: 220px;
-      border-radius: 20px 20px 0 0;
-    }
+    /* Bars have no hover state on touch — keep the whole stat block hidden */
     .work-card__stat { display: none; }
   }
 </style>
