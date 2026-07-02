@@ -44,26 +44,31 @@ const c = content[caseStudy];
 </div>
 
 <style>
-  .init-card {
-    background: var(--bg-surface);
+.init-card {
+    background: var(--bg-page);
     border-radius: var(--radius-md);
     overflow: hidden;
     display: flex;
     flex-direction: column;
     flex: 1;
     min-width: 0;
-  }
-  .init-card__image {
+}
+.init-card__image {
     width: 100%;
-    height: 186px;
+    height: 200px;
     background: var(--bg-elevated);
     flex-shrink: 0;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 52px 12px;
-  }
+}
+.init-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+}
   .init-card__image img {
     max-width: 100%;
     max-height: 100%;
@@ -71,13 +76,13 @@ const c = content[caseStudy];
     height: auto;
     object-fit: contain;
   }
-  .init-card__content {
-    padding: 32px;
+.init-card__content {
+    padding: 24px;
     display: flex;
     flex-direction: column;
     gap: var(--space-16);
     flex: 1;
-  }
+}
   .init-card__title {
     font-family: 'Space Grotesk', sans-serif;
     font-weight: var(--weight-medium);
