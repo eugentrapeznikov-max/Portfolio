@@ -35,15 +35,15 @@ const works = [
   {
     href: '/cases/livematch',
     title: 'Live Match Pages Redesign',
-    description: 'SEO Top-3, reach +72%, x1.5 time on page.',
+    description: 'How a technical refactoring initiative evolved into a new way to present sports statistics',
     imageSrc: '/works/sports-matches.png',
     layout: 'full' as const,
     statValue: 'Top 3',
     statLabel: 'SEO ranking',
     statRows: [
-      { width: 65, color: '#fc5b04', label: '78% boost SEO' },
-      { width: 52, color: '#4a9000', label: 'x1.5 time on page' },
-      { width: 91, color: '#464c63', label: '3 sports redesigned' },
+      { width: 65, color: '#fc5b04', label: '+34% Time on Page per Session' },
+      { width: 52, color: '#4a9000', label: '+48% Average Scroll Depth' },
+      { width: 91, color: '#464c63', label: '+73% Total Live Page Views' },
     ],
   },
 ];
@@ -75,11 +75,11 @@ const works = [
     <section id="works" class="section">
       <div class="works">
         <WorkCard {...works[0]} />
+        <WorkCard {...works[3]} />
         <div class="works__row">
           <WorkCard {...works[1]} />
           <WorkCard {...works[2]} />
         </div>
-        <WorkCard {...works[3]} />
       </div>
     </section>
 
