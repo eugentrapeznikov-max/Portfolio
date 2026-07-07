@@ -4,7 +4,6 @@ import SidebarLayout from '../../layouts/SidebarLayout.astro';
 export function getStaticPaths() {
   return [
     { params: { slug: 'yollet' } },
-    { params: { slug: 'livematch' } },
   ];
 }
 
@@ -65,62 +64,6 @@ const cases = {
         { value: '90%', label: 'bugs caught pre-production' },
         { value: '40%', label: 'faster concept-to-release cycle' },
         { value: '1',   label: 'Ready-to-launch Crypto Bank' },
-      ],
-    },
-  },
-
-  livematch: {
-    title: 'Live Match Pages Redesign',
-    subtitle: 'Unifying fragmented sport-specific live match interfaces into one scalable design system, boosting engagement and SEO across football, basketball, hockey, and tennis.',
-    overview: {
-      role: 'Product Designer',
-      platform: 'Web / Mobile Web',
-      duration: '5 months',
-      domain: 'Sporttech / Media',
-    },
-    context: "On Sports.ru, live match pages are one of the most visited sections — tens of thousands of football, basketball, tennis, hockey and other matches are followed here every year. Historically, each sport had its own interface developed and maintained separately.\n\nThis led to serious problems:",
-    contextList: [
-      'Fragmented user experience — different layouts, controls and data display for each sport.',
-      'Slow page loading, which hurt SEO metrics.',
-      'Heavy architecture across different frameworks made it hard to work with stats providers — delayed or missing live events pushed users to other resources.',
-      'Poor mobile rendering — stats and event timelines were hard to read.',
-      'Intrusive ads covering key content, frustrating both users and advertisers due to poor conversion and broken banners.',
-      'Limited stats depth for sports other than football.',
-    ],
-    mainImage: '/cases/livematch/Main_screen.png',
-    auditHeading: 'Task',
-    auditText: "Create a single, scalable interface adaptable to any sport.\nEnrich non-football sports with proper statistics depth.\nFix responsive/mobile issues.\nIntegrate all changes into the design system.\n\nMetrics to move:\n\n— Increase session duration on live pages\n— Number of transitions between sections and tabs within live coverage\n— Traffic growth for basketball, hockey, and tennis live pages",
-    auditImage: '/cases/livematch/Legend.png',
-    flowsHeading: 'Research',
-    flowsText: "To design a universal solution I had to deeply study every sport: football (match flow, event frequency, advanced metrics like xG, passes, possession), basketball (quarters, fast pace, player stats — points, rebounds, assists), hockey (periods, penalties, shots on goal, goalie stats), tennis (sets and games, serve stats, break points, rally duration).\n\nResearch sources: competitive analysis (Sofascore, Flashscore, OneFootball, ESPN), support tickets and survey feedback, hallway testing, qualitative interviews with core Sports.ru audience.\n\nKey insights: the core value for users is stats depth and freshness. There are different consumption patterns — Russian audience leans closer to the American ESPN/Athletic style than the European one. Ads breaking the page structure and hiding key info was the single biggest user complaint.",
-    screenGroups: [],
-    designSystem: {
-      heading: 'Building a Universal Widget System',
-      text: "I built a scalable widget system able to adapt to any sport, designed and tested new page layouts, then integrated the new patterns and components into the design system.\n\nEach sport-specific module (score header, event timeline, lineups, stats tables) was rebuilt as a flexible, reusable component rather than a one-off page.",
-      image: '/cases/livematch/Tokens.png',
-    },
-    designProcess: {
-      heading: 'Design Process & Collaboration',
-      text: "Working closely with engineering, every new component was shipped into Storybook, living on the design system's tokens and themes — directly speeding up development for every future sport added to the platform.\n\nThis collaborative approach meant fewer one-off implementations and a faster path from design to release across all sports.",
-      image: '/cases/livematch/DSReview.png',
-    },
-    uxStrategy: {
-      heading: 'Layout & Information Architecture',
-      text: "Redesigning the information hierarchy meant rethinking how live events, stats, and lineups compete for attention across very different sports — from football's slow event cadence to basketball's rapid scoring.",
-      images: ['/cases/livematch/Map.png', '/cases/livematch/Strategy.png'],
-    },
-    exploration: {
-      caption: 'Exploring New Layout Directions',
-      image: '/cases/livematch/Concepts_for_redesigne.png',
-    },
-    results: {
-      heading: 'Results',
-      text: "We saw a significant increase in viewership of Tennis, Hockey, and Basketball live pages — up to 70% at peak. Users who previously couldn't properly follow tennis, hockey, and basketball live events came back.\n\nAdvertisers were satisfied with improved click-through conversion, and we were able to introduce more modern ad formats that no longer broke the user experience.\n\nThe engineering team appreciated that every new component shipped into Storybook, living on design system tokens and themes — directly speeding up future development.",
-      stats: [
-        { value: 'Top 3', label: 'SEO ranking' },
-        { value: '+72%', label: 'reach growth' },
-        { value: 'x1.5', label: 'time on page' },
-        { value: '4',    label: 'sports unified' },
       ],
     },
   },

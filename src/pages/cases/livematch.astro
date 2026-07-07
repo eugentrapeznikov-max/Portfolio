@@ -1,0 +1,573 @@
+---
+import SidebarLayout from '../../layouts/SidebarLayout.astro';
+import WorkCard from '../../components/WorkCard.astro';
+
+// ── Context / Results data (used in hero and again near the end) ──────────
+const context = [
+  { label: 'ROLE', value: 'Lead Product Designer' },
+  { label: 'PLATFORM', value: 'Web + Mobile Web' },
+  { label: 'DURATION', value: '8 month' },
+  { label: 'DOMAIN', value: 'Media / Sports' },
+];
+const results = [
+  { value: '+48%', label: 'Average Scroll Depth' },
+  { value: '+34%', label: 'Time on Page per Session' },
+  { value: '+73%', label: 'Total Live Page Views across all sports included in the redesign' },
+  { value: '+67%', label: 'Cross-navigation' },
+];
+
+// ── Goals (Why this mattered) ────────────────────────────────────────────
+const productGoals = [
+  'Increase content consumption and scroll depth',
+  'Increase user engagement during live matches',
+  'Deliver richer statistical insights for different sports',
+];
+const techGoals = [
+  'Improve search visibility through better technical performance',
+  'Optimize page performance and reduce loading times',
+  'Create a unified architecture across different sports',
+  'Build standardized components ready for Design System adoption and third-party integrations',
+];
+
+// ── Match-state cards (Why this approach worked) ─────────────────────────
+const matchStates = [
+  { title: 'Before the match', items: ['Check team lineups', 'Review betting odds', 'See tournament standings'] },
+  { title: 'During the match', items: ['Follow key events: goals, substitutions, cards, and other moments', 'Monitor live statistics: xG, possession, shots, and performance metrics'] },
+  { title: 'After the match', items: ['Understand how the game unfolded', 'Explore detailed statistics', 'Read related match content'] },
+];
+
+// ── System principles (Designing the system) ─────────────────────────────
+const principlesRow1 = [
+  { title: 'Unified structure', text: 'A consistent information hierarchy across all sports makes match pages familiar and easy to navigate' },
+  { title: 'Modular widget', text: 'Each information block became a standalone component, allowing flexible page composition across different sports' },
+  { title: 'Adaptive layouts', text: 'Flexible layouts ensure that match information remains accessible and easy to navigate across all devices' },
+];
+const principlesRow2 = [
+  { title: 'Multi-sport adaptability', text: 'One system adapts to the unique requirements of football, hockey, tennis, and basketball while maintaining a consistent user experience' },
+  { title: 'Dynamic content hierarchy', text: 'The importance of each widget changes throughout the match lifecycle — before, during, and after the game' },
+];
+
+const responsibilities = [
+  'Initiating the transition from technical refactoring to a full product redesign',
+  'Conducting user research to identify user needs and behaviors',
+  'Defining the product concept and new match page architecture',
+  'Designing the information architecture and modular widget system',
+  'Creating reusable components for the Design System',
+  'Collaborating with stakeholders and developers throughout implementation',
+];
+
+// Next case → Yollet
+const nextCase = {
+  href: '/cases/yollet',
+  title: 'Yollet — Neo Bank',
+  description: 'From scattered screens to a cohesive product',
+  imageSrc: '/works/main-screen-yollet.png',
+  layout: 'full' as const,
+  statValue: '1',
+  statLabel: 'Ready-to-launch Crypto Bank',
+  statRows: [
+    { width: 100, color: '#fc5b04', label: '156 screens & states delivered' },
+    { width: 65,  color: '#4a9000', label: '90% bugs caught pre-production' },
+    { width: 40,  color: '#464c63', label: '40% faster concept-to-release cycle' },
+  ],
+};
+---
+
+<SidebarLayout title="Live Match Pages Redesign — Eugen Trapeznikov">
+
+  <header class="case-header">
+    <a href="/" class="back-btn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 18l-6-6 6-6"/>
+      </svg>
+      Main page
+    </a>
+  </header>
+
+  <main class="lm">
+
+    <!-- ─── HERO ─────────────────────────────────────────────── -->
+    <section class="lm-hero">
+      <div class="lm-hero__title">
+        <h1 class="lm-h1">Redesigning Sports.ru Match Pages</h1>
+        <p class="lm-subtitle">How a technical refactoring initiative evolved into a new way to present sports statistics</p>
+      </div>
+
+      <div class="lm-ctx card">
+        <div class="lm-ctx__row">
+          <span class="lm-ctx__key">Context</span>
+          <div class="lm-ctx__items">
+            {context.map((c) => (
+              <div class="lm-ctx__item">
+                <span class="lm-ctx__label">{c.label}</span>
+                <span class="lm-ctx__value">{c.value}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div class="lm-ctx__row lm-stats">
+          <span class="lm-ctx__key">Results</span>
+          <div class="lm-stats__items">
+            {results.map((r) => (
+              <div class="lm-stat">
+                <span class="lm-stat__value">{r.value}</span>
+                <span class="lm-stat__label">{r.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── SUMMARY ──────────────────────────────────────────── -->
+    <section class="lm-sec">
+      <div class="lm-head">
+        <h2 class="lm-h-lg">Summary</h2>
+        <div class="lm-text">
+          <p>Originally planned as a technical refactoring, this project became a complete redesign of Sports.ru's live match pages.</p>
+          <p>By introducing a modular widget architecture, I transformed fragmented experiences into a scalable product platform that balances user needs, business goals, and engineering constraints</p>
+        </div>
+      </div>
+      <img class="lm-media" src="/cases/livematch/widgets.png" alt="New widget-based live match pages" loading="lazy" />
+    </section>
+
+    <!-- ─── WHERE WE STARTED (old) ───────────────────────────── -->
+    <section class="lm-sec">
+      <div class="lm-head">
+        <h2 class="lm-h-sm">Where we started</h2>
+        <div class="lm-text">
+          <p>Years of independent development resulted in different interfaces, information structures, and user flows across sports.</p>
+        </div>
+      </div>
+      <img class="lm-media" src="/cases/livematch/old-football.png" alt="The old football match page" loading="lazy" />
+    </section>
+
+    <!-- ─── REBUILDING THE EXPERIENCE (new) ──────────────────── -->
+    <section class="lm-sec">
+      <div class="lm-head">
+        <h2 class="lm-h-sm">Rebuilding the experience</h2>
+        <div class="lm-text">
+          <p>The redesign was not about creating a new visual layer on top of the old structure.</p>
+          <p>It was about rethinking how match information is organized, prioritized, and delivered to users.</p>
+          <p>The new interface is built around flexible widgets that form a consistent experience across sports.</p>
+        </div>
+      </div>
+      <img class="lm-media" src="/cases/livematch/main-football.png" alt="The redesigned football match page" loading="lazy" />
+      <div class="lm-row4">
+        <img src="/cases/livematch/football-4.png" alt="Football widget" loading="lazy" />
+        <img src="/cases/livematch/football-3.png" alt="Football widget" loading="lazy" />
+        <img src="/cases/livematch/football-2.png" alt="Football widget" loading="lazy" />
+        <img src="/cases/livematch/football-1.png" alt="Football widget" loading="lazy" />
+      </div>
+      <img class="lm-media" src="/cases/livematch/lineups.png" alt="Lineups widget" loading="lazy" />
+    </section>
+
+    <!-- ─── ONE SYSTEM, DIFFERENT SPORTS (basketball) ────────── -->
+    <section class="lm-sec">
+      <div class="lm-head">
+        <h2 class="lm-h-sm">One system, different sports</h2>
+        <div class="lm-text">
+          <p>The new architecture was designed to preserve the unique characteristics of each sport while maintaining a consistent user experience.</p>
+          <p>Basketball became one of the examples of how the same widget-based system adapts to different data structures and match scenarios</p>
+        </div>
+      </div>
+      <img class="lm-media" src="/cases/livematch/basketball.png" alt="Basketball match page built from the same widget system" loading="lazy" />
+    </section>
+
+    <!-- ─── FROM REFACTORING TO REDESIGN ─────────────────────── -->
+    <section class="lm-sec">
+      <div class="lm-head">
+        <h2 class="lm-h-sm">From refactoring to redesign</h2>
+        <div class="lm-text">
+          <p>The project started as a technical refactoring to reduce technical debt, improve performance, and optimize SEO.</p>
+          <p>During the analysis, I identified that the biggest challenges were not only technical — fragmented experiences across sports, inconsistent interfaces, and limited scalability were preventing the product from evolving.</p>
+          <p>I proposed expanding the scope into a full redesign. With support from the team and stakeholders, the project evolved into a unified system for building live sports experiences</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── WHY THIS MATTERED (goals) ────────────────────────── -->
+    <section class="lm-sec">
+      <div class="lm-head">
+        <h2 class="lm-h-sm">Why this mattered</h2>
+        <div class="lm-text">
+          <p>Live match pages are one of Sports.ru's most visited products and a key source of user engagement.</p>
+          <p>During games, these pages directly influence core business metrics:</p>
+          <ul class="lm-list">
+            <li>time spent on page</li>
+            <li>content consumption</li>
+            <li>advertising revenue</li>
+          </ul>
+          <p>A better live experience meant keeping users engaged for longer and creating more value for the business.</p>
+        </div>
+      </div>
+      <div class="lm-goals card">
+        <div class="lm-goals__col">
+          <h3 class="lm-h-sm">Product goals</h3>
+          <ul class="lm-list">
+            {productGoals.map((g) => <li>{g}</li>)}
+          </ul>
+        </div>
+        <div class="lm-goals__col">
+          <h3 class="lm-h-sm">Tech goals</h3>
+          <ul class="lm-list">
+            {techGoals.map((g) => <li>{g}</li>)}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── FINDING THE RIGHT APPROACH ───────────────────────── -->
+    <section class="lm-sec">
+      <div class="lm-head">
+        <h2 class="lm-h-sm">Finding the right approach</h2>
+        <div class="lm-text">
+          <p>Instead of creating separate interfaces for each sport, I proposed a modular approach where match pages are built from independent statistical, social, and advertising widgets.</p>
+          <p>This allowed us to create a consistent and predictable experience across different sports while keeping enough flexibility to adapt the interface to the unique needs of each discipline.</p>
+        </div>
+      </div>
+      <img class="lm-media" src="/cases/livematch/layout-example.png" alt="Modular widget layout example" loading="lazy" />
+    </section>
+
+    <!-- ─── WHY THIS APPROACH WORKED (match states) ──────────── -->
+    <section class="lm-sec">
+      <div class="lm-head">
+        <h2 class="lm-h-sm">Why this approach worked</h2>
+        <div class="lm-text">
+          <p>To validate the new concept, I needed to understand how users actually follow live matches.</p>
+          <p>Through user interviews, surveys, and observations, I discovered a key insight:</p>
+          <p><strong>User needs change depending on the match state</strong> — and this pattern is consistent across all sports.</p>
+          <p>Before the game, users look for different information than during the live experience or after the final whistle.</p>
+          <p>Another important finding was that <strong>every sport has its own statistical depth and user expectations.</strong> Basketball and hockey fans, for example, felt that Sports.ru was too focused on football and did not provide enough depth for other sports.</p>
+          <p>This confirmed that the solution needed to be flexible: one unified system with the ability to adapt to the specifics of each sport</p>
+        </div>
+      </div>
+      <div class="lm-cards3">
+        {matchStates.map((s) => (
+          <div class="lm-card card">
+            <h3 class="lm-h-sm">{s.title}</h3>
+            <ul class="lm-list lm-list--md">
+              {s.items.map((i) => <li>{i}</li>)}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ─── DESIGNING THE SYSTEM (principles) ────────────────── -->
+    <section class="lm-sec">
+      <div class="lm-head">
+        <h2 class="lm-h-sm">Designing the system</h2>
+        <div class="lm-text">
+          <p>The main challenge was choosing between two approaches: creating separate solutions for each sport or building a flexible system that could adapt to different sports.</p>
+          <p>I chose to create a scalable foundation that would allow every sport to evolve, gradually reaching the same level of detail and quality as football match pages.</p>
+          <p>The system was built around several key principles:</p>
+        </div>
+      </div>
+      <div class="lm-cards3">
+        {principlesRow1.map((p) => (
+          <div class="lm-card card">
+            <h3 class="lm-h-sm">{p.title}</h3>
+            <p class="lm-card__text">{p.text}</p>
+          </div>
+        ))}
+      </div>
+      <div class="lm-cards2">
+        {principlesRow2.map((p) => (
+          <div class="lm-card card">
+            <h3 class="lm-h-sm">{p.title}</h3>
+            <p class="lm-card__text">{p.text}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ─── UNIVERSAL MATCH PAGE STRUCTURE ───────────────────── -->
+    <section class="lm-sec">
+      <div class="lm-head">
+        <h2 class="lm-h-sm">Universal match page structure</h2>
+        <div class="lm-text">
+          <p>The final system combined universal widgets shared across sports with sport-specific modules tailored to each discipline.</p>
+          <p>This created a flexible match page structure that can scale to any sport while maintaining a consistent user experience</p>
+        </div>
+      </div>
+      <img class="lm-media" src="/cases/livematch/layout-structure.png" alt="Universal match page structure" loading="lazy" />
+    </section>
+
+    <!-- ─── INTEGRATED INTO THE DESIGN SYSTEM ────────────────── -->
+    <section class="lm-sec">
+      <div class="lm-head">
+        <h2 class="lm-h-sm">Integrated into the Design System</h2>
+        <div class="lm-text">
+          <p>The new match page architecture became a reusable framework inside Sports.ru's Design System.</p>
+          <p>Developers no longer build pages from scratch — they use a unified layout and combine it with the required widgets.</p>
+          <p>All components were documented in Storybook and reused across other products, making future development faster and more consistent</p>
+        </div>
+      </div>
+      <img class="lm-media" src="/cases/livematch/tables.png" alt="Components integrated into the design system" loading="lazy" />
+    </section>
+
+    <!-- ─── USER FEEDBACK ────────────────────────────────────── -->
+    <section class="lm-sec">
+      <div class="lm-head">
+        <h2 class="lm-h-sm">User feedback</h2>
+        <div class="lm-text">
+          <p>The redesign received strong positive feedback from users, which was also reflected in the growth of key product metrics.</p>
+          <p>The most noticeable improvement came from hockey and tennis fans. Previously, these sports had significantly less statistical depth compared to football, creating a feeling that they received less attention.</p>
+          <p>The new system helped close this gap by providing richer, more relevant match experiences across different sports</p>
+        </div>
+      </div>
+      <div class="lm-feedback">
+        <img src="/cases/livematch/feedback-1.png" alt="User comment" loading="lazy" />
+        <img src="/cases/livematch/feedback-2.png" alt="User comment" loading="lazy" />
+        <img src="/cases/livematch/feedback-3.png" alt="User comment" loading="lazy" />
+        <img src="/cases/livematch/feedback-4.png" alt="User comment" loading="lazy" />
+      </div>
+      <div class="lm-head lm-head--tight">
+        <div class="lm-text">
+          <p>Not all feedback was positive — some users criticized the new typography and visual direction. Instead of treating this feedback as resistance to change, I used it as an opportunity for deeper research. The most vocal users became participants in follow-up interviews and surveys, providing valuable insights into user expectations</p>
+        </div>
+      </div>
+      <img class="lm-media" src="/cases/livematch/feedback-5.png" alt="Critical user comment" loading="lazy" />
+    </section>
+
+    <!-- ─── MY ROLE + CONTEXT/RESULTS RECAP ──────────────────── -->
+    <section class="lm-sec">
+      <div class="lm-head">
+        <h2 class="lm-h-sm">My role</h2>
+        <div class="lm-text">
+          <p>I was responsible for the full product design cycle — from defining the vision to supporting implementation.</p>
+          <p>My responsibilities included:</p>
+          <ul class="lm-list">
+            {responsibilities.map((r) => <li>{r}</li>)}
+          </ul>
+        </div>
+      </div>
+
+      <div class="lm-ctx card">
+        <div class="lm-ctx__row">
+          <span class="lm-ctx__key">Context</span>
+          <div class="lm-ctx__items">
+            {context.map((c) => (
+              <div class="lm-ctx__item">
+                <span class="lm-ctx__label">{c.label}</span>
+                <span class="lm-ctx__value">{c.value}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div class="lm-ctx__row lm-stats">
+          <span class="lm-ctx__key">Results</span>
+          <div class="lm-stats__items">
+            {results.map((r) => (
+              <div class="lm-stat">
+                <span class="lm-stat__value">{r.value}</span>
+                <span class="lm-stat__label">{r.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── NEXT CASE ────────────────────────────────────────── -->
+    <div class="lm-divider"></div>
+    <section class="lm-next">
+      <h2 class="lm-h-lg">Next work</h2>
+      <WorkCard {...nextCase} />
+    </section>
+
+  </main>
+
+</SidebarLayout>
+
+<style>
+  /* ── Sticky back header (matches [slug] pattern) ─────────── */
+  .case-header {
+    padding: 0 0 20px;
+    position: sticky;
+    top: 0;
+    background: var(--bg-surface);
+    z-index: 10;
+    border-bottom: 0.5px solid var(--border-default);
+    margin-bottom: 32px;
+  }
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    font-size: var(--text-base);
+    color: var(--accent-default);
+    transition: color 0.15s;
+  }
+  .back-btn:hover { color: var(--accent-hover); }
+
+  /* ── Page column ────────────────────────────────────────── */
+  .lm { display: flex; flex-direction: column; gap: 64px; }
+  .card { background: var(--bg-page); border-radius: 20px; }
+
+  /* Sections stack their heading + media with a tight rhythm */
+  .lm-sec { display: flex; flex-direction: column; gap: 24px; }
+  .lm-head { display: flex; flex-direction: column; gap: 12px; max-width: 800px; }
+  .lm-head--tight { margin-top: 8px; }
+
+  /* ── Typography ─────────────────────────────────────────── */
+  .lm-h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: var(--text-5xl);      /* 32px */
+    line-height: 40px;
+    letter-spacing: -1px;
+    color: var(--content-primary);
+  }
+  .lm-subtitle {
+    font-size: var(--text-lg);       /* 16px */
+    line-height: 24px;
+    color: var(--content-secondary);
+    max-width: 800px;
+  }
+  .lm-h-lg {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: var(--text-5xl);      /* 32px */
+    line-height: 40px;
+    letter-spacing: -1px;
+    color: var(--content-primary);
+  }
+  .lm-h-sm {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    font-size: var(--text-3xl);      /* 22px */
+    line-height: 32px;
+    color: var(--content-primary);
+  }
+  .lm-text { display: flex; flex-direction: column; gap: 12px; }
+  .lm-text p {
+    font-size: var(--text-lg);       /* 16px */
+    line-height: 24px;
+    color: var(--content-secondary);
+  }
+  .lm-text p strong { color: var(--content-primary); font-weight: 600; }
+
+  .lm-list {
+    display: flex; flex-direction: column; gap: 2px;
+    padding-left: 24px;
+    list-style: disc;
+    color: var(--content-secondary);
+    font-size: var(--text-lg);
+    line-height: 24px;
+  }
+  .lm-list--md { font-size: var(--text-base); line-height: 20px; }
+
+  /* ── Media (images sit directly on the page) ────────────── */
+  .lm-media { width: 100%; border-radius: 16px; display: block; }
+
+  .lm-row4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .lm-row4 img { width: 100%; border-radius: 16px; display: block; }
+
+  /* ── Context / Results card ─────────────────────────────── */
+  .lm-ctx {
+    padding: 32px 64px;
+    display: flex; flex-direction: column; gap: 64px;
+  }
+  .lm-ctx__row { display: flex; gap: 64px; align-items: flex-start; }
+  .lm-ctx__key {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    font-size: var(--text-3xl);      /* 22px */
+    line-height: 32px;
+    color: var(--content-primary);
+    flex-shrink: 0;
+    width: 86px;
+  }
+  .lm-ctx__items { flex: 1; min-width: 0; display: flex; gap: 32px; }
+  .lm-ctx__item { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+  .lm-ctx__label {
+    font-size: var(--text-lg); line-height: 24px;
+    color: var(--content-secondary);
+  }
+  .lm-ctx__value {
+    font-size: var(--text-lg); line-height: 24px;
+    color: var(--content-primary);
+  }
+
+  .lm-stats__items { flex: 1; min-width: 0; display: flex; gap: 24px; }
+  .lm-stat {
+    flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px;
+    opacity: 0; transform: translateY(12px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+  .lm-ctx.in-view .lm-stat { opacity: 1; transform: none; }
+  .lm-ctx.in-view .lm-stat:nth-child(1) { transition-delay: 0.05s; }
+  .lm-ctx.in-view .lm-stat:nth-child(2) { transition-delay: 0.15s; }
+  .lm-ctx.in-view .lm-stat:nth-child(3) { transition-delay: 0.25s; }
+  .lm-ctx.in-view .lm-stat:nth-child(4) { transition-delay: 0.35s; }
+  .lm-stat__value {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: var(--text-4xl);      /* 26px */
+    line-height: 40px;
+    letter-spacing: -1px;
+    color: var(--content-primary);
+  }
+  .lm-stat__label {
+    font-size: var(--text-md);       /* 13px */
+    line-height: 20px;
+    color: var(--content-secondary);
+  }
+
+  /* ── Goals two-column card ──────────────────────────────── */
+  .lm-goals { padding: 32px 64px; display: flex; gap: 64px; }
+  .lm-goals__col { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 16px; }
+
+  /* ── Card grids (match states / principles) ─────────────── */
+  .lm-cards3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .lm-cards2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .lm-card { padding: 32px; display: flex; flex-direction: column; gap: 16px; }
+  .lm-card__text {
+    font-size: var(--text-md);       /* 13px */
+    line-height: 20px;
+    color: var(--content-secondary);
+  }
+
+  /* ── Feedback grid ──────────────────────────────────────── */
+  .lm-feedback { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .lm-feedback img { width: 100%; border-radius: 16px; display: block; }
+
+  /* ── Next case ──────────────────────────────────────────── */
+  .lm-divider { height: 0.5px; background: var(--border-default); }
+  .lm-next { display: flex; flex-direction: column; gap: 24px; }
+
+  /* ── Responsive ─────────────────────────────────────────── */
+  @media (max-width: 960px) {
+    .lm { gap: 48px; }
+    .lm-ctx { padding: 24px; gap: 32px; }
+    .lm-ctx__row { flex-direction: column; gap: 16px; }
+    .lm-ctx__key { width: auto; }
+    .lm-ctx__items { flex-wrap: wrap; gap: 20px 16px; }
+    .lm-ctx__item { flex: 1 1 40%; }
+    .lm-stats__items { flex-wrap: wrap; gap: 20px 16px; }
+    .lm-stat { flex: 1 1 40%; }
+    .lm-goals { flex-direction: column; padding: 24px; gap: 24px; }
+    .lm-cards3, .lm-cards2 { grid-template-columns: 1fr; }
+    .lm-card { padding: 24px; }
+    .lm-row4 { grid-template-columns: 1fr 1fr; }
+    .lm-feedback { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  // Fade the Results stats up when the context cards scroll into view
+  const cards = document.querySelectorAll('.lm-ctx');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in-view');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  cards.forEach((c) => obs.observe(c));
+</script>
