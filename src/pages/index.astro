@@ -27,6 +27,7 @@ const works = [
     layout: 'half' as const,
   },
   {
+    href: '/cases/copytrade',
     title: 'Copy trade App',
     description: 'Conversion grew from 1.5% to 9.87%. MAU x3.',
     imageSrc: '/works/Copytrade.png',
@@ -47,7 +48,6 @@ const works = [
     ],
   },
 ];
-
 ---
 
 <SidebarLayout title="Eugen Trapeznikov — Product Designer">
@@ -55,24 +55,27 @@ const works = [
   <main id="home">
 
     <section class="hero">
-      <div class="hero__top">
-        <Avatar src="/Avatar.png" size="md" />
-        <div class="hero__socials">
-          <SocialButton href="https://linkedin.com/in/evgenii-trapeznikov/" type="linkedin" label="LinkedIn" />
-          <SocialButton href="https://t.me/EvgeniiTrapeznikov" type="telegram" label="Telegram" />
-          <SocialButton href="mailto:eugentrapeznikov@gmail.com" type="email" label="Email" />
-          <SocialButton href="/cv.pdf" type="cv" label="Download CV" />
+      <div class="hero__title-block">
+        <div class="hero__top">
+          <Avatar src="/Avatar.png" size="md" />
+          <div class="hero__socials">
+            <SocialButton href="mailto:eugentrapeznikov@gmail.com" type="email" label="Email" />
+            <SocialButton href="https://t.me/EvgeniiTrapeznikov" type="telegram" label="Telegram" />
+            <SocialButton href="https://linkedin.com/in/evgenii-trapeznikov/" type="linkedin" label="LinkedIn" />
+            <SocialButton href="https://wa.me/381613134353" type="whatsapp" label="WhatsApp" />
+          </div>
         </div>
+        <p class="hero__headline">
+          I help teams turn unclear concepts into products people actually use, based on research and data
+        </p>
       </div>
-      <p class="hero__headline">
-        I help teams make unclear ideas real — turning ideas into usable products based on people and data.
-      </p>
       <div class="hero__actions">
         <a href="/cv.pdf" download class="btn-primary">Download CV</a>
       </div>
     </section>
 
     <section id="works" class="section">
+      <h2 class="section-heading">Selected works</h2>
       <div class="works">
         <WorkCard {...works[0]} />
         <WorkCard {...works[3]} />
@@ -84,23 +87,74 @@ const works = [
     </section>
 
     <section id="initiatives" class="section">
-      <h2 class="section-heading">Initiatives</h2>
+      <div class="section-head">
+        <h2 class="section-heading">Initiatives</h2>
+        <p class="section-subtitle">Projects, teaching, and side initiatives beyond my day-to-day product work</p>
+      </div>
       <div class="initiatives__row">
-        <InitiativeCard caseStudy="RedCross" />
         <InitiativeCard caseStudy="ITMO" />
         <InitiativeCard caseStudy="WearSun" />
+        <InitiativeCard caseStudy="RedCross" />
       </div>
     </section>
 
     <section id="contact" class="section">
-      <h2 class="section-heading">Contacts</h2>
-      <div class="contact-card">
-        <span class="contact-eyebrow">Get in touch</span>
-        <a href="mailto:eugentrapeznikov@gmail.com" class="contact-email">eugentrapeznikov@gmail.com</a>
-        <div class="contact-links">
-          <a href="https://linkedin.com/in/evgenii-trapeznikov/" target="_blank" rel="noopener" class="contact-link">LinkedIn</a>
-          <a href="https://t.me/EvgeniiTrapeznikov" target="_blank" rel="noopener" class="contact-link">Telegram</a>
-          <a href="/cv.pdf" download class="contact-link">Download CV</a>
+      <div class="contacts-card">
+        <h2 class="section-heading">Contacts</h2>
+        <div class="contacts-body">
+          <div class="contacts-left">
+            <p class="contacts-text">
+              Currently based in Serbia and actively exploring new opportunities.<br />
+              Ready for the next chapter — open to relocation, business travel, and joining teams anywhere in the world.<br />
+              If my experience feels relevant to your product or team, let's talk.
+            </p>
+            <div class="ai-card">
+              <img src="/icons/ai-development.svg" alt="" class="ai-card__icon" />
+              <div class="ai-card__text">
+                <p class="ai-card__title">AI Development</p>
+                <p class="ai-card__desc">Beyond showcasing my work, this portfolio is an experiment in AI-assisted development workflows. The design was created by me, while the implementation was built using a workflow combining Figma MCP, Claude Code, VS Code, and GitHub.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="contacts-right">
+            <a href="mailto:eugentrapeznikov@gmail.com" class="contact-row">
+              <svg class="contact-row__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+              <span class="contact-row__point">
+                <span class="contact-row__title">Email</span>
+                <span class="contact-row__value">eugentrapeznikov@gmail.com</span>
+              </span>
+              <svg class="contact-row__action" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            </a>
+            <a href="https://linkedin.com/in/evgenii-trapeznikov/" target="_blank" rel="noopener" class="contact-row">
+              <svg class="contact-row__icon" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              <span class="contact-row__point">
+                <span class="contact-row__title">Linkedin</span>
+                <span class="contact-row__value">@evgenii-trapeznikov</span>
+              </span>
+              <svg class="contact-row__action" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7M8 7h9v9"/></svg>
+            </a>
+            <a href="https://wa.me/381613134353" target="_blank" rel="noopener" class="contact-row">
+              <svg class="contact-row__icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.671.15-.198.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.372-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>
+              <span class="contact-row__point">
+                <span class="contact-row__title">WhatsApp</span>
+                <span class="contact-row__value">+381 61 3134353</span>
+              </span>
+              <svg class="contact-row__action" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7M8 7h9v9"/></svg>
+            </a>
+            <a href="https://t.me/EvgeniiTrapeznikov" target="_blank" rel="noopener" class="contact-row">
+              <svg class="contact-row__icon" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+              <span class="contact-row__point">
+                <span class="contact-row__title">Telegram</span>
+                <span class="contact-row__value">@EvgeniiTrapeznikov</span>
+              </span>
+              <svg class="contact-row__action" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7M8 7h9v9"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="contacts-actions">
+          <a href="/cv.pdf" download class="btn-primary">Download CV</a>
         </div>
       </div>
     </section>
@@ -110,10 +164,21 @@ const works = [
 </SidebarLayout>
 
 <style>
-  .hero { background: var(--bg-page); border-radius: var(--radius-xl); padding: 40px 64px 48px; display: flex; flex-direction: column; gap: 32px; }
-  .hero__top { display: flex; gap: 24px; align-items: center; }
-  .hero__socials { flex: 1; display: flex; gap: 12px; align-items: center; justify-content: flex-end; }
-  .hero__headline { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 44px; line-height: 1.35; color: var(--content-primary); }
+  main { display: flex; flex-direction: column; gap: 80px; }
+
+  /* ── Hero (no card background) ──────────────────────────── */
+  .hero { display: flex; flex-direction: column; gap: 32px; }
+  .hero__title-block { display: flex; flex-direction: column; gap: 64px; }
+  .hero__top { display: flex; gap: 32px; align-items: center; }
+  .hero__socials { flex: 1; display: flex; gap: 4px; align-items: center; justify-content: flex-end; }
+  .hero__headline {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 44px;
+    line-height: 60px;
+    color: var(--content-primary);
+    max-width: 800px;
+  }
   .hero__actions { display: flex; }
 
   .btn-primary {
@@ -125,42 +190,78 @@ const works = [
   }
   .btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
 
-  main { display: flex; flex-direction: column; gap: 16px; }
-  .section { display: flex; flex-direction: column; gap: 24px; }
-  .section-heading { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 44px; line-height: 1.35; color: var(--content-primary); }
+  /* ── Section heading system (matches case pages: Display/LG) ── */
+  .section { display: flex; flex-direction: column; gap: 32px; }
+  .section-heading {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: var(--text-5xl); /* 32px */
+    line-height: 40px;
+    letter-spacing: -1px;
+    color: var(--content-primary);
+  }
+  .section-head { display: flex; flex-direction: column; gap: 8px; }
+  .section-subtitle { font-size: var(--text-lg); line-height: 24px; color: var(--content-secondary); }
 
   .works { display: flex; flex-direction: column; gap: 16px; }
   .works__row { display: flex; gap: 16px; }
 
   .initiatives__row { display: flex; gap: 16px; }
 
-.contact-card {
-    background: var(--bg-page); border-radius: var(--radius-xl); padding: 64px;
-    display: flex; flex-direction: column; gap: 24px; min-height: 360px; justify-content: center;
-}
-  .contact-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--content-secondary); }
-  .contact-email { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 32px; color: var(--content-primary); transition: color 0.15s; word-break: break-all; }
-  .contact-email:hover { color: var(--accent-default); }
-  .contact-links { display: flex; gap: 12px; flex-wrap: wrap; }
-  .contact-link {
-    display: inline-flex; align-items: center; padding: 12px 24px;
-    background: var(--bg-elevated); border-radius: var(--radius-full);
-    font-size: 14px; font-weight: 500; color: var(--content-primary);
-    transition: background 0.15s, color 0.15s;
+  /* ── Contacts ───────────────────────────────────────────── */
+  .contacts-card {
+    background: var(--bg-page);
+    border-radius: 20px;
+    padding: 48px 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
   }
-  .contact-link:hover { background: var(--accent-default); color: var(--always-white); }
+  .contacts-body { display: flex; gap: 64px; }
+
+  .contacts-left { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 20px; }
+  .contacts-text { font-size: var(--text-md); line-height: 20px; color: var(--content-primary); }
+
+  .ai-card {
+    border: 1px solid var(--domain-fintech);
+    border-radius: 12px;
+    padding: 20px 24px;
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+  }
+  .ai-card__icon { width: 32px; height: 32px; flex-shrink: 0; }
+  .ai-card__text { display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 0; }
+  .ai-card__title { font-size: var(--text-md); line-height: 20px; color: var(--content-primary); }
+  .ai-card__desc { font-size: var(--text-md); line-height: 20px; color: var(--content-secondary); }
+
+  .contacts-right { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+  .contact-row {
+    display: flex; align-items: center; gap: 24px;
+    background: var(--bg-surface); border-radius: 12px; padding: 32px;
+    transition: background 0.15s, transform 0.15s;
+  }
+  .contact-row:hover { background: var(--bg-elevated); transform: translateY(-1px); }
+  .contact-row__icon { width: 26px; height: 26px; flex-shrink: 0; color: var(--content-primary); }
+  .contact-row__point { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+  .contact-row__title { font-size: var(--text-md); line-height: 20px; color: var(--content-primary); }
+  .contact-row__value { font-size: var(--text-base); line-height: 20px; color: var(--content-secondary); }
+  .contact-row__action { width: 20px; height: 20px; flex-shrink: 0; color: var(--content-secondary); }
+
+  .contacts-actions { display: flex; }
 
   @media (max-width: 960px) {
-    .hero { padding: 28px 24px 36px; border-radius: var(--radius-lg); }
-    .hero__headline { font-size: 28px; }
+    main { gap: 56px; }
+    .hero__headline { font-size: 28px; line-height: 1.35; }
+    .hero__title-block { gap: 40px; }
     .works__row { flex-direction: column; }
     .initiatives__row { flex-direction: column; }
-    .section-heading { font-size: 32px; }
-    .contact-card { padding: 32px 24px; }
-    .contact-email { font-size: 22px; }
+    .section-heading { font-size: 28px; line-height: 1.2; }
+    .contacts-card { padding: 32px 24px; }
+    .contacts-body { flex-direction: column; gap: 32px; }
   }
   @media (max-width: 480px) {
     .hero__headline { font-size: 22px; }
-    .hero__socials { gap: 8px; }
+    .hero__socials { gap: 4px; }
   }
 </style>

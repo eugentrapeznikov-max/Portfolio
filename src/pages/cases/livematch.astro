@@ -2,12 +2,11 @@
 import SidebarLayout from '../../layouts/SidebarLayout.astro';
 import WorkCard from '../../components/WorkCard.astro';
 
-// ── Context / Results data (used in hero and again near the end) ──────────
 const context = [
   { label: 'ROLE', value: 'Lead Product Designer' },
   { label: 'PLATFORM', value: 'Web + Mobile Web' },
   { label: 'DURATION', value: '8 month' },
-  { label: 'DOMAIN', value: 'Media / Sports' },
+  { label: 'DOMAIN', value: 'Media / Sports', domain: true },
 ];
 const results = [
   { value: '+48%', label: 'Average Scroll Depth' },
@@ -16,7 +15,6 @@ const results = [
   { value: '+67%', label: 'Cross-navigation' },
 ];
 
-// ── Goals (Why this mattered) ────────────────────────────────────────────
 const productGoals = [
   'Increase content consumption and scroll depth',
   'Increase user engagement during live matches',
@@ -29,14 +27,12 @@ const techGoals = [
   'Build standardized components ready for Design System adoption and third-party integrations',
 ];
 
-// ── Match-state cards (Why this approach worked) ─────────────────────────
 const matchStates = [
   { title: 'Before the match', items: ['Check team lineups', 'Review betting odds', 'See tournament standings'] },
   { title: 'During the match', items: ['Follow key events: goals, substitutions, cards, and other moments', 'Monitor live statistics: xG, possession, shots, and performance metrics'] },
   { title: 'After the match', items: ['Understand how the game unfolded', 'Explore detailed statistics', 'Read related match content'] },
 ];
 
-// ── System principles (Designing the system) ─────────────────────────────
 const principlesRow1 = [
   { title: 'Unified structure', text: 'A consistent information hierarchy across all sports makes match pages familiar and easy to navigate' },
   { title: 'Modular widget', text: 'Each information block became a standalone component, allowing flexible page composition across different sports' },
@@ -56,7 +52,6 @@ const responsibilities = [
   'Collaborating with stakeholders and developers throughout implementation',
 ];
 
-// Next case → Yollet
 const nextCase = {
   href: '/cases/yollet',
   title: 'Yollet — Neo Bank',
@@ -73,45 +68,41 @@ const nextCase = {
 };
 ---
 
-<SidebarLayout title="Live Match Pages Redesign — Eugen Trapeznikov">
-
-  <header class="case-header">
-    <a href="/" class="back-btn">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M15 18l-6-6 6-6"/>
-      </svg>
-      Main page
-    </a>
-  </header>
+<SidebarLayout title="Live Match Pages Redesign — Eugen Trapeznikov" centered>
 
   <main class="lm">
 
     <!-- ─── HERO ─────────────────────────────────────────────── -->
     <section class="lm-hero">
-      <div class="lm-hero__title">
+      <a href="/" class="back-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M15 18l-6-6 6-6"/>
+        </svg>
+        Main page
+      </a>
+      <div class="lm-hero__head">
         <h1 class="lm-h1">Redesigning Sports.ru Match Pages</h1>
         <p class="lm-subtitle">How a technical refactoring initiative evolved into a new way to present sports statistics</p>
       </div>
-
-      <div class="lm-ctx card">
-        <div class="lm-ctx__row">
-          <span class="lm-ctx__key">Context</span>
-          <div class="lm-ctx__items">
+      <div class="lm-hero__cards">
+        <div class="card lm-hcard">
+          <span class="lm-h-sm">Context</span>
+          <div class="lm-ctx-list">
             {context.map((c) => (
-              <div class="lm-ctx__item">
-                <span class="lm-ctx__label">{c.label}</span>
-                <span class="lm-ctx__value">{c.value}</span>
+              <div class="lm-ctx-item">
+                <span class="lm-ctx-label">{c.label}</span>
+                <span class={`lm-ctx-value${c.domain ? ' lm-ctx-value--domain' : ''}`}>{c.value}</span>
               </div>
             ))}
           </div>
         </div>
-        <div class="lm-ctx__row lm-stats">
-          <span class="lm-ctx__key">Results</span>
-          <div class="lm-stats__items">
+        <div class="card lm-hcard lm-stat-card">
+          <span class="lm-h-sm">Results</span>
+          <div class="lm-stat-list">
             {results.map((r) => (
               <div class="lm-stat">
-                <span class="lm-stat__value">{r.value}</span>
-                <span class="lm-stat__label">{r.label}</span>
+                <span class="lm-stat-value">{r.value}</span>
+                <span class="lm-stat-label">{r.label}</span>
               </div>
             ))}
           </div>
@@ -129,6 +120,20 @@ const nextCase = {
         </div>
       </div>
       <img class="lm-media" src="/cases/livematch/widgets.png" alt="New widget-based live match pages" loading="lazy" />
+      <div class="lm-goals card">
+        <div class="lm-goals__col">
+          <h3 class="lm-h-sm">Product goals</h3>
+          <ul class="lm-list">
+            {productGoals.map((g) => <li>{g}</li>)}
+          </ul>
+        </div>
+        <div class="lm-goals__col">
+          <h3 class="lm-h-sm">Tech goals</h3>
+          <ul class="lm-list">
+            {techGoals.map((g) => <li>{g}</li>)}
+          </ul>
+        </div>
+      </div>
     </section>
 
     <!-- ─── WHERE WE STARTED (old) ───────────────────────────── -->
@@ -153,13 +158,15 @@ const nextCase = {
         </div>
       </div>
       <img class="lm-media" src="/cases/livematch/main-football.png" alt="The redesigned football match page" loading="lazy" />
-      <div class="lm-row4">
-        <img src="/cases/livematch/football-4.png" alt="Football widget" loading="lazy" />
-        <img src="/cases/livematch/football-3.png" alt="Football widget" loading="lazy" />
-        <img src="/cases/livematch/football-2.png" alt="Football widget" loading="lazy" />
-        <img src="/cases/livematch/football-1.png" alt="Football widget" loading="lazy" />
+      <div class="card lm-block-card">
+        <div class="lm-row4">
+          <img src="/cases/livematch/football-4.png" alt="Football widget" loading="lazy" />
+          <img src="/cases/livematch/football-3.png" alt="Football widget" loading="lazy" />
+          <img src="/cases/livematch/football-2.png" alt="Football widget" loading="lazy" />
+          <img src="/cases/livematch/football-1.png" alt="Football widget" loading="lazy" />
+        </div>
+        <img class="lm-block-img" src="/cases/livematch/lineups.png" alt="Lineups widget" loading="lazy" />
       </div>
-      <img class="lm-media" src="/cases/livematch/lineups.png" alt="Lineups widget" loading="lazy" />
     </section>
 
     <!-- ─── ONE SYSTEM, DIFFERENT SPORTS (basketball) ────────── -->
@@ -186,7 +193,7 @@ const nextCase = {
       </div>
     </section>
 
-    <!-- ─── WHY THIS MATTERED (goals) ────────────────────────── -->
+    <!-- ─── WHY THIS MATTERED ────────────────────────────────── -->
     <section class="lm-sec">
       <div class="lm-head">
         <h2 class="lm-h-sm">Why this mattered</h2>
@@ -198,21 +205,7 @@ const nextCase = {
             <li>content consumption</li>
             <li>advertising revenue</li>
           </ul>
-          <p>A better live experience meant keeping users engaged for longer and creating more value for the business.</p>
-        </div>
-      </div>
-      <div class="lm-goals card">
-        <div class="lm-goals__col">
-          <h3 class="lm-h-sm">Product goals</h3>
-          <ul class="lm-list">
-            {productGoals.map((g) => <li>{g}</li>)}
-          </ul>
-        </div>
-        <div class="lm-goals__col">
-          <h3 class="lm-h-sm">Tech goals</h3>
-          <ul class="lm-list">
-            {techGoals.map((g) => <li>{g}</li>)}
-          </ul>
+          <p>A better live experience meant keeping users engaged for longer and creating more value for the business</p>
         </div>
       </div>
     </section>
@@ -317,12 +310,7 @@ const nextCase = {
           <p>The new system helped close this gap by providing richer, more relevant match experiences across different sports</p>
         </div>
       </div>
-      <div class="lm-feedback">
-        <img src="/cases/livematch/feedback-1.png" alt="User comment" loading="lazy" />
-        <img src="/cases/livematch/feedback-2.png" alt="User comment" loading="lazy" />
-        <img src="/cases/livematch/feedback-3.png" alt="User comment" loading="lazy" />
-        <img src="/cases/livematch/feedback-4.png" alt="User comment" loading="lazy" />
-      </div>
+      <img class="lm-media" src="/cases/livematch/feedback-group.png" alt="Positive user comments" loading="lazy" />
       <div class="lm-head lm-head--tight">
         <div class="lm-text">
           <p>Not all feedback was positive — some users criticized the new typography and visual direction. Instead of treating this feedback as resistance to change, I used it as an opportunity for deeper research. The most vocal users became participants in follow-up interviews and surveys, providing valuable insights into user expectations</p>
@@ -331,41 +319,27 @@ const nextCase = {
       <img class="lm-media" src="/cases/livematch/feedback-5.png" alt="Critical user comment" loading="lazy" />
     </section>
 
-    <!-- ─── MY ROLE + CONTEXT/RESULTS RECAP ──────────────────── -->
+    <!-- ─── OVERALL (stat card | responsibilities) ───────────── -->
     <section class="lm-sec">
-      <div class="lm-head">
-        <h2 class="lm-h-sm">My role</h2>
+      <h2 class="lm-h-lg">Overall</h2>
+      <div class="lm-overall">
+        <div class="card lm-hcard lm-stat-card">
+          <span class="lm-h-sm">Results</span>
+          <div class="lm-stat-list">
+            {results.map((r) => (
+              <div class="lm-stat">
+                <span class="lm-stat-value">{r.value}</span>
+                <span class="lm-stat-label">{r.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
         <div class="lm-text">
           <p>I was responsible for the full product design cycle — from defining the vision to supporting implementation.</p>
           <p>My responsibilities included:</p>
           <ul class="lm-list">
             {responsibilities.map((r) => <li>{r}</li>)}
           </ul>
-        </div>
-      </div>
-
-      <div class="lm-ctx card">
-        <div class="lm-ctx__row">
-          <span class="lm-ctx__key">Context</span>
-          <div class="lm-ctx__items">
-            {context.map((c) => (
-              <div class="lm-ctx__item">
-                <span class="lm-ctx__label">{c.label}</span>
-                <span class="lm-ctx__value">{c.value}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div class="lm-ctx__row lm-stats">
-          <span class="lm-ctx__key">Results</span>
-          <div class="lm-stats__items">
-            {results.map((r) => (
-              <div class="lm-stat">
-                <span class="lm-stat__value">{r.value}</span>
-                <span class="lm-stat__label">{r.label}</span>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </section>
@@ -382,141 +356,83 @@ const nextCase = {
 </SidebarLayout>
 
 <style>
-  /* ── Sticky back header (matches [slug] pattern) ─────────── */
-  .case-header {
-    padding: 0 0 20px;
-    position: sticky;
-    top: 0;
-    background: var(--bg-surface);
-    z-index: 10;
-    border-bottom: 0.5px solid var(--border-default);
-    margin-bottom: 32px;
-  }
+  /* ── Back button ────────────────────────────────────────── */
   .back-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 500;
-    font-size: var(--text-base);
-    color: var(--accent-default);
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: 'Space Grotesk', sans-serif; font-weight: 500;
+    font-size: var(--text-base); color: var(--accent-default);
     transition: color 0.15s;
   }
   .back-btn:hover { color: var(--accent-hover); }
 
-  /* ── Page column ────────────────────────────────────────── */
-  .lm { display: flex; flex-direction: column; gap: 64px; }
+  /* ── Page column: 800px, centered, 80px between blocks ──── */
+  .lm { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 80px; }
   .card { background: var(--bg-page); border-radius: 20px; }
 
-  /* Sections stack their heading + media with a tight rhythm */
   .lm-sec { display: flex; flex-direction: column; gap: 24px; }
-  .lm-head { display: flex; flex-direction: column; gap: 12px; max-width: 800px; }
+  .lm-head { display: flex; flex-direction: column; gap: 12px; }
   .lm-head--tight { margin-top: 8px; }
 
+  /* ── Hero ───────────────────────────────────────────────── */
+  .lm-hero { display: flex; flex-direction: column; }
+  .lm-hero .back-btn { margin-bottom: 24px; }
+  .lm-hero__head { display: flex; flex-direction: column; gap: 16px; margin-bottom: 64px; }
+  .lm-hero__cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
   /* ── Typography ─────────────────────────────────────────── */
-  .lm-h1 {
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
-    font-size: var(--text-5xl);      /* 32px */
-    line-height: 40px;
-    letter-spacing: -1px;
-    color: var(--content-primary);
-  }
-  .lm-subtitle {
-    font-size: var(--text-lg);       /* 16px */
-    line-height: 24px;
-    color: var(--content-secondary);
-    max-width: 800px;
-  }
-  .lm-h-lg {
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
-    font-size: var(--text-5xl);      /* 32px */
-    line-height: 40px;
-    letter-spacing: -1px;
+  .lm-h1, .lm-h-lg {
+    font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+    font-size: var(--text-5xl); line-height: 40px; letter-spacing: -1px;
     color: var(--content-primary);
   }
   .lm-h-sm {
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 500;
-    font-size: var(--text-3xl);      /* 22px */
-    line-height: 32px;
-    color: var(--content-primary);
+    font-family: 'Space Grotesk', sans-serif; font-weight: 500;
+    font-size: var(--text-3xl); line-height: 32px; color: var(--content-primary);
   }
+  .lm-subtitle { font-size: var(--text-lg); line-height: 24px; color: var(--content-secondary); }
   .lm-text { display: flex; flex-direction: column; gap: 12px; }
-  .lm-text p {
-    font-size: var(--text-lg);       /* 16px */
-    line-height: 24px;
-    color: var(--content-secondary);
-  }
+  .lm-text p { font-size: var(--text-lg); line-height: 24px; color: var(--content-secondary); }
   .lm-text p strong { color: var(--content-primary); font-weight: 600; }
-
   .lm-list {
-    display: flex; flex-direction: column; gap: 2px;
-    padding-left: 24px;
-    list-style: disc;
-    color: var(--content-secondary);
-    font-size: var(--text-lg);
-    line-height: 24px;
+    display: flex; flex-direction: column; gap: 2px; padding-left: 24px; list-style: disc;
+    color: var(--content-secondary); font-size: var(--text-lg); line-height: 24px;
   }
   .lm-list--md { font-size: var(--text-base); line-height: 20px; }
 
-  /* ── Media (images sit directly on the page) ────────────── */
+  /* ── Media ──────────────────────────────────────────────── */
   .lm-media { width: 100%; border-radius: 16px; display: block; }
 
+  /* Row of 4 + lineups grouped on a card */
+  .lm-block-card { padding: 32px; display: flex; flex-direction: column; gap: 24px; }
   .lm-row4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-  .lm-row4 img { width: 100%; border-radius: 16px; display: block; }
+  .lm-row4 img { width: 100%; border-radius: 12px; display: block; }
+  .lm-block-img { width: 100%; border-radius: 12px; display: block; }
 
-  /* ── Context / Results card ─────────────────────────────── */
-  .lm-ctx {
-    padding: 32px 64px;
-    display: flex; flex-direction: column; gap: 64px;
-  }
-  .lm-ctx__row { display: flex; gap: 64px; align-items: flex-start; }
-  .lm-ctx__key {
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 500;
-    font-size: var(--text-3xl);      /* 22px */
-    line-height: 32px;
-    color: var(--content-primary);
-    flex-shrink: 0;
-    width: 86px;
-  }
-  .lm-ctx__items { flex: 1; min-width: 0; display: flex; gap: 32px; }
-  .lm-ctx__item { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
-  .lm-ctx__label {
-    font-size: var(--text-lg); line-height: 24px;
-    color: var(--content-secondary);
-  }
-  .lm-ctx__value {
-    font-size: var(--text-lg); line-height: 24px;
-    color: var(--content-primary);
-  }
+  /* ── Hero cards (Context / Results) ─────────────────────── */
+  .lm-hcard { padding: 32px 64px; display: flex; flex-direction: column; gap: 32px; }
+  .lm-ctx-list { display: flex; flex-direction: column; gap: 32px; }
+  .lm-ctx-item { display: flex; flex-direction: column; gap: 4px; }
+  .lm-ctx-label { font-size: var(--text-lg); line-height: 24px; color: var(--content-secondary); }
+  .lm-ctx-value { font-size: var(--text-lg); line-height: 24px; color: var(--content-primary); }
+  .lm-ctx-value--domain { color: #2e9e6e; }
 
-  .lm-stats__items { flex: 1; min-width: 0; display: flex; gap: 24px; }
+  .lm-stat-list { display: flex; flex-direction: column; gap: 24px; }
   .lm-stat {
-    flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px;
+    display: flex; flex-direction: column; gap: 4px;
     opacity: 0; transform: translateY(12px);
     transition: opacity 0.5s ease-out, transform 0.5s ease-out;
   }
-  .lm-ctx.in-view .lm-stat { opacity: 1; transform: none; }
-  .lm-ctx.in-view .lm-stat:nth-child(1) { transition-delay: 0.05s; }
-  .lm-ctx.in-view .lm-stat:nth-child(2) { transition-delay: 0.15s; }
-  .lm-ctx.in-view .lm-stat:nth-child(3) { transition-delay: 0.25s; }
-  .lm-ctx.in-view .lm-stat:nth-child(4) { transition-delay: 0.35s; }
-  .lm-stat__value {
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
-    font-size: var(--text-4xl);      /* 26px */
-    line-height: 40px;
-    letter-spacing: -1px;
+  .lm-stat-value {
+    font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+    font-size: var(--text-4xl); line-height: 40px; letter-spacing: -1px;
     color: var(--content-primary);
   }
-  .lm-stat__label {
-    font-size: var(--text-md);       /* 13px */
-    line-height: 20px;
-    color: var(--content-secondary);
-  }
+  .lm-stat-label { font-size: var(--text-md); line-height: 20px; color: var(--content-secondary); }
+  .lm-stat-card.in-view .lm-stat { opacity: 1; transform: none; }
+  .lm-stat-card.in-view .lm-stat:nth-child(1) { transition-delay: 0.05s; }
+  .lm-stat-card.in-view .lm-stat:nth-child(2) { transition-delay: 0.15s; }
+  .lm-stat-card.in-view .lm-stat:nth-child(3) { transition-delay: 0.25s; }
+  .lm-stat-card.in-view .lm-stat:nth-child(4) { transition-delay: 0.35s; }
 
   /* ── Goals two-column card ──────────────────────────────── */
   .lm-goals { padding: 32px 64px; display: flex; gap: 64px; }
@@ -526,15 +442,10 @@ const nextCase = {
   .lm-cards3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
   .lm-cards2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
   .lm-card { padding: 32px; display: flex; flex-direction: column; gap: 16px; }
-  .lm-card__text {
-    font-size: var(--text-md);       /* 13px */
-    line-height: 20px;
-    color: var(--content-secondary);
-  }
+  .lm-card__text { font-size: var(--text-md); line-height: 20px; color: var(--content-secondary); }
 
-  /* ── Feedback grid ──────────────────────────────────────── */
-  .lm-feedback { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-  .lm-feedback img { width: 100%; border-radius: 16px; display: block; }
+  /* ── Overall (stat card | text) ─────────────────────────── */
+  .lm-overall { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
 
   /* ── Next case ──────────────────────────────────────────── */
   .lm-divider { height: 0.5px; background: var(--border-default); }
@@ -542,31 +453,23 @@ const nextCase = {
 
   /* ── Responsive ─────────────────────────────────────────── */
   @media (max-width: 960px) {
-    .lm { gap: 48px; }
-    .lm-ctx { padding: 24px; gap: 32px; }
-    .lm-ctx__row { flex-direction: column; gap: 16px; }
-    .lm-ctx__key { width: auto; }
-    .lm-ctx__items { flex-wrap: wrap; gap: 20px 16px; }
-    .lm-ctx__item { flex: 1 1 40%; }
-    .lm-stats__items { flex-wrap: wrap; gap: 20px 16px; }
-    .lm-stat { flex: 1 1 40%; }
+    .lm { gap: 56px; max-width: 100%; }
+    .lm-hero__head { margin-bottom: 40px; }
+    .lm-hero__cards { grid-template-columns: 1fr; }
+    .lm-hcard { padding: 24px; }
     .lm-goals { flex-direction: column; padding: 24px; gap: 24px; }
     .lm-cards3, .lm-cards2 { grid-template-columns: 1fr; }
     .lm-card { padding: 24px; }
-    .lm-row4 { grid-template-columns: 1fr 1fr; }
-    .lm-feedback { grid-template-columns: 1fr; }
+    .lm-block-card { padding: 20px; }
+    .lm-overall { grid-template-columns: 1fr; }
   }
 </style>
 
 <script>
-  // Fade the Results stats up when the context cards scroll into view
-  const cards = document.querySelectorAll('.lm-ctx');
+  const cards = document.querySelectorAll('.lm-stat-card');
   const obs = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
-      if (e.isIntersecting) {
-        e.target.classList.add('in-view');
-        obs.unobserve(e.target);
-      }
+      if (e.isIntersecting) { e.target.classList.add('in-view'); obs.unobserve(e.target); }
     });
   }, { threshold: 0.2 });
   cards.forEach((c) => obs.observe(c));

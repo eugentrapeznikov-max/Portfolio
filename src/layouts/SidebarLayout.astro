@@ -9,8 +9,9 @@ import { timeline, navItems } from '../data/timeline';
 interface Props {
   title?: string;
   description?: string;
+  centered?: boolean;
 }
-const { title, description } = Astro.props;
+const { title, description, centered } = Astro.props;
 ---
 
 <Layout title={title} description={description}>
@@ -73,7 +74,7 @@ const { title, description } = Astro.props;
       </div>
     </aside>
 
-    <div class="content">
+    <div class={`content${centered ? ' content--centered' : ''}`}>
       <slot />
     </div>
   </div>
@@ -140,6 +141,8 @@ const { title, description } = Astro.props;
     min-width: 0;
     padding: 32px 32px 96px 0;
   }
+  /* Case pages: symmetric horizontal padding so an 800px block centers in the column */
+  .content--centered { padding-left: 32px; }
 
   @media (max-width: 960px) {
     .page-layout { flex-direction: column; }

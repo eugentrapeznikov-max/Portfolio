@@ -1,0 +1,435 @@
+---
+import SidebarLayout from '../../layouts/SidebarLayout.astro';
+import WorkCard from '../../components/WorkCard.astro';
+
+// ── Hero: Context + Results ──────────────────────────────────────────────
+const context = [
+  { label: 'ROLE', value: 'Product Designer' },
+  { label: 'PLATFORM', value: 'Web + Android' },
+  { label: 'DURATION', value: '1 year' },
+  { label: 'DOMAIN', value: 'Fintech', domain: true },
+];
+const results = [
+  { value: 'x2', label: '7-day retention' },
+  { value: '+86%', label: 'Stable trade copying' },
+  { value: 'x3', label: 'MAU' },
+  { value: 'From 2.73 % to <span class="ct-accent">9.73%</span>', label: 'First subscription conversion' },
+];
+
+// ── Next case → Yollet (values per the Figma "Next work" card) ───────────
+const nextCase = {
+  href: '/cases/yollet',
+  title: 'Yollet — Neo Bank',
+  description: 'From scattered screens to a cohesive product',
+  imageSrc: '/works/main-screen-yollet.png',
+  layout: 'full' as const,
+  statValue: '6 mo',
+  statLabel: 'Full product build',
+  statRows: [
+    { width: 96,  color: '#fc5b04', label: '1 Design System ready' },
+    { width: 72,  color: '#4a9000', label: '146 screens' },
+    { width: 128, color: '#464c63', label: '0→1 from scratch' },
+  ],
+};
+---
+
+<SidebarLayout title="Copy Trading App — Eugen Trapeznikov" centered>
+
+  <main class="ct">
+
+    <!-- ─── HERO ─────────────────────────────────────────────── -->
+    <section class="ct-hero">
+      <a href="/" class="back-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M15 18l-6-6 6-6"/>
+        </svg>
+        Main page
+      </a>
+      <h1 class="ct-h-lg">Copy Trading App — Redesigning the Subscription Experience</h1>
+      <div class="ct-hero-cards">
+        <div class="card ct-card">
+          <span class="ct-h-sm">Context</span>
+          <div class="ct-ctx-list">
+            {context.map((c) => (
+              <div class="ct-ctx-item">
+                <span class="ct-ctx-label">{c.label}</span>
+                <span class={`ct-ctx-value${c.domain ? ' ct-ctx-value--domain' : ''}`}>{c.value}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div class="card ct-card ct-results-stat">
+          <span class="ct-h-sm">Results</span>
+          <div class="ct-stat-list">
+            {results.map((r) => (
+              <div class="ct-stat">
+                <span class="ct-stat-value" set:html={r.value}></span>
+                <span class="ct-stat-label">{r.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── SUMMARY ──────────────────────────────────────────── -->
+    <section class="ct-sec">
+      <div class="ct-head">
+        <h2 class="ct-h-lg">Summary</h2>
+        <div class="ct-text">
+          <p>Upon my arrival, the team requested assistance in understanding users and the design process, which had not been previously explored. To achieve this, I proposed two tasks:</p>
+          <p>1. To engage the team in the design process and provide the necessary tools for familiarity.</p>
+          <p>2. To identify pain points from the user's perspective and suggest potential solutions that will positively impact the business metrics</p>
+        </div>
+      </div>
+      <div class="ct-head">
+        <h3 class="ct-h-sm">Business goals</h3>
+        <ul class="ct-list">
+          <li>Double 7-day retention</li>
+          <li>Increase MAU</li>
+          <li>Improve first subscription conversion</li>
+        </ul>
+      </div>
+      <img class="ct-media" src="/cases/copytrade/summary.png" alt="Copy trading app overview" loading="lazy" />
+    </section>
+
+    <!-- ─── RESEARCH PHASE ───────────────────────────────────── -->
+    <section class="ct-sec">
+      <div class="ct-head">
+        <h2 class="ct-h-lg">Research phase</h2>
+        <div class="ct-text">
+          <p>To uncover the core problems, I conducted a research phase. I started by framing the challenge with a User Story Map, JTBD, and a Customer Journey Map. Next, I ran 17 user interviews, which revealed that while users aimed to earn money, they struggled to understand commissions and subscription types</p>
+        </div>
+      </div>
+      <img class="ct-media" src="/cases/copytrade/research-1.png" alt="Research artefacts" loading="lazy" />
+      <img class="ct-media" src="/cases/copytrade/interview-script.png" alt="Interview script" loading="lazy" />
+
+      <div class="ct-head">
+        <h3 class="ct-h-sm">In-app feedback form</h3>
+        <div class="ct-text">
+          <p>Alongside working with artefacts and conducting interviews, I designed a feedback form that appeared when unsubscribing from the master trader.</p>
+        </div>
+      </div>
+      <div class="card ct-imgcard">
+        <p class="ct-caption">In-app feedback form 1st iteration</p>
+        <img src="/cases/copytrade/feedback-form-1.png" alt="Feedback form, first iteration" style="max-width: 438px;" loading="lazy" />
+      </div>
+
+      <div class="ct-head">
+        <h3 class="ct-h-sm">In-app feedback form V2</h3>
+        <div class="ct-text">
+          <p>In two weeks, I collected more than 600 responses, analyzed them using semantic analysis and grouped the most relevant</p>
+        </div>
+      </div>
+      <img class="ct-media" src="/cases/copytrade/datastat.png" alt="Semantic analysis of feedback" loading="lazy" />
+
+      <div class="card ct-imgcard">
+        <p class="ct-caption">In-app feedback form 2nd iteration</p>
+        <img src="/cases/copytrade/feedback-form-2.png" alt="Feedback form, second iteration" style="max-width: 400px;" loading="lazy" />
+      </div>
+
+      <div class="ct-head">
+        <h3 class="ct-h-sm">Key problems identified</h3>
+        <ul class="ct-list">
+          <li>No clear information on the minimum investment needed to fully copy trades.</li>
+          <li>Confusing subscription types and comissions. 100% of the respondents could not explain how the commission and types of subscriptions for master traders work</li>
+          <li>Nearly 1/3 of users didn't get any trades copied at all. 30% of new users had zero copied trades; among the rest, only 57% of trades were copied. This core functionality failure directly impacted retention, MAU, and DAU.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ─── SOLUTIONS ────────────────────────────────────────── -->
+    <section class="ct-sec">
+      <h2 class="ct-h-lg">Solutions</h2>
+
+      <!-- Solution 1 -->
+      <div class="card ct-solution">
+        <div class="ct-text">
+          <h3 class="ct-sub">Fixing the “Minimum Investment” issue</h3>
+          <p><strong>Problem</strong></p>
+          <ul class="ct-list">
+            <li>No clear information on the minimum investment needed to fully copy trades.</li>
+            <li>Nearly 1/3 of users didn't get any trades copied at all. 30% of new users had zero copied trades; among the rest, only 57% of trades were copied. This core functionality failure directly impacted retention, MAU, and DAU.</li>
+          </ul>
+          <p><strong>Context</strong></p>
+          <p>Some traders set unrealistically low minimum investment amounts to attract more subscribers. As a result, their big trades can't be copied properly by users with small budgets, causing losses. Meanwhile, the trader still ranks high in the top charts simply because of the number of subscribers, not the success of their strategy.</p>
+          <p><strong>Solution</strong></p>
+          <ul class="ct-list">
+            <li>Removed manual minimum setting from trader accounts.</li>
+            <li>Built an algorithm to calculate the real minimum based on trading strategy. If the user didn't meet the requirement, the system suggested an alternative trader.</li>
+            <li>implement</li>
+          </ul>
+        </div>
+        <img class="ct-media" src="/cases/copytrade/killer-input.png" alt="Minimum investment input" loading="lazy" />
+        <div class="ct-point">
+          <div class="ct-point-text">
+            <h3 class="ct-h-sm">Helping users copy trades successfully</h3>
+            <div class="ct-text">
+              <p>Then, together with the team, we have developed an algorithm that calculates the minimum subscription amount based on the trading strategy</p>
+              <p>After implementing the solution, we observed a 28% improvement in the trade copy metric, as well as an increase in the overall copied trade statistics in the user profile to 98%</p>
+            </div>
+          </div>
+          <img src="/cases/copytrade/promo-screen.png" alt="Minimum subscription amount" loading="lazy" />
+        </div>
+      </div>
+
+      <!-- Solution 2 -->
+      <div class="card ct-solution">
+        <div class="ct-text">
+          <h3 class="ct-sub">Redesigning the Subscription Scenario</h3>
+          <p><strong>Problem</strong></p>
+          <ul class="ct-list">
+            <li>Confusing subscription types and comissions. 100% of the respondents could not explain how the commission and types of subscriptions for master traders work</li>
+            <li>Nearly 1/3 of users didn't get any trades copied at all. 30% of new users had zero copied trades; among the rest, only 57% of trades were copied. This core functionality failure directly impacted retention, MAU, and DAU.</li>
+          </ul>
+          <p><strong>Context</strong></p>
+          <p>Our research revealed that users couldn't explain how the master trader's commission or the two subscription types worked. Even some of our analysts couldn't answer all my questions on this topic. Naturally, users lacked that level of expertise and were making decisions mostly by guesswork. Most importantly, they couldn't predict the potential returns of a strategy or how much they needed to invest. Being able to assess risk and return is critical in trading.</p>
+          <p><strong>Solution</strong></p>
+          <ul class="ct-list">
+            <li>Users choose a copy proportion based on their volume, not the trader's.</li>
+            <li>The system automatically calculates the required investment.</li>
+            <li>Users can set aside support amount to protect against market instability.</li>
+            <li>All subscription details are shown upfront before confirmation.</li>
+          </ul>
+          <p>I iterated through prototypes, corridor and usability tests before finalizing the design.</p>
+        </div>
+
+        <div class="ct-imgcard ct-imgcard--flat">
+          <p class="ct-caption">Subscription screen before changes:</p>
+          <img src="/cases/copytrade/subscription-before.png" alt="Subscription screen before changes" style="max-width: 292px;" loading="lazy" />
+        </div>
+
+        <div class="ct-text">
+          <p>The first prototypes showed only new mechanics and were poorly detailed. But they gave me the opportunity to quickly check a series of corridor tests.</p>
+        </div>
+        <img class="ct-media" src="/cases/copytrade/prototype.png" alt="Early subscription prototype" loading="lazy" />
+
+        <div class="ct-cols">
+          <div class="ct-cols-left">
+            <div class="ct-block">
+              <h3 class="ct-h-sm">New Subscription Experience</h3>
+              <div class="ct-text">
+                <p>I designed an entirely new scenario that replaced the previous subscription types. Now, users could choose the proportion that suited them best for copying trades, based on their own volume rather than the master trader's volume.</p>
+                <p>The system will calculate the required investment amount for the user based on the selected proportion. One universal subscription type instead of two.</p>
+              </div>
+            </div>
+            <div class="ct-block">
+              <div class="ct-block-text">
+                <p class="ct-block-title">Support amount feature</p>
+                <p>Users can also set aside an amount to help them withstand losses in case of market instability</p>
+              </div>
+              <div class="ct-promo">
+                <img src="/cases/copytrade/support-promo.png" alt="Support amount feature" loading="lazy" />
+              </div>
+            </div>
+            <div class="ct-block">
+              <div class="ct-block-text">
+                <p class="ct-block-title">Summary screen</p>
+                <p>Users can view all subscription details before making a decision</p>
+              </div>
+              <div class="ct-promo">
+                <img src="/cases/copytrade/summary-promo.png" alt="Subscription summary screen" loading="lazy" />
+              </div>
+            </div>
+          </div>
+          <img class="ct-newdesign" src="/cases/copytrade/new-design.png" alt="New subscription setup screen" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── OVERALL ──────────────────────────────────────────── -->
+    <section class="ct-sec">
+      <h2 class="ct-h-lg">Overall</h2>
+      <div class="ct-overall">
+        <div class="card ct-card ct-results-stat">
+          <span class="ct-h-sm">Results</span>
+          <div class="ct-stat-list">
+            {results.map((r) => (
+              <div class="ct-stat">
+                <span class="ct-stat-value" set:html={r.value}></span>
+                <span class="ct-stat-label">{r.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div class="ct-text">
+          <p>A/B testing and interview feedback were strongly positive. And we made the decision to launch.</p>
+          <p>Outcome:<br />Through deep research, data-driven decisions, and iterative design, we turned a confusing and unreliable subscription process into a transparent, predictable experience — directly boosting engagement, satisfaction, and key business metrics</p>
+        </div>
+      </div>
+      <img class="ct-media" src="/cases/copytrade/analytics.png" alt="Product analytics" loading="lazy" />
+    </section>
+
+    <!-- ─── NEXT CASE ────────────────────────────────────────── -->
+    <div class="ct-divider"></div>
+    <section class="ct-next">
+      <h2 class="ct-h-lg">Next work</h2>
+      <WorkCard {...nextCase} />
+    </section>
+
+  </main>
+
+</SidebarLayout>
+
+<style>
+  /* ── Back button ────────────────────────────────────────── */
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    font-size: var(--text-base);
+    color: var(--accent-default);
+    transition: color 0.15s;
+  }
+  .back-btn:hover { color: var(--accent-hover); }
+
+  /* ── Page column: 800px, centered, 80px between blocks ──── */
+  .ct { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 80px; }
+  .card { background: var(--bg-page); border-radius: 20px; }
+
+  .ct-sec { display: flex; flex-direction: column; gap: 24px; }
+  .ct-head { display: flex; flex-direction: column; gap: 12px; }
+
+  /* ── Typography ─────────────────────────────────────────── */
+  .ct-h-lg {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: var(--text-5xl);       /* 32px */
+    line-height: 40px;
+    letter-spacing: -1px;
+    color: var(--content-primary);
+  }
+  .ct-h-sm {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    font-size: var(--text-3xl);       /* 22px */
+    line-height: 32px;
+    color: var(--content-primary);
+  }
+  .ct-sub {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 30px;
+    letter-spacing: 0.48px;
+    color: var(--content-primary);
+  }
+  .ct-text { display: flex; flex-direction: column; gap: 12px; }
+  .ct-text p {
+    font-size: var(--text-lg);        /* 16px */
+    line-height: 24px;
+    color: var(--content-secondary);
+  }
+  .ct-text p strong { color: var(--content-primary); font-weight: 600; }
+
+  .ct-list {
+    display: flex; flex-direction: column; gap: 2px;
+    padding-left: 24px;
+    list-style: disc;
+    color: var(--content-secondary);
+    font-size: var(--text-lg);
+    line-height: 24px;
+  }
+
+  /* ── Media ──────────────────────────────────────────────── */
+  .ct-media { width: 100%; border-radius: 16px; display: block; }
+
+  /* ── Hero cards (Context + Results) ─────────────────────── */
+  .ct-hero { display: flex; flex-direction: column; }
+  .ct-hero .back-btn { margin-bottom: 24px; }
+  .ct-hero .ct-h-lg { margin-bottom: 64px; }
+  .ct-hero-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .ct-card { padding: 32px 64px; display: flex; flex-direction: column; gap: 32px; }
+
+  .ct-ctx-list { display: flex; flex-direction: column; gap: 32px; }
+  .ct-ctx-item { display: flex; flex-direction: column; gap: 12px; }
+  .ct-ctx-label { font-size: var(--text-lg); line-height: 24px; color: var(--content-secondary); }
+  .ct-ctx-value { font-size: var(--text-lg); line-height: 24px; color: var(--content-primary); }
+  .ct-ctx-value--domain { color: #6b5fd4; }
+
+  .ct-stat-list { display: flex; flex-direction: column; gap: 24px; }
+  .ct-stat {
+    display: flex; flex-direction: column; gap: 4px;
+    opacity: 0; transform: translateY(12px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+  .ct-stat-value {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: var(--text-4xl);       /* 26px */
+    line-height: 40px;
+    letter-spacing: -1px;
+    color: var(--content-primary);
+  }
+  .ct-stat-value :global(.ct-accent),
+  .ct-accent { color: var(--accent-default); }
+  .ct-stat-label { font-size: var(--text-md); line-height: 20px; color: var(--content-secondary); }
+  .ct-results-stat.in-view .ct-stat { opacity: 1; transform: none; }
+  .ct-results-stat.in-view .ct-stat:nth-child(1) { transition-delay: 0.05s; }
+  .ct-results-stat.in-view .ct-stat:nth-child(2) { transition-delay: 0.15s; }
+  .ct-results-stat.in-view .ct-stat:nth-child(3) { transition-delay: 0.25s; }
+  .ct-results-stat.in-view .ct-stat:nth-child(4) { transition-delay: 0.35s; }
+
+  /* ── Image cards (centered phone screenshots) ───────────── */
+  .ct-imgcard {
+    padding: 32px;
+    display: flex; flex-direction: column; align-items: center; gap: 16px;
+  }
+  .ct-imgcard--flat { padding: 32px 12px; }
+  .ct-caption {
+    font-size: var(--text-md); line-height: 20px;
+    color: var(--content-primary); text-align: center; width: 100%;
+  }
+  .ct-imgcard img { width: 100%; border-radius: 12px; display: block; }
+
+  /* ── Solution cards ─────────────────────────────────────── */
+  .ct-solution { padding: 32px; display: flex; flex-direction: column; gap: 32px; }
+
+  .ct-point { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+  .ct-point-text { display: flex; flex-direction: column; gap: 16px; }
+  .ct-point img { width: 100%; border-radius: 16px; display: block; }
+
+  /* Two-column block: text/small-images + tall screen */
+  .ct-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+  .ct-cols-left { display: flex; flex-direction: column; gap: 40px; }
+  .ct-block { display: flex; flex-direction: column; gap: 16px; }
+  .ct-block-text { display: flex; flex-direction: column; gap: 8px; }
+  .ct-block-title { font-size: var(--text-lg); line-height: 24px; font-weight: 600; color: var(--content-primary); }
+  .ct-block-text p:not(.ct-block-title) { font-size: var(--text-lg); line-height: 24px; color: var(--content-secondary); }
+  .ct-promo { border: 1px solid var(--border-default); border-radius: 16px; overflow: hidden; }
+  .ct-promo img { width: 100%; display: block; }
+  .ct-newdesign { width: 100%; border-radius: 16px; display: block; align-self: start; }
+
+  /* ── Overall (stat card | text) ─────────────────────────── */
+  .ct-overall { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+
+  /* ── Next case ──────────────────────────────────────────── */
+  .ct-divider { height: 0.5px; background: var(--border-default); }
+  .ct-next { display: flex; flex-direction: column; gap: 24px; }
+
+  /* ── Responsive ─────────────────────────────────────────── */
+  @media (max-width: 960px) {
+    .ct { gap: 48px; max-width: 100%; }
+    .ct-hero-cards { grid-template-columns: 1fr; }
+    .ct-card { padding: 24px; }
+    .ct-solution { padding: 24px; }
+    .ct-point { grid-template-columns: 1fr; gap: 24px; }
+    .ct-cols { grid-template-columns: 1fr; }
+    .ct-overall { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  const cards = document.querySelectorAll('.ct-results-stat');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in-view');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  cards.forEach((c) => obs.observe(c));
+</script>
