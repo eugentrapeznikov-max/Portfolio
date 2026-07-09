@@ -1,4 +1,6 @@
 ---
+import Tag from './Tag.astro';
+
 interface StatRow {
   width: number;
   color: string;
@@ -14,6 +16,7 @@ interface Props {
   statRows?: StatRow[];
   layout?: 'full' | 'half';
   bordered?: boolean;
+  badge?: string;
 }
 const {
   href,
@@ -25,13 +28,17 @@ const {
   statRows = [],
   layout = 'full',
   bordered = false,
+  badge,
 } = Astro.props;
 const hasStat = statValue && statRows.length > 0;
 ---
 <a class={`work-card work-card--${layout}${href ? " work-card--link" : ""}${bordered ? " work-card--bordered" : ""}`} href={href || undefined}>
   <div class="work-card__left">
     <div class="work-card__title-block">
-      <h2 class="work-card__title">{title}</h2>
+      <div class="work-card__title-row">
+        <h2 class="work-card__title">{title}</h2>
+        {badge && <Tag label={badge} />}
+      </div>
       <p class="work-card__desc">{description}</p>
     </div>
     {hasStat && (
@@ -72,13 +79,16 @@ const hasStat = statValue && statRows.length > 0;
     position: relative;
     display: flex;
     gap: 32px;
-    cursor: pointer;
+    cursor: default;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
   .work-card--bordered {
     border: 1px solid var(--border-default);
   }
-  .work-card:hover {
+  .work-card--link {
+    cursor: pointer;
+  }
+  .work-card--link:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.04);
   }
@@ -171,6 +181,7 @@ const hasStat = statValue && statRows.length > 0;
 
   /* Title block */
 .work-card__title-block { display: flex; flex-direction: column; gap: var(--space-12); max-width: 560px; }
+.work-card__title-row { display: flex; gap: 12px; align-items: center; width: 100%; }
 .work-card__title {
     font-family: 'Space Grotesk', sans-serif;
     font-weight: var(--weight-bold);
