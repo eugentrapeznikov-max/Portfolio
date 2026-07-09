@@ -177,7 +177,7 @@ const { title, description, centered, whiteContent, backHref } = Astro.props;
   .content-back:hover { background: var(--bg-elevated); }
 
   @media (max-width: 960px) {
-    .page-layout { flex-direction: column; }
+    .page-layout { flex-direction: column; align-items: stretch; }
     .sidebar { display: none; }
     .content { padding: 16px; }
     .content-back { position: static; margin-bottom: 16px; padding: 14px 24px; gap: 16px; }
