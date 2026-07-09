@@ -31,18 +31,12 @@ const nextCase = {
 };
 ---
 
-<SidebarLayout title="Yollet — Eugen Trapeznikov" centered>
+<SidebarLayout title="Yollet — Eugen Trapeznikov" centered whiteContent backHref="/">
 
   <main class="yl">
 
     <!-- ─── HERO ─────────────────────────────────────────────── -->
     <section class="yl-hero">
-      <a href="/" class="back-btn">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M15 18l-6-6 6-6"/>
-        </svg>
-        Main page
-      </a>
       <div class="yl-hero__head">
         <h1 class="yl-h1">Yollet - exchanger without p2p</h1>
         <p class="yl-subtitle">The product combines crypto asset management with familiar banking experiences, built on a compliant and legally structured infrastructure. Its mission is to provide users with a convenient, secure, and transparent way to store, exchange, and spend cryptocurrency</p>
@@ -75,7 +69,7 @@ const nextCase = {
 
     <!-- ─── SUMMARY ──────────────────────────────────────────── -->
     <section class="yl-sec">
-      <div class="yl-head">
+      <div class="yl-head2">
         <h2 class="yl-h-lg">Summary</h2>
         <div class="yl-text">
           <p>When I joined the team, the product already had an early MVP and a basic UI-kit in place. I was brought in to introduce more structure to the design process and shorten the path from idea to release.</p>
@@ -94,7 +88,7 @@ const nextCase = {
 
     <!-- ─── AUDIT ────────────────────────────────────────────── -->
     <section class="yl-sec">
-      <div class="yl-head">
+      <div class="yl-head2">
         <h2 class="yl-h-sm">Product Audit &amp; Core User Flows</h2>
         <div class="yl-text">
           <p>I approached the audit systematically by reviewing every user flow from a UI perspective, without challenging the underlying product logic. Each screen was evaluated using a simple traffic-light framework:</p>
@@ -103,12 +97,14 @@ const nextCase = {
           <p>For example, in the wallet creation flow, the seed phrase and multiple confirmations increased anxiety and drop-offs, highlighting the need to simplify the UI and reduce user friction during onboarding</p>
         </div>
       </div>
-      <img class="yl-media" src="/cases/yollet/legend.png" alt="Traffic-light audit legend" loading="lazy" />
+      <div class="yl-imgcard">
+        <img src="/cases/yollet/legend.png" alt="Traffic-light audit legend" loading="lazy" />
+      </div>
     </section>
 
     <!-- ─── DESIGNING KEY USER FLOWS ─────────────────────────── -->
     <section class="yl-sec">
-      <div class="yl-head">
+      <div class="yl-head2">
         <h2 class="yl-h-sm">Designing Key User Flows</h2>
         <div class="yl-text">
           <p>The audit provided the team with a shared understanding of the product's key issues and helped align priorities for future improvements. Based on these findings, I moved on to designing the new core user flows and defining the future product experience.</p>
@@ -122,10 +118,10 @@ const nextCase = {
       </div>
     </section>
 
-    <!-- ─── DESIGN SYSTEM (text | image) ─────────────────────── -->
-    <section class="yl-2col">
-      <div class="yl-head">
-        <h3 class="yl-h-sm">Design System: a Single Source of Truth</h3>
+    <!-- ─── DESIGN SYSTEM ────────────────────────────────────── -->
+    <section class="yl-sec">
+      <div class="yl-head2">
+        <h2 class="yl-h-sm">Design System: a Single Source of Truth</h2>
         <div class="yl-text">
           <p>I turned fragmentation into a structured system: Figma as the source of truth, Storybook for coded components, and a shared naming convention across both. I also introduced a two-level token system, typographic and colour scale.</p>
           <p>Designers and engineers aligned on a shared language, eliminating ad-hoc component creation. Hardcoded values were replaced with design tokens, variables, and system components, ensuring consistency across both design and code.</p>
@@ -134,21 +130,21 @@ const nextCase = {
       <img class="yl-media" src="/cases/yollet/design-system.png" alt="Design system components" loading="lazy" />
     </section>
 
-    <!-- ─── DESIGN REVIEWS (image | text) ────────────────────── -->
-    <section class="yl-2col">
-      <img class="yl-media" src="/cases/yollet/design-review.png" alt="Design review format" loading="lazy" />
-      <div class="yl-head">
-        <h3 class="yl-h-sm">Design Process &amp; Design Reviews</h3>
+    <!-- ─── DESIGN PROCESS & REVIEWS ──────────────────────────── -->
+    <section class="yl-sec">
+      <div class="yl-head2">
+        <h2 class="yl-h-sm">Design Process &amp; Design Reviews</h2>
         <div class="yl-text">
           <p>I introduced a structured design review format, including screen context, side-by-side comparison of live vs. design, numbered annotated issues, and a separate stream for proposed improvements. I also established a repeatable end-to-end design process — from brief to product analytics.</p>
           <p>This fundamentally changed the way design supported development: we moved from minimal design involvement to a pixel-perfect, system-driven workflow with formal design reviews and a shared design system, significantly reducing implementation issues. The introduction of staging environments helped catch up to 90% of bugs before release.</p>
         </div>
       </div>
+      <img class="yl-media" src="/cases/yollet/design-review.png" alt="Design review format" loading="lazy" />
     </section>
 
     <!-- ─── UX STRATEGY ──────────────────────────────────────── -->
     <section class="yl-sec">
-      <div class="yl-head">
+      <div class="yl-head2">
         <h2 class="yl-h-sm">UX Strategy &amp; Information Architecture</h2>
         <div class="yl-text">
           <p>I ran a series of workshops with the founders and translated the outcomes into a structured design brief, feature prioritization, and a product map. A key decision was defining the portfolio as the new home screen, with the wallet as the core experience and a flexible structure designed to accommodate future features.</p>
@@ -158,26 +154,23 @@ const nextCase = {
       <img class="yl-media" src="/cases/yollet/concepts.png" alt="Exploring a new product approach" loading="lazy" />
     </section>
 
-    <!-- ─── OVERALL (stat card | text) ───────────────────────── -->
+    <!-- ─── OVERALL ──────────────────────────────────────────── -->
     <section class="yl-sec">
-      <h2 class="yl-h-lg">Overall</h2>
-      <div class="yl-overall">
-        <div class="card yl-card yl-stat-card">
-          <span class="yl-h-sm">Results</span>
-          <div class="yl-stat-list">
-            {results.map((r) => (
-              <div class="yl-stat">
-                <span class="yl-stat-value">{r.value}</span>
-                <span class="yl-stat-label">{r.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
+      <div class="yl-head2">
+        <h2 class="yl-h-lg">Overall</h2>
         <div class="yl-text">
           <p>A structured design system, streamlined processes, and a shared UX strategy and product vision were established in close alignment with founders and stakeholders — spanning from the MVP wallet to a broader crypto-banking roadmap.</p>
           <p>The work received positive feedback from both investors and early users.</p>
           <p>Most importantly, the product was successfully prepared for market launch, and the first beta users were onboarded. This achievement reflects a collective effort of the team, who delivered under tight timelines driven by strong ownership and execution quality.</p>
         </div>
+      </div>
+      <div class="yl-stats-grid">
+        {results.map((r, i) => (
+          <div class={`yl-stat-block${i === results.length - 1 ? ' yl-stat-block--accent' : ''}`}>
+            <span class="yl-stat-value">{r.value}</span>
+            <span class="yl-stat-label">{r.label}</span>
+          </div>
+        ))}
       </div>
     </section>
 
@@ -185,7 +178,7 @@ const nextCase = {
     <div class="yl-divider"></div>
     <section class="yl-next">
       <h2 class="yl-h-lg">Next work</h2>
-      <WorkCard {...nextCase} />
+      <WorkCard {...nextCase} bordered />
     </section>
 
   </main>
@@ -193,36 +186,23 @@ const nextCase = {
 </SidebarLayout>
 
 <style>
-  /* ── Back button ────────────────────────────────────────── */
-  .back-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 500;
-    font-size: var(--text-base);
-    color: var(--accent-default);
-    transition: color 0.15s;
-  }
-  .back-btn:hover { color: var(--accent-hover); }
-
-  /* ── Page column: 800px, centered, 80px between blocks ──── */
+  /* ── Page column: 1000px, left-aligned, 80px between blocks ── */
   .yl {
-    max-width: 800px;
-    margin: 0 auto;
+    max-width: 1000px;
     display: flex;
     flex-direction: column;
     gap: 80px;
   }
-  .card { background: var(--bg-page); border-radius: 20px; }
+  .card { background: var(--bg-surface); border-radius: 20px; }
 
   .yl-sec { display: flex; flex-direction: column; gap: 32px; }
-  .yl-head { display: flex; flex-direction: column; gap: 16px; }
   .yl-screens { display: flex; flex-direction: column; gap: 16px; }
 
-  /* ── Hero ───────────────────────────────────────────────── */
+  /* Section header: title left / text right */
+  .yl-head2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+  /* ── Hero (still stacked: title above subtitle) ─────────── */
   .yl-hero { display: flex; flex-direction: column; }
-  .yl-hero .back-btn { margin-bottom: 24px; }
   .yl-hero__head { display: flex; flex-direction: column; gap: 16px; margin-bottom: 64px; }
 
   .yl-h1 {
@@ -233,7 +213,7 @@ const nextCase = {
     letter-spacing: -1px;
     color: var(--content-primary);
   }
-  .yl-subtitle { font-size: var(--text-lg); line-height: 24px; color: var(--content-secondary); }
+  .yl-subtitle { font-size: var(--text-lg); line-height: 24px; color: var(--content-secondary); max-width: 800px; }
 
   .yl-hero__cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
@@ -261,10 +241,14 @@ const nextCase = {
     font-size: var(--text-lg); line-height: 24px; color: var(--content-secondary);
   }
 
-  /* ── Media (images are full frames with padding baked in) ─ */
+  /* ── Media (images already carry their own light-gray card fill) ── */
   .yl-media { width: 100%; display: block; }
 
-  /* ── Context / Results cards ────────────────────────────── */
+  /* Legend image hasn't been re-exported with a gray fill yet — wrap it ourselves */
+  .yl-imgcard { background: var(--bg-surface); border-radius: 16px; padding: 32px 64px; display: flex; justify-content: center; }
+  .yl-imgcard img { width: 100%; border-radius: 12px; display: block; }
+
+  /* ── Context / Results cards (hero) ─────────────────────── */
   .yl-card { padding: 32px 64px; display: flex; flex-direction: column; gap: 32px; }
   .yl-ctx-list { display: flex; flex-direction: column; gap: 32px; }
   .yl-ctx-item { display: flex; flex-direction: column; gap: 4px; }
@@ -293,11 +277,27 @@ const nextCase = {
   .yl-stat-card.in-view .yl-stat:nth-child(3) { transition-delay: 0.25s; }
   .yl-stat-card.in-view .yl-stat:nth-child(4) { transition-delay: 0.35s; }
 
-  /* ── Two-column blocks (text | image, image | text) ─────── */
-  .yl-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
-
-  /* ── Overall (stat card | text) ─────────────────────────── */
-  .yl-overall { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+  /* ── Overall: 2×2 stat grid, last block accent-highlighted ── */
+  .yl-stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .yl-stat-block {
+    background: var(--bg-surface);
+    border-radius: 16px;
+    padding: 32px 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    opacity: 0; transform: translateY(12px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+  .yl-stat-block .yl-stat-value { line-height: 1; }
+  .yl-stat-block--accent { background: var(--domain-fintech); }
+  .yl-stat-block--accent .yl-stat-value,
+  .yl-stat-block--accent .yl-stat-label { color: var(--always-white); }
+  .yl-stats-grid.in-view .yl-stat-block { opacity: 1; transform: none; }
+  .yl-stats-grid.in-view .yl-stat-block:nth-child(1) { transition-delay: 0.05s; }
+  .yl-stats-grid.in-view .yl-stat-block:nth-child(2) { transition-delay: 0.15s; }
+  .yl-stats-grid.in-view .yl-stat-block:nth-child(3) { transition-delay: 0.25s; }
+  .yl-stats-grid.in-view .yl-stat-block:nth-child(4) { transition-delay: 0.35s; }
 
   /* ── Next case ──────────────────────────────────────────── */
   .yl-divider { height: 0.5px; background: var(--border-default); }
@@ -308,13 +308,16 @@ const nextCase = {
     .yl { gap: 56px; max-width: 100%; }
     .yl-hero__head { margin-bottom: 40px; }
     .yl-hero__cards { grid-template-columns: 1fr; }
+    .yl-head2 { grid-template-columns: 1fr; gap: 12px; }
     .yl-card { padding: 24px; }
-    .yl-2col, .yl-overall { grid-template-columns: 1fr; }
+    .yl-imgcard { padding: 20px; }
+    .yl-stats-grid { grid-template-columns: 1fr; }
+    .yl-stat-block { padding: 24px; }
   }
 </style>
 
 <script>
-  const cards = document.querySelectorAll('.yl-stat-card');
+  const cards = document.querySelectorAll('.yl-stat-card, .yl-stats-grid');
   const obs = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
       if (e.isIntersecting) {

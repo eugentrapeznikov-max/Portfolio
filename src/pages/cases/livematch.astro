@@ -14,6 +14,13 @@ const results = [
   { value: '+73%', label: 'Total Live Page Views across all sports included in the redesign' },
   { value: '+67%', label: 'Cross-navigation' },
 ];
+// Overall stat grid uses a different order than the hero card, per the Figma spec
+const overallResults = [
+  { value: '+48%', label: 'Average Scroll Depth' },
+  { value: '+73%', label: 'Total Live Page Views across all sports included in the redesign' },
+  { value: '+67%', label: 'Cross-navigation' },
+  { value: '+34%', label: 'Time on Page per Session' },
+];
 
 const productGoals = [
   'Increase content consumption and scroll depth',
@@ -68,18 +75,12 @@ const nextCase = {
 };
 ---
 
-<SidebarLayout title="Live Match Pages Redesign — Eugen Trapeznikov" centered>
+<SidebarLayout title="Live Match Pages Redesign — Eugen Trapeznikov" centered whiteContent backHref="/">
 
   <main class="lm">
 
     <!-- ─── HERO ─────────────────────────────────────────────── -->
     <section class="lm-hero">
-      <a href="/" class="back-btn">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M15 18l-6-6 6-6"/>
-        </svg>
-        Main page
-      </a>
       <div class="lm-hero__head">
         <h1 class="lm-h1">Redesigning Sports.ru Match Pages</h1>
         <p class="lm-subtitle">How a technical refactoring initiative evolved into a new way to present sports statistics</p>
@@ -112,7 +113,7 @@ const nextCase = {
 
     <!-- ─── SUMMARY ──────────────────────────────────────────── -->
     <section class="lm-sec">
-      <div class="lm-head">
+      <div class="lm-head2">
         <h2 class="lm-h-lg">Summary</h2>
         <div class="lm-text">
           <p>Originally planned as a technical refactoring, this project became a complete redesign of Sports.ru's live match pages.</p>
@@ -138,18 +139,19 @@ const nextCase = {
 
     <!-- ─── WHERE WE STARTED (old) ───────────────────────────── -->
     <section class="lm-sec">
-      <div class="lm-head">
+      <div class="lm-head2">
         <h2 class="lm-h-sm">Where we started</h2>
         <div class="lm-text">
           <p>Years of independent development resulted in different interfaces, information structures, and user flows across sports.</p>
         </div>
       </div>
       <img class="lm-media" src="/cases/livematch/old-football.png" alt="The old football match page" loading="lazy" />
+      <img class="lm-media" src="/cases/livematch/old-football-2.png" alt="Another old sport match page" loading="lazy" />
     </section>
 
     <!-- ─── REBUILDING THE EXPERIENCE (new) ──────────────────── -->
     <section class="lm-sec">
-      <div class="lm-head">
+      <div class="lm-head2">
         <h2 class="lm-h-sm">Rebuilding the experience</h2>
         <div class="lm-text">
           <p>The redesign was not about creating a new visual layer on top of the old structure.</p>
@@ -167,11 +169,12 @@ const nextCase = {
         </div>
         <img class="lm-block-img" src="/cases/livematch/lineups.png" alt="Lineups widget" loading="lazy" />
       </div>
+      <img class="lm-media" src="/cases/livematch/img-examples.png" alt="Widget layout examples across sports" loading="lazy" />
     </section>
 
     <!-- ─── ONE SYSTEM, DIFFERENT SPORTS (basketball) ────────── -->
     <section class="lm-sec">
-      <div class="lm-head">
+      <div class="lm-head2">
         <h2 class="lm-h-sm">One system, different sports</h2>
         <div class="lm-text">
           <p>The new architecture was designed to preserve the unique characteristics of each sport while maintaining a consistent user experience.</p>
@@ -183,7 +186,7 @@ const nextCase = {
 
     <!-- ─── FROM REFACTORING TO REDESIGN ─────────────────────── -->
     <section class="lm-sec">
-      <div class="lm-head">
+      <div class="lm-head2">
         <h2 class="lm-h-sm">From refactoring to redesign</h2>
         <div class="lm-text">
           <p>The project started as a technical refactoring to reduce technical debt, improve performance, and optimize SEO.</p>
@@ -195,7 +198,7 @@ const nextCase = {
 
     <!-- ─── WHY THIS MATTERED ────────────────────────────────── -->
     <section class="lm-sec">
-      <div class="lm-head">
+      <div class="lm-head2">
         <h2 class="lm-h-sm">Why this mattered</h2>
         <div class="lm-text">
           <p>Live match pages are one of Sports.ru's most visited products and a key source of user engagement.</p>
@@ -212,7 +215,7 @@ const nextCase = {
 
     <!-- ─── FINDING THE RIGHT APPROACH ───────────────────────── -->
     <section class="lm-sec">
-      <div class="lm-head">
+      <div class="lm-head2">
         <h2 class="lm-h-sm">Finding the right approach</h2>
         <div class="lm-text">
           <p>Instead of creating separate interfaces for each sport, I proposed a modular approach where match pages are built from independent statistical, social, and advertising widgets.</p>
@@ -224,7 +227,7 @@ const nextCase = {
 
     <!-- ─── WHY THIS APPROACH WORKED (match states) ──────────── -->
     <section class="lm-sec">
-      <div class="lm-head">
+      <div class="lm-head2">
         <h2 class="lm-h-sm">Why this approach worked</h2>
         <div class="lm-text">
           <p>To validate the new concept, I needed to understand how users actually follow live matches.</p>
@@ -249,7 +252,7 @@ const nextCase = {
 
     <!-- ─── DESIGNING THE SYSTEM (principles) ────────────────── -->
     <section class="lm-sec">
-      <div class="lm-head">
+      <div class="lm-head2">
         <h2 class="lm-h-sm">Designing the system</h2>
         <div class="lm-text">
           <p>The main challenge was choosing between two approaches: creating separate solutions for each sport or building a flexible system that could adapt to different sports.</p>
@@ -277,19 +280,19 @@ const nextCase = {
 
     <!-- ─── UNIVERSAL MATCH PAGE STRUCTURE ───────────────────── -->
     <section class="lm-sec">
-      <div class="lm-head">
+      <div class="lm-head2">
         <h2 class="lm-h-sm">Universal match page structure</h2>
         <div class="lm-text">
           <p>The final system combined universal widgets shared across sports with sport-specific modules tailored to each discipline.</p>
           <p>This created a flexible match page structure that can scale to any sport while maintaining a consistent user experience</p>
         </div>
       </div>
-      <img class="lm-media" src="/cases/livematch/layout-structure.png" alt="Universal match page structure" loading="lazy" />
+      <img class="lm-media lm-media--bordered" src="/cases/livematch/layout-structure.png" alt="Universal match page structure" loading="lazy" />
     </section>
 
     <!-- ─── INTEGRATED INTO THE DESIGN SYSTEM ────────────────── -->
     <section class="lm-sec">
-      <div class="lm-head">
+      <div class="lm-head2">
         <h2 class="lm-h-sm">Integrated into the Design System</h2>
         <div class="lm-text">
           <p>The new match page architecture became a reusable framework inside Sports.ru's Design System.</p>
@@ -297,12 +300,14 @@ const nextCase = {
           <p>All components were documented in Storybook and reused across other products, making future development faster and more consistent</p>
         </div>
       </div>
-      <img class="lm-media" src="/cases/livematch/tables.png" alt="Components integrated into the design system" loading="lazy" />
+      <div class="card lm-imgcard">
+        <img src="/cases/livematch/tables.png" alt="Components integrated into the design system" loading="lazy" />
+      </div>
     </section>
 
     <!-- ─── USER FEEDBACK ────────────────────────────────────── -->
     <section class="lm-sec">
-      <div class="lm-head">
+      <div class="lm-head2">
         <h2 class="lm-h-sm">User feedback</h2>
         <div class="lm-text">
           <p>The redesign received strong positive feedback from users, which was also reflected in the growth of key product metrics.</p>
@@ -310,30 +315,21 @@ const nextCase = {
           <p>The new system helped close this gap by providing richer, more relevant match experiences across different sports</p>
         </div>
       </div>
-      <img class="lm-media" src="/cases/livematch/feedback-group.png" alt="Positive user comments" loading="lazy" />
-      <div class="lm-head lm-head--tight">
+      <div class="card lm-imgcard">
+        <img src="/cases/livematch/feedback-group.png" alt="Positive user comments" loading="lazy" />
+      </div>
+      <div class="lm-feedback-row">
+        <img src="/cases/livematch/feedback-5.png" alt="Critical user comment" loading="lazy" />
         <div class="lm-text">
           <p>Not all feedback was positive — some users criticized the new typography and visual direction. Instead of treating this feedback as resistance to change, I used it as an opportunity for deeper research. The most vocal users became participants in follow-up interviews and surveys, providing valuable insights into user expectations</p>
         </div>
       </div>
-      <img class="lm-media" src="/cases/livematch/feedback-5.png" alt="Critical user comment" loading="lazy" />
     </section>
 
-    <!-- ─── OVERALL (stat card | responsibilities) ───────────── -->
+    <!-- ─── OVERALL ──────────────────────────────────────────── -->
     <section class="lm-sec">
-      <h2 class="lm-h-lg">Overall</h2>
-      <div class="lm-overall">
-        <div class="card lm-hcard lm-stat-card">
-          <span class="lm-h-sm">Results</span>
-          <div class="lm-stat-list">
-            {results.map((r) => (
-              <div class="lm-stat">
-                <span class="lm-stat-value">{r.value}</span>
-                <span class="lm-stat-label">{r.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
+      <div class="lm-head2">
+        <h2 class="lm-h-lg">Overall</h2>
         <div class="lm-text">
           <p>I was responsible for the full product design cycle — from defining the vision to supporting implementation.</p>
           <p>My responsibilities included:</p>
@@ -342,13 +338,21 @@ const nextCase = {
           </ul>
         </div>
       </div>
+      <div class="lm-stats-grid">
+        {overallResults.map((r, i) => (
+          <div class={`lm-stat-block${i === overallResults.length - 1 ? ' lm-stat-block--accent' : ''}`}>
+            <span class="lm-stat-value lm-stat-value--lg">{r.value}</span>
+            <span class="lm-stat-label">{r.label}</span>
+          </div>
+        ))}
+      </div>
     </section>
 
     <!-- ─── NEXT CASE ────────────────────────────────────────── -->
     <div class="lm-divider"></div>
     <section class="lm-next">
       <h2 class="lm-h-lg">Next work</h2>
-      <WorkCard {...nextCase} />
+      <WorkCard {...nextCase} bordered />
     </section>
 
   </main>
@@ -356,26 +360,17 @@ const nextCase = {
 </SidebarLayout>
 
 <style>
-  /* ── Back button ────────────────────────────────────────── */
-  .back-btn {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-family: 'Space Grotesk', sans-serif; font-weight: 500;
-    font-size: var(--text-base); color: var(--accent-default);
-    transition: color 0.15s;
-  }
-  .back-btn:hover { color: var(--accent-hover); }
+  /* ── Page column: 1000px, left-aligned, 80px between blocks ── */
+  .lm { max-width: 1000px; display: flex; flex-direction: column; gap: 80px; }
+  .card { background: var(--bg-surface); border-radius: 20px; }
 
-  /* ── Page column: 800px, centered, 80px between blocks ──── */
-  .lm { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 80px; }
-  .card { background: var(--bg-page); border-radius: 20px; }
+  .lm-sec { display: flex; flex-direction: column; gap: 32px; }
 
-  .lm-sec { display: flex; flex-direction: column; gap: 24px; }
-  .lm-head { display: flex; flex-direction: column; gap: 12px; }
-  .lm-head--tight { margin-top: 8px; }
+  /* Section header: title left / text right */
+  .lm-head2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 
   /* ── Hero ───────────────────────────────────────────────── */
   .lm-hero { display: flex; flex-direction: column; }
-  .lm-hero .back-btn { margin-bottom: 24px; }
   .lm-hero__head { display: flex; flex-direction: column; gap: 16px; margin-bottom: 64px; }
   .lm-hero__cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
@@ -389,7 +384,7 @@ const nextCase = {
     font-family: 'Space Grotesk', sans-serif; font-weight: 500;
     font-size: var(--text-3xl); line-height: 32px; color: var(--content-primary);
   }
-  .lm-subtitle { font-size: var(--text-lg); line-height: 24px; color: var(--content-secondary); }
+  .lm-subtitle { font-size: var(--text-lg); line-height: 24px; color: var(--content-secondary); max-width: 800px; }
   .lm-text { display: flex; flex-direction: column; gap: 12px; }
   .lm-text p { font-size: var(--text-lg); line-height: 24px; color: var(--content-secondary); }
   .lm-text p strong { color: var(--content-primary); font-weight: 600; }
@@ -401,12 +396,21 @@ const nextCase = {
 
   /* ── Media ──────────────────────────────────────────────── */
   .lm-media { width: 100%; border-radius: 16px; display: block; }
+  .lm-media--bordered { border-radius: 20px; border: 0.5px solid var(--border-default); }
 
   /* Row of 4 + lineups grouped on a card */
   .lm-block-card { padding: 32px; display: flex; flex-direction: column; gap: 24px; }
   .lm-row4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
   .lm-row4 img { width: 100%; border-radius: 12px; display: block; }
   .lm-block-img { width: 100%; border-radius: 12px; display: block; }
+
+  /* Bordered card wrapping a single centered screenshot */
+  .lm-imgcard { padding: 32px; display: flex; justify-content: center; }
+  .lm-imgcard img { width: 100%; border-radius: 12px; display: block; }
+
+  /* Feedback: image left / text right */
+  .lm-feedback-row { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; }
+  .lm-feedback-row img { width: 100%; border-radius: 8px; display: block; }
 
   /* ── Hero cards (Context / Results) ─────────────────────── */
   .lm-hcard { padding: 32px 64px; display: flex; flex-direction: column; gap: 32px; }
@@ -444,8 +448,27 @@ const nextCase = {
   .lm-card { padding: 32px; display: flex; flex-direction: column; gap: 16px; }
   .lm-card__text { font-size: var(--text-md); line-height: 20px; color: var(--content-secondary); }
 
-  /* ── Overall (stat card | text) ─────────────────────────── */
-  .lm-overall { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+  /* ── Overall: 2×2 stat grid, last block accent-highlighted ── */
+  .lm-stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .lm-stat-block {
+    background: var(--bg-surface);
+    border-radius: 16px;
+    padding: 32px 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    opacity: 0; transform: translateY(12px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+  .lm-stat-value--lg { line-height: 1; font-size: var(--text-4xl); }
+  .lm-stat-block--accent { background: var(--domain-media); }
+  .lm-stat-block--accent .lm-stat-value,
+  .lm-stat-block--accent .lm-stat-label { color: var(--always-white); }
+  .lm-stats-grid.in-view .lm-stat-block { opacity: 1; transform: none; }
+  .lm-stats-grid.in-view .lm-stat-block:nth-child(1) { transition-delay: 0.05s; }
+  .lm-stats-grid.in-view .lm-stat-block:nth-child(2) { transition-delay: 0.15s; }
+  .lm-stats-grid.in-view .lm-stat-block:nth-child(3) { transition-delay: 0.25s; }
+  .lm-stats-grid.in-view .lm-stat-block:nth-child(4) { transition-delay: 0.35s; }
 
   /* ── Next case ──────────────────────────────────────────── */
   .lm-divider { height: 0.5px; background: var(--border-default); }
@@ -456,17 +479,20 @@ const nextCase = {
     .lm { gap: 56px; max-width: 100%; }
     .lm-hero__head { margin-bottom: 40px; }
     .lm-hero__cards { grid-template-columns: 1fr; }
+    .lm-head2 { grid-template-columns: 1fr; gap: 12px; }
     .lm-hcard { padding: 24px; }
     .lm-goals { flex-direction: column; padding: 24px; gap: 24px; }
     .lm-cards3, .lm-cards2 { grid-template-columns: 1fr; }
     .lm-card { padding: 24px; }
     .lm-block-card { padding: 20px; }
-    .lm-overall { grid-template-columns: 1fr; }
+    .lm-feedback-row { grid-template-columns: 1fr; gap: 16px; }
+    .lm-stats-grid { grid-template-columns: 1fr; }
+    .lm-stat-block { padding: 24px; }
   }
 </style>
 
 <script>
-  const cards = document.querySelectorAll('.lm-stat-card');
+  const cards = document.querySelectorAll('.lm-stat-card, .lm-stats-grid');
   const obs = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
       if (e.isIntersecting) { e.target.classList.add('in-view'); obs.unobserve(e.target); }

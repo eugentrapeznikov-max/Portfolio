@@ -13,6 +13,7 @@ interface Props {
   statLabel?: string;
   statRows?: StatRow[];
   layout?: 'full' | 'half';
+  bordered?: boolean;
 }
 const {
   href,
@@ -23,10 +24,11 @@ const {
   statLabel,
   statRows = [],
   layout = 'full',
+  bordered = false,
 } = Astro.props;
 const hasStat = statValue && statRows.length > 0;
 ---
-<a class={`work-card work-card--${layout}${href ? " work-card--link" : ""}`} href={href || undefined}>
+<a class={`work-card work-card--${layout}${href ? " work-card--link" : ""}${bordered ? " work-card--bordered" : ""}`} href={href || undefined}>
   <div class="work-card__left">
     <div class="work-card__title-block">
       <h2 class="work-card__title">{title}</h2>
@@ -73,6 +75,9 @@ const hasStat = statValue && statRows.length > 0;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+  .work-card--bordered {
+    border: 1px solid var(--border-default);
+  }
   .work-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.04);

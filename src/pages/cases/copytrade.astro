@@ -16,7 +16,7 @@ const results = [
   { value: 'From 2.73 % to <span class="ct-accent">9.73%</span>', label: 'First subscription conversion' },
 ];
 
-// ── Next case → Yollet (values per the Figma "Next work" card) ───────────
+// ── Next case → Yollet ────────────────────────────────────────────────────
 const nextCase = {
   href: '/cases/yollet',
   title: 'Yollet — Neo Bank',
@@ -33,18 +33,12 @@ const nextCase = {
 };
 ---
 
-<SidebarLayout title="Copy Trading App — Eugen Trapeznikov" centered>
+<SidebarLayout title="Copy Trading App — Eugen Trapeznikov" centered whiteContent backHref="/">
 
   <main class="ct">
 
     <!-- ─── HERO ─────────────────────────────────────────────── -->
     <section class="ct-hero">
-      <a href="/" class="back-btn">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M15 18l-6-6 6-6"/>
-        </svg>
-        Main page
-      </a>
       <h1 class="ct-h-lg">Copy Trading App — Redesigning the Subscription Experience</h1>
       <div class="ct-hero-cards">
         <div class="card ct-card">
@@ -74,7 +68,7 @@ const nextCase = {
 
     <!-- ─── SUMMARY ──────────────────────────────────────────── -->
     <section class="ct-sec">
-      <div class="ct-head">
+      <div class="ct-head2">
         <h2 class="ct-h-lg">Summary</h2>
         <div class="ct-text">
           <p>Upon my arrival, the team requested assistance in understanding users and the design process, which had not been previously explored. To achieve this, I proposed two tasks:</p>
@@ -82,7 +76,7 @@ const nextCase = {
           <p>2. To identify pain points from the user's perspective and suggest potential solutions that will positively impact the business metrics</p>
         </div>
       </div>
-      <div class="ct-head">
+      <div class="ct-head2">
         <h3 class="ct-h-sm">Business goals</h3>
         <ul class="ct-list">
           <li>Double 7-day retention</li>
@@ -90,21 +84,21 @@ const nextCase = {
           <li>Improve first subscription conversion</li>
         </ul>
       </div>
-      <img class="ct-media" src="/cases/copytrade/summary.png" alt="Copy trading app overview" loading="lazy" />
+      <img class="ct-media ct-media--bordered" src="/cases/copytrade/summary.png" alt="Copy trading app overview" loading="lazy" />
     </section>
 
     <!-- ─── RESEARCH PHASE ───────────────────────────────────── -->
     <section class="ct-sec">
-      <div class="ct-head">
+      <div class="ct-head2">
         <h2 class="ct-h-lg">Research phase</h2>
         <div class="ct-text">
           <p>To uncover the core problems, I conducted a research phase. I started by framing the challenge with a User Story Map, JTBD, and a Customer Journey Map. Next, I ran 17 user interviews, which revealed that while users aimed to earn money, they struggled to understand commissions and subscription types</p>
         </div>
       </div>
-      <img class="ct-media" src="/cases/copytrade/research-1.png" alt="Research artefacts" loading="lazy" />
-      <img class="ct-media" src="/cases/copytrade/interview-script.png" alt="Interview script" loading="lazy" />
+      <img class="ct-media ct-media--bordered" src="/cases/copytrade/research-1.png" alt="Research artefacts" loading="lazy" />
+      <img class="ct-media ct-media--bordered" src="/cases/copytrade/interview-script.png" alt="Interview script" loading="lazy" />
 
-      <div class="ct-head">
+      <div class="ct-head2">
         <h3 class="ct-h-sm">In-app feedback form</h3>
         <div class="ct-text">
           <p>Alongside working with artefacts and conducting interviews, I designed a feedback form that appeared when unsubscribing from the master trader.</p>
@@ -115,20 +109,22 @@ const nextCase = {
         <img src="/cases/copytrade/feedback-form-1.png" alt="Feedback form, first iteration" style="max-width: 438px;" loading="lazy" />
       </div>
 
-      <div class="ct-head">
+      <div class="ct-head2">
         <h3 class="ct-h-sm">In-app feedback form V2</h3>
         <div class="ct-text">
           <p>In two weeks, I collected more than 600 responses, analyzed them using semantic analysis and grouped the most relevant</p>
         </div>
       </div>
-      <img class="ct-media" src="/cases/copytrade/datastat.png" alt="Semantic analysis of feedback" loading="lazy" />
+      <div class="card ct-datastat-card">
+        <img class="ct-datastat" src="/cases/copytrade/datastat.png" alt="Semantic analysis of feedback" loading="lazy" />
+      </div>
 
       <div class="card ct-imgcard">
         <p class="ct-caption">In-app feedback form 2nd iteration</p>
         <img src="/cases/copytrade/feedback-form-2.png" alt="Feedback form, second iteration" style="max-width: 400px;" loading="lazy" />
       </div>
 
-      <div class="ct-head">
+      <div class="ct-head2">
         <h3 class="ct-h-sm">Key problems identified</h3>
         <ul class="ct-list">
           <li>No clear information on the minimum investment needed to fully copy trades.</li>
@@ -157,7 +153,6 @@ const nextCase = {
           <ul class="ct-list">
             <li>Removed manual minimum setting from trader accounts.</li>
             <li>Built an algorithm to calculate the real minimum based on trading strategy. If the user didn't meet the requirement, the system suggested an alternative trader.</li>
-            <li>implement</li>
           </ul>
         </div>
         <img class="ct-media" src="/cases/copytrade/killer-input.png" alt="Minimum investment input" loading="lazy" />
@@ -239,32 +234,29 @@ const nextCase = {
 
     <!-- ─── OVERALL ──────────────────────────────────────────── -->
     <section class="ct-sec">
-      <h2 class="ct-h-lg">Overall</h2>
-      <div class="ct-overall">
-        <div class="card ct-card ct-results-stat">
-          <span class="ct-h-sm">Results</span>
-          <div class="ct-stat-list">
-            {results.map((r) => (
-              <div class="ct-stat">
-                <span class="ct-stat-value" set:html={r.value}></span>
-                <span class="ct-stat-label">{r.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
+      <div class="ct-head2">
+        <h2 class="ct-h-lg">Overall</h2>
         <div class="ct-text">
           <p>A/B testing and interview feedback were strongly positive. And we made the decision to launch.</p>
           <p>Outcome:<br />Through deep research, data-driven decisions, and iterative design, we turned a confusing and unreliable subscription process into a transparent, predictable experience — directly boosting engagement, satisfaction, and key business metrics</p>
         </div>
       </div>
-      <img class="ct-media" src="/cases/copytrade/analytics.png" alt="Product analytics" loading="lazy" />
+      <div class="ct-stats-grid">
+        {results.map((r, i) => (
+          <div class={`ct-stat-block${i === results.length - 1 ? ' ct-stat-block--accent' : ''}`}>
+            <span class="ct-stat-value ct-stat-value--lg" set:html={r.value}></span>
+            <span class="ct-stat-label">{r.label}</span>
+          </div>
+        ))}
+      </div>
+      <img class="ct-media ct-media--bordered" src="/cases/copytrade/analytics.png" alt="Product analytics" loading="lazy" />
     </section>
 
     <!-- ─── NEXT CASE ────────────────────────────────────────── -->
     <div class="ct-divider"></div>
     <section class="ct-next">
       <h2 class="ct-h-lg">Next work</h2>
-      <WorkCard {...nextCase} />
+      <WorkCard {...nextCase} bordered />
     </section>
 
   </main>
@@ -272,25 +264,14 @@ const nextCase = {
 </SidebarLayout>
 
 <style>
-  /* ── Back button ────────────────────────────────────────── */
-  .back-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 500;
-    font-size: var(--text-base);
-    color: var(--accent-default);
-    transition: color 0.15s;
-  }
-  .back-btn:hover { color: var(--accent-hover); }
+  /* ── Page column: 1000px, left-aligned, 80px between blocks ── */
+  .ct { max-width: 1000px; display: flex; flex-direction: column; gap: 80px; }
+  .card { background: var(--bg-surface); border-radius: 20px; }
 
-  /* ── Page column: 800px, centered, 80px between blocks ──── */
-  .ct { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 80px; }
-  .card { background: var(--bg-page); border-radius: 20px; }
+  .ct-sec { display: flex; flex-direction: column; gap: 32px; }
 
-  .ct-sec { display: flex; flex-direction: column; gap: 24px; }
-  .ct-head { display: flex; flex-direction: column; gap: 12px; }
+  /* Section header: title left / text right */
+  .ct-head2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 
   /* ── Typography ─────────────────────────────────────────── */
   .ct-h-lg {
@@ -335,11 +316,11 @@ const nextCase = {
 
   /* ── Media ──────────────────────────────────────────────── */
   .ct-media { width: 100%; border-radius: 16px; display: block; }
+  .ct-media--bordered { border-radius: 20px; border: 0.5px solid var(--border-default); }
 
-  /* ── Hero cards (Context + Results) ─────────────────────── */
+  /* Hero title */
   .ct-hero { display: flex; flex-direction: column; }
-  .ct-hero .back-btn { margin-bottom: 24px; }
-  .ct-hero .ct-h-lg { margin-bottom: 64px; }
+  .ct-hero .ct-h-lg { max-width: 800px; margin-bottom: 64px; }
   .ct-hero-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .ct-card { padding: 32px 64px; display: flex; flex-direction: column; gap: 32px; }
 
@@ -384,6 +365,19 @@ const nextCase = {
   }
   .ct-imgcard img { width: 100%; border-radius: 12px; display: block; }
 
+  /* Datastat crop card */
+  .ct-datastat-card {
+    border: 0.5px solid var(--border-default);
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 370px;
+    background: var(--bg-page);
+  }
+  .ct-datastat { width: 100%; height: 100%; object-fit: cover; display: block; }
+
   /* ── Solution cards ─────────────────────────────────────── */
   .ct-solution { padding: 32px; display: flex; flex-direction: column; gap: 32px; }
 
@@ -402,8 +396,28 @@ const nextCase = {
   .ct-promo img { width: 100%; display: block; }
   .ct-newdesign { width: 100%; border-radius: 16px; display: block; align-self: start; }
 
-  /* ── Overall (stat card | text) ─────────────────────────── */
-  .ct-overall { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+  /* ── Overall: 2×2 stat grid, last block accent-highlighted ── */
+  .ct-stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .ct-stat-block {
+    background: var(--bg-surface);
+    border-radius: 16px;
+    padding: 32px 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    opacity: 0; transform: translateY(12px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+  .ct-stat-value--lg { line-height: 1; font-size: var(--text-4xl); }
+  .ct-stat-block--accent { background: var(--domain-fintech); }
+  .ct-stat-block--accent .ct-stat-value,
+  .ct-stat-block--accent .ct-stat-label,
+  .ct-stat-block--accent :global(.ct-accent) { color: var(--always-white); }
+  .ct-stats-grid.in-view .ct-stat-block { opacity: 1; transform: none; }
+  .ct-stats-grid.in-view .ct-stat-block:nth-child(1) { transition-delay: 0.05s; }
+  .ct-stats-grid.in-view .ct-stat-block:nth-child(2) { transition-delay: 0.15s; }
+  .ct-stats-grid.in-view .ct-stat-block:nth-child(3) { transition-delay: 0.25s; }
+  .ct-stats-grid.in-view .ct-stat-block:nth-child(4) { transition-delay: 0.35s; }
 
   /* ── Next case ──────────────────────────────────────────── */
   .ct-divider { height: 0.5px; background: var(--border-default); }
@@ -413,16 +427,18 @@ const nextCase = {
   @media (max-width: 960px) {
     .ct { gap: 48px; max-width: 100%; }
     .ct-hero-cards { grid-template-columns: 1fr; }
+    .ct-head2 { grid-template-columns: 1fr; gap: 12px; }
     .ct-card { padding: 24px; }
     .ct-solution { padding: 24px; }
     .ct-point { grid-template-columns: 1fr; gap: 24px; }
     .ct-cols { grid-template-columns: 1fr; }
-    .ct-overall { grid-template-columns: 1fr; }
+    .ct-stats-grid { grid-template-columns: 1fr; }
+    .ct-stat-block { padding: 24px; }
   }
 </style>
 
 <script>
-  const cards = document.querySelectorAll('.ct-results-stat');
+  const cards = document.querySelectorAll('.ct-results-stat, .ct-stats-grid');
   const obs = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
       if (e.isIntersecting) {
