@@ -9,6 +9,10 @@ const { title = 'Eugen Trapeznikov — Product Designer' } = Astro.props;
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <script>
+    import { inject } from '@vercel/analytics';
+    inject();
+  </script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root { --bg:#ffffff; --bg2:#f5f4f1; --bg3:#eceae4; --text:#1a1a1a; --text2:#6b6b6b; --text3:#a8a8a0; --border:rgba(0,0,0,0.08); --acc:#E8601A; }
